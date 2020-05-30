@@ -12,7 +12,7 @@ lexer = lex.lex()
 parser = yacc.yacc()
 
 
-f = open("C:\\Users\\Norki\\Desktop\\Parser\\entrada.txt", "r")
+f = open("C:/Users/Esnorki/Desktop/Parser/entrada.txt", "r")
 input = f.read()
 print(input)
 parser.parse(input)
