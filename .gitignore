@@ -123,3 +123,9 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+ply/__init__.py
+ply/cpp.py
+ply/ctokens.py
+ply/lex.py
+ply/yacc.py
+ply/ygen.py
