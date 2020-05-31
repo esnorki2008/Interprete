@@ -1,8 +1,8 @@
 from abc import ABC, abstractmethod
-
-
+from .Operacion import Suma
+from .Valor import  Valor
 class Instruccion(ABC):
-    def __Init__(self, *args):
+    def __init__(self, *args):
         pass
 
     @abstractmethod
@@ -17,15 +17,21 @@ class Instruccion(ABC):
 class ListaInstruccion(Instruccion):
     lst = []
 
-    def __Init__(self, lst: []):
-        self.lst=lst
+    def __init__(self, lst: []):
+        self.lst = lst
 
     def ejecutar(self):
         for elemento in self.lst:
             elemento.ejecutar()
 
     def str_arbol(self):
-        pass
+        concatenar = ""
+        for elemento in self.lst:
+            concatenar = + elemento.str_arbol()
+        return concatenar
+
+    def agregar(self, nuevo: Instruccion):
+        self.lstappend(nuevo)
 
 
 class ExpresionDoble(Instruccion):
@@ -33,8 +39,8 @@ class ExpresionDoble(Instruccion):
     hijo_derecho: Instruccion = None
     tipo_operacion: Instruccion = None
 
-    def __Init__(self, hijo_izquierdo: Instruccion, tipo_operacion: Instruccion, hijo_derecho: Instruccion):
-        self.hijo_derecho = hijo_izquierdo
+    def __init__(self, hijo_izquierdo: Instruccion, tipo_operacion: Instruccion, hijo_derecho: Instruccion):
+        self.hijo_izquierdo = hijo_izquierdo
         self.hijo_derecho = hijo_derecho
         self.tipo_operacion = tipo_operacion
 
@@ -42,26 +48,24 @@ class ExpresionDoble(Instruccion):
         pass
 
     def ejecutar(self):
-        print("No Implementado")
+        resultado=None
+        val_izq = self.hijo_izquierdo.ejecutar()
+        val_der = self.hijo_derecho.ejecutar()
+
+        if self.tipo_operacion == "+":
+           resultado=Suma.sumar(val_izq,val_der)
+        return resultado
 
 
-class Valor:
-    contenido: object = None
-    tipo: int = 0
 
-    def __Init__(self, contenido: object, tipo: int):
-        self.contenido = contenido
-        self.tipo = tipo
 
-    def evaluar(self):
-        return self.contenido
 
 
 class ExpresionSimple(Instruccion):
     contenido: Valor = None
     tipo: int = 0
 
-    def __Init__(self, contenido: Valor):
+    def __init__(self, contenido: Valor):
         self.contenido = contenido
 
     def str_arbol(self):
@@ -71,10 +75,10 @@ class ExpresionSimple(Instruccion):
         return self.contenido
 
 
-class Print(Instruccion):
+class Imprimir(Instruccion):
     contenido: Instruccion = None
 
-    def __Init__(self, contenido: Instruccion):
+    def __init__(self, contenido: Instruccion):
         self.contenido = contenido
 
     def str_arbol(self):

@@ -12,7 +12,10 @@ lexer = lex.lex()
 parser = yacc.yacc()
 
 
-f = open("C:/Users/Esnorki/Desktop/Parser/entrada.txt", "r")
-input = f.read()
-print(input)
-parser.parse(input)
+#f = open("C:/Users/norki/Desktop/interprete/entrada.txt", "r")
+f = open("C:/Users/Esnorki/Desktop/interprete/entrada.txt", "r")
+input: str = f.read()
+#print(input)
+raiz_produccion = parser.parse(input)
+for Prod in raiz_produccion:
+    print(Prod.ejecutar().dar_valor())

@@ -6,20 +6,57 @@
         <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
         <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
       </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
     </expand>
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5123d703-1ebb-44b0-96ca-06450bd3606c" name="Default Changelist" comment="" />
+    <list default="true" id="2b56b3b3-d50e-48b4-a1f8-80a87387fe55" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/Interprete.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Contenido/Auxiliares/LstInstruccion/Operacion/Multiplicacion.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Contenido/Auxiliares/LstInstruccion/Operacion/Resta.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Contenido/Auxiliares/LstInstruccion/Valor.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Contenido/Auxiliares/TablaDeSimbolos.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/Parser.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dictionaries/Esnorki.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dictionaries/Esnorki.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Contenido/Auxiliares/LstInstruccion/ABCInstruccion.py" beforeDir="false" afterPath="$PROJECT_DIR$/Contenido/Auxiliares/LstInstruccion/ABCInstruccion.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Contenido/Auxiliares/LstInstruccion/Operacion/Suma.py" beforeDir="false" afterPath="$PROJECT_DIR$/Contenido/Auxiliares/LstInstruccion/Operacion/Suma.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Contenido/Auxiliares/Tabla.py" beforeDir="false" afterPath="$PROJECT_DIR$/Contenido/Auxiliares/LstInstruccion/Operacion/Division.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Contenido/Sintactico.py" beforeDir="false" afterPath="$PROJECT_DIR$/Contenido/Sintactico.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Main.py" beforeDir="false" afterPath="$PROJECT_DIR$/Main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/entrada.txt" beforeDir="false" afterPath="$PROJECT_DIR$/entrada.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/parser.out" beforeDir="false" afterPath="$PROJECT_DIR$/parser.out" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/parsetab.py" beforeDir="false" afterPath="$PROJECT_DIR$/parsetab.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectId" id="1cdd1cvzvS5D4XwOXYYuxPMjIoL" />
+  <component name="ProjectId" id="1ceUI0TnpXaITL8LHGVkfExEymU" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -27,23 +64,20 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-  </component>
-  <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\Esnorki\Desktop\Parser\Contenido\Auxiliares\LstInstruccion" />
-    </key>
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/Main.py" />
   </component>
   <component name="RunManager">
     <configuration name="Main" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
-      <module name="Parser" />
+      <module name="Interprete" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
-      <option name="SDK_HOME" value="" />
+      <option name="SDK_HOME" value="C:\Users\Esnorki\Desktop\Interprete\venv\Scripts\python.exe" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
+      <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Main.py" />
@@ -61,11 +95,11 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="5123d703-1ebb-44b0-96ca-06450bd3606c" name="Default Changelist" comment="" />
-      <created>1590862189993</created>
+      <changelist id="2b56b3b3-d50e-48b4-a1f8-80a87387fe55" name="Default Changelist" comment="" />
+      <created>1590888469084</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1590862189993</updated>
+      <updated>1590888469084</updated>
     </task>
     <servers />
   </component>
@@ -79,27 +113,32 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="488" y="80" key="#com.intellij.ide.util.MemberChooser" timestamp="1590864398793">
+    <state x="137" y="19" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1590888658750">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="488" y="80" key="#com.intellij.ide.util.MemberChooser/0.0.1366.728@0.0.1366.728" timestamp="1590864398793" />
-    <state width="1345" height="179" key="GridCell.Tab.0.bottom" timestamp="1590865039673">
+    <state x="137" y="19" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1366.728@0.0.1366.728" timestamp="1590888658750" />
+    <state x="463" y="119" key="FileChooserDialogImpl" timestamp="1590888654438">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1345" height="179" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1590865039673" />
-    <state width="1345" height="179" key="GridCell.Tab.0.center" timestamp="1590865039673">
+    <state x="463" y="119" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1590888654438" />
+    <state width="1345" height="179" key="GridCell.Tab.0.bottom" timestamp="1590893674876">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1345" height="179" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1590865039673" />
-    <state width="1345" height="179" key="GridCell.Tab.0.left" timestamp="1590865039673">
+    <state width="1345" height="179" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1590893674876" />
+    <state width="1345" height="179" key="GridCell.Tab.0.center" timestamp="1590893674876">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1345" height="179" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1590865039673" />
-    <state width="1345" height="179" key="GridCell.Tab.0.right" timestamp="1590865039673">
+    <state width="1345" height="179" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1590893674876" />
+    <state width="1345" height="179" key="GridCell.Tab.0.left" timestamp="1590893674876">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1345" height="179" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1590865039673" />
+    <state width="1345" height="179" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1590893674876" />
+    <state width="1345" height="179" key="GridCell.Tab.0.right" timestamp="1590893674876">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1345" height="179" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1590893674876" />
   </component>
 </project>

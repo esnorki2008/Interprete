@@ -6,9 +6,9 @@ _tabversion = '3.10'
 
 _lr_method = 'LALR'
 
-_lr_signature = 'leftMASMENOSleftPORDIVIDIDOrightUMENOSCORA CORC DECIMAL DIVIDIDO ENTERO MAS MENOS PARA PARC POR PUNTOCOMAinstrucciones    : instruccion instrucciones\n                        | instruccion instruccion :  expresion  PUNTOCOMAexpresion : expresion MAS expresion\n                  | expresion MENOS expresion\n                  | expresion POR expresion\n                  | expresion DIVIDIDO expresionexpresion : MENOS expresion %prec UMENOSexpresion : PARA expresion PARCexpresion    : ENTERO\n                    | DECIMAL'
+_lr_signature = 'leftMASMENOSleftPORDIVIDIDOrightUMENOSCORA CORC DECIMAL DIVIDIDO ENTERO MAS MENOS PARA PARC POR PUNTOCOMAinicio    : instruccionesinstrucciones : instrucciones instruccioninstrucciones : instruccioninstruccion :  expresion  PUNTOCOMAexpresion : expresion MAS expresion\n                  | expresion MENOS expresion\n                  | expresion POR expresion\n                  | expresion DIVIDIDO expresionexpresion : MENOS expresion %prec UMENOSexpresion : PARA expresion PARCexpresion    : ENTERO\n                    | DECIMAL'
     
-_lr_action_items = {'MENOS':([0,2,3,4,5,6,7,9,10,11,12,13,14,15,16,17,18,19,20,],[4,4,11,4,4,-10,-11,-3,4,4,4,4,-8,11,-4,-5,-6,-7,-9,]),'PARA':([0,2,4,5,9,10,11,12,13,],[5,5,5,5,-3,5,5,5,5,]),'ENTERO':([0,2,4,5,9,10,11,12,13,],[6,6,6,6,-3,6,6,6,6,]),'DECIMAL':([0,2,4,5,9,10,11,12,13,],[7,7,7,7,-3,7,7,7,7,]),'$end':([1,2,8,9,],[0,-2,-1,-3,]),'PUNTOCOMA':([3,6,7,14,16,17,18,19,20,],[9,-10,-11,-8,-4,-5,-6,-7,-9,]),'MAS':([3,6,7,14,15,16,17,18,19,20,],[10,-10,-11,-8,10,-4,-5,-6,-7,-9,]),'POR':([3,6,7,14,15,16,17,18,19,20,],[12,-10,-11,-8,12,12,12,-6,-7,-9,]),'DIVIDIDO':([3,6,7,14,15,16,17,18,19,20,],[13,-10,-11,-8,13,13,13,-6,-7,-9,]),'PARC':([6,7,14,15,16,17,18,19,20,],[-10,-11,-8,20,-4,-5,-6,-7,-9,]),}
+_lr_action_items = {'MENOS':([0,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,],[5,5,-3,12,5,5,-11,-12,-2,-4,5,5,5,5,-9,12,-5,-6,-7,-8,-10,]),'PARA':([0,2,3,5,6,9,10,11,12,13,14,],[6,6,-3,6,6,-2,-4,6,6,6,6,]),'ENTERO':([0,2,3,5,6,9,10,11,12,13,14,],[7,7,-3,7,7,-2,-4,7,7,7,7,]),'DECIMAL':([0,2,3,5,6,9,10,11,12,13,14,],[8,8,-3,8,8,-2,-4,8,8,8,8,]),'$end':([1,2,3,9,10,],[0,-1,-3,-2,-4,]),'PUNTOCOMA':([4,7,8,15,17,18,19,20,21,],[10,-11,-12,-9,-5,-6,-7,-8,-10,]),'MAS':([4,7,8,15,16,17,18,19,20,21,],[11,-11,-12,-9,11,-5,-6,-7,-8,-10,]),'POR':([4,7,8,15,16,17,18,19,20,21,],[13,-11,-12,-9,13,13,13,-7,-8,-10,]),'DIVIDIDO':([4,7,8,15,16,17,18,19,20,21,],[14,-11,-12,-9,14,14,14,-7,-8,-10,]),'PARC':([7,8,15,16,17,18,19,20,21,],[-11,-12,-9,21,-5,-6,-7,-8,-10,]),}
 
 _lr_action = {}
 for _k, _v in _lr_action_items.items():
@@ -17,7 +17,7 @@ for _k, _v in _lr_action_items.items():
       _lr_action[_x][_k] = _y
 del _lr_action_items
 
-_lr_goto_items = {'instrucciones':([0,2,],[1,8,]),'instruccion':([0,2,],[2,2,]),'expresion':([0,2,4,5,10,11,12,13,],[3,3,14,15,16,17,18,19,]),}
+_lr_goto_items = {'inicio':([0,],[1,]),'instrucciones':([0,],[2,]),'instruccion':([0,2,],[3,9,]),'expresion':([0,2,5,6,11,12,13,14,],[4,4,15,16,17,18,19,20,]),}
 
 _lr_goto = {}
 for _k, _v in _lr_goto_items.items():
@@ -26,16 +26,17 @@ for _k, _v in _lr_goto_items.items():
        _lr_goto[_x][_k] = _y
 del _lr_goto_items
 _lr_productions = [
-  ("S' -> instrucciones","S'",1,None,None,None),
-  ('instrucciones -> instruccion instrucciones','instrucciones',2,'p_instrucciones_lista','Sintactico.py',10),
-  ('instrucciones -> instruccion','instrucciones',1,'p_instrucciones_lista','Sintactico.py',11),
-  ('instruccion -> expresion PUNTOCOMA','instruccion',2,'p_instrucciones_evaluar','Sintactico.py',14),
-  ('expresion -> expresion MAS expresion','expresion',3,'p_expresion_binaria','Sintactico.py',18),
-  ('expresion -> expresion MENOS expresion','expresion',3,'p_expresion_binaria','Sintactico.py',19),
-  ('expresion -> expresion POR expresion','expresion',3,'p_expresion_binaria','Sintactico.py',20),
-  ('expresion -> expresion DIVIDIDO expresion','expresion',3,'p_expresion_binaria','Sintactico.py',21),
-  ('expresion -> MENOS expresion','expresion',2,'p_expresion_unaria','Sintactico.py',28),
-  ('expresion -> PARA expresion PARC','expresion',3,'p_expresion_agrupacion','Sintactico.py',32),
-  ('expresion -> ENTERO','expresion',1,'p_expresion_number','Sintactico.py',36),
-  ('expresion -> DECIMAL','expresion',1,'p_expresion_number','Sintactico.py',37),
+  ("S' -> inicio","S'",1,None,None,None),
+  ('inicio -> instrucciones','inicio',1,'p_inicio','Sintactico.py',13),
+  ('instrucciones -> instrucciones instruccion','instrucciones',2,'p_instrucciones_lista','Sintactico.py',17),
+  ('instrucciones -> instruccion','instrucciones',1,'p_instrucciones_lista_inicio','Sintactico.py',22),
+  ('instruccion -> expresion PUNTOCOMA','instruccion',2,'p_instrucciones_evaluar','Sintactico.py',26),
+  ('expresion -> expresion MAS expresion','expresion',3,'p_expresion_binaria','Sintactico.py',31),
+  ('expresion -> expresion MENOS expresion','expresion',3,'p_expresion_binaria','Sintactico.py',32),
+  ('expresion -> expresion POR expresion','expresion',3,'p_expresion_binaria','Sintactico.py',33),
+  ('expresion -> expresion DIVIDIDO expresion','expresion',3,'p_expresion_binaria','Sintactico.py',34),
+  ('expresion -> MENOS expresion','expresion',2,'p_expresion_unaria','Sintactico.py',46),
+  ('expresion -> PARA expresion PARC','expresion',3,'p_expresion_agrupacion','Sintactico.py',51),
+  ('expresion -> ENTERO','expresion',1,'p_expresion_number','Sintactico.py',56),
+  ('expresion -> DECIMAL','expresion',1,'p_expresion_number','Sintactico.py',57),
 ]
