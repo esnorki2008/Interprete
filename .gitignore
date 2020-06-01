@@ -144,3 +144,7 @@ ply/ygen.py
 .idea/inspectionProfiles/profiles_settings.xml
 .idea/dictionaries/Esnorki.xml
 *.out
+*.xml
+*.out
+*.out
+parser.out

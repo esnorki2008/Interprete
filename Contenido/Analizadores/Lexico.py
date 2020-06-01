@@ -9,7 +9,8 @@ tokens  = (
     'DIVIDIDO',
     'DECIMAL',
     'ENTERO',
-    'PUNTOCOMA'
+    'PUNTOCOMA',
+    'IMPRIMIR'
 )
 
 # Tokens
@@ -22,6 +23,7 @@ t_MENOS     = r'-'
 t_POR       = r'\*'
 t_DIVIDIDO  = r'/'
 t_PUNTOCOMA    = r';'
+t_IMPRIMIR    = r'imprimir'
 
 #Expresiones Regulares
 def t_DECIMAL(t):

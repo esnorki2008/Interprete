@@ -20,22 +20,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2b56b3b3-d50e-48b4-a1f8-80a87387fe55" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/Interprete.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Contenido/Auxiliares/LstInstruccion/Operacion/Multiplicacion.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Contenido/Auxiliares/LstInstruccion/Operacion/Resta.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Contenido/Auxiliares/LstInstruccion/Valor.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Contenido/Auxiliares/TablaDeSimbolos.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/Parser.iml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dictionaries/Esnorki.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dictionaries/Esnorki.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Contenido/Auxiliares/LstInstruccion/ABCInstruccion.py" beforeDir="false" afterPath="$PROJECT_DIR$/Contenido/Auxiliares/LstInstruccion/ABCInstruccion.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Contenido/Auxiliares/LstInstruccion/Operacion/Suma.py" beforeDir="false" afterPath="$PROJECT_DIR$/Contenido/Auxiliares/LstInstruccion/Operacion/Suma.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Contenido/Auxiliares/Tabla.py" beforeDir="false" afterPath="$PROJECT_DIR$/Contenido/Auxiliares/LstInstruccion/Operacion/Division.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Contenido/Sintactico.py" beforeDir="false" afterPath="$PROJECT_DIR$/Contenido/Sintactico.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Contenido/Auxiliares/Arbol.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Contenido/Auxiliares/LstInstruccion/ABCInstruccion.py" beforeDir="false" afterPath="$PROJECT_DIR$/Contenido/LstInstruccion/ABCInstruccion.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Contenido/Auxiliares/LstInstruccion/Operacion/Division.py" beforeDir="false" afterPath="$PROJECT_DIR$/Contenido/LstInstruccion/Operacion/Aritmetica/Division.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Contenido/Auxiliares/LstInstruccion/Operacion/Multiplicacion.py" beforeDir="false" afterPath="$PROJECT_DIR$/Contenido/LstInstruccion/Operacion/Aritmetica/Multiplicacion.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Contenido/Auxiliares/LstInstruccion/Operacion/Resta.py" beforeDir="false" afterPath="$PROJECT_DIR$/Contenido/LstInstruccion/Operacion/Aritmetica/Resta.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Contenido/Auxiliares/LstInstruccion/Operacion/Suma.py" beforeDir="false" afterPath="$PROJECT_DIR$/Contenido/LstInstruccion/Operacion/Aritmetica/Suma.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Contenido/Auxiliares/LstInstruccion/Valor.py" beforeDir="false" afterPath="$PROJECT_DIR$/Contenido/LstInstruccion/Registro/Valor.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Contenido/Auxiliares/TablaDeSimbolos.py" beforeDir="false" afterPath="$PROJECT_DIR$/Contenido/TablaDeSimbolos.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Contenido/Lexico.py" beforeDir="false" afterPath="$PROJECT_DIR$/Contenido/Analizadores/Lexico.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Contenido/Sintactico.py" beforeDir="false" afterPath="$PROJECT_DIR$/Contenido/Analizadores/Sintactico.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Main.py" beforeDir="false" afterPath="$PROJECT_DIR$/Main.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/entrada.txt" beforeDir="false" afterPath="$PROJECT_DIR$/entrada.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/parser.out" beforeDir="false" afterPath="$PROJECT_DIR$/parser.out" afterDir="false" />
@@ -66,6 +63,14 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/Main.py" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Esnorki\Desktop\Interprete\Contenido\LstInstruccion\Operacion\Aritmetica" />
+      <recent name="C:\Users\Esnorki\Desktop\Interprete\Contenido" />
+      <recent name="C:\Users\Esnorki\Desktop\Interprete\Contenido\Analizadores" />
+      <recent name="C:\Users\Esnorki\Desktop\Interprete\Contenido\Auxiliares\LstInstruccion\Registros" />
+    </key>
   </component>
   <component name="RunManager">
     <configuration name="Main" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
@@ -124,21 +129,21 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="463" y="119" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1590888654438" />
-    <state width="1345" height="179" key="GridCell.Tab.0.bottom" timestamp="1590893674876">
+    <state width="1345" height="179" key="GridCell.Tab.0.bottom" timestamp="1590949835115">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1345" height="179" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1590893674876" />
-    <state width="1345" height="179" key="GridCell.Tab.0.center" timestamp="1590893674876">
+    <state width="1345" height="179" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1590949835115" />
+    <state width="1345" height="179" key="GridCell.Tab.0.center" timestamp="1590949835115">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1345" height="179" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1590893674876" />
-    <state width="1345" height="179" key="GridCell.Tab.0.left" timestamp="1590893674876">
+    <state width="1345" height="179" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1590949835115" />
+    <state width="1345" height="179" key="GridCell.Tab.0.left" timestamp="1590949835115">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1345" height="179" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1590893674876" />
-    <state width="1345" height="179" key="GridCell.Tab.0.right" timestamp="1590893674876">
+    <state width="1345" height="179" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1590949835115" />
+    <state width="1345" height="179" key="GridCell.Tab.0.right" timestamp="1590949835115">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1345" height="179" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1590893674876" />
+    <state width="1345" height="179" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1590949835115" />
   </component>
 </project>

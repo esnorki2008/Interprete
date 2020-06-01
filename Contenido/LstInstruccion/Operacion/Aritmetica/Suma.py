@@ -1,4 +1,4 @@
-from ..Valor import Valor
+from Contenido.LstInstruccion.Registro.Valor import Valor
 
 
 def sumar(param1, param2):
