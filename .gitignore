@@ -148,3 +148,5 @@ ply/ygen.py
 *.out
 *.out
 parser.out
+*.out
+parser.out

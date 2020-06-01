@@ -15,3 +15,16 @@ class Valor:
     '''
     def dar_valor(self):
         return self.contenido
+
+
+    def dar_tipo_str(self):
+        if self.tipo==0:
+            return "entero"
+        elif self.tipo==1:
+            return "decimal"
+        elif self.tipo==2:
+            return  "string"
+        elif self.tipo==3:
+            return  "arreglo"
+        else :
+            return  "indefinido"

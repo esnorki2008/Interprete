@@ -4,76 +4,86 @@ Unused terminals:
 
     CORA
     CORC
+    DECIMAL
+    READ
+    UNSET
 
 Grammar
 
 Rule 0     S' -> inicio
-Rule 1     inicio -> instrucciones
-Rule 2     instrucciones -> instrucciones instruccion
-Rule 3     instrucciones -> instruccion
-Rule 4     instruccion -> expresion PUNTOCOMA
-Rule 5     instruccion -> IMPRIMIR PARA expresion PARC PUNTOCOMA
-Rule 6     expresion -> expresion MAS expresion
-Rule 7     expresion -> expresion MENOS expresion
-Rule 8     expresion -> expresion POR expresion
-Rule 9     expresion -> expresion DIVIDIDO expresion
-Rule 10    expresion -> MENOS expresion
-Rule 11    expresion -> PARA expresion PARC
-Rule 12    expresion -> ENTERO
-Rule 13    expresion -> DECIMAL
+Rule 1     inicio -> etiquetas
+Rule 2     etiquetas -> etiquetas etiqueta
+Rule 3     etiquetas -> etiqueta
+Rule 4     etiqueta -> IDENTIFICADOR DOBLEPUNTO instrucciones
+Rule 5     etiqueta -> MAIN DOBLEPUNTO instrucciones
+Rule 6     instrucciones -> instrucciones instruccion
+Rule 7     instrucciones -> instruccion
+Rule 8     instruccion -> EXIT PUNTOCOMA
+Rule 9     instruccion -> IMPRIMIR PARA expresion PARC PUNTOCOMA
+Rule 10    instruccion -> DOLAR IDENTIFICADOR IGUAL expresion PUNTOCOMA
+Rule 11    instruccion -> GOTO IDENTIFICADOR PUNTOCOMA
+Rule 12    expresion -> valor MAS valor
+Rule 13    expresion -> valor MENOS valor
+Rule 14    expresion -> valor POR valor
+Rule 15    expresion -> valor DIVIDIDO valor
+Rule 16    expresion -> valor
+Rule 17    expresion -> MENOS valor
+Rule 18    expresion -> PARA valor PARC
+Rule 19    valor -> ENTERO
+Rule 20    valor -> DOLAR IDENTIFICADOR
 
 Terminals, with rules where they appear
 
 CORA                 : 
 CORC                 : 
-DECIMAL              : 13
-DIVIDIDO             : 9
-ENTERO               : 12
-IMPRIMIR             : 5
-MAS                  : 6
-MENOS                : 7 10
-PARA                 : 5 11
-PARC                 : 5 11
-POR                  : 8
-PUNTOCOMA            : 4 5
+DECIMAL              : 
+DIVIDIDO             : 15
+DOBLEPUNTO           : 4 5
+DOLAR                : 10 20
+ENTERO               : 19
+EXIT                 : 8
+GOTO                 : 11
+IDENTIFICADOR        : 4 10 11 20
+IGUAL                : 10
+IMPRIMIR             : 9
+MAIN                 : 5
+MAS                  : 12
+MENOS                : 13 17
+PARA                 : 9 18
+PARC                 : 9 18
+POR                  : 14
+PUNTOCOMA            : 8 9 10 11
+READ                 : 
+UNSET                : 
 error                : 
 
 Nonterminals, with rules where they appear
 
-expresion            : 4 5 6 6 7 7 8 8 9 9 10 11
+etiqueta             : 2 3
+etiquetas            : 1 2
+expresion            : 9 10
 inicio               : 0
-instruccion          : 2 3
-instrucciones        : 1 2
+instruccion          : 6 7
+instrucciones        : 4 5 6
+valor                : 12 12 13 13 14 14 15 15 16 17 18
 
 Parsing method: LALR
 
 state 0
 
     (0) S' -> . inicio
-    (1) inicio -> . instrucciones
-    (2) instrucciones -> . instrucciones instruccion
-    (3) instrucciones -> . instruccion
-    (4) instruccion -> . expresion PUNTOCOMA
-    (5) instruccion -> . IMPRIMIR PARA expresion PARC PUNTOCOMA
-    (6) expresion -> . expresion MAS expresion
-    (7) expresion -> . expresion MENOS expresion
-    (8) expresion -> . expresion POR expresion
-    (9) expresion -> . expresion DIVIDIDO expresion
-    (10) expresion -> . MENOS expresion
-    (11) expresion -> . PARA expresion PARC
-    (12) expresion -> . ENTERO
-    (13) expresion -> . DECIMAL
+    (1) inicio -> . etiquetas
+    (2) etiquetas -> . etiquetas etiqueta
+    (3) etiquetas -> . etiqueta
+    (4) etiqueta -> . IDENTIFICADOR DOBLEPUNTO instrucciones
+    (5) etiqueta -> . MAIN DOBLEPUNTO instrucciones
 
-    IMPRIMIR        shift and go to state 5
-    MENOS           shift and go to state 7
-    PARA            shift and go to state 6
-    ENTERO          shift and go to state 8
-    DECIMAL         shift and go to state 9
+    IDENTIFICADOR   shift and go to state 4
+    MAIN            shift and go to state 5
 
     inicio                         shift and go to state 1
-    instrucciones                  shift and go to state 2
-    instruccion                    shift and go to state 3
-    expresion                      shift and go to state 4
+    etiquetas                      shift and go to state 2
+    etiqueta                       shift and go to state 3
 
 state 1
 
@@ -83,406 +93,470 @@ state 1
 
 state 2
 
-    (1) inicio -> instrucciones .
-    (2) instrucciones -> instrucciones . instruccion
-    (4) instruccion -> . expresion PUNTOCOMA
-    (5) instruccion -> . IMPRIMIR PARA expresion PARC PUNTOCOMA
-    (6) expresion -> . expresion MAS expresion
-    (7) expresion -> . expresion MENOS expresion
-    (8) expresion -> . expresion POR expresion
-    (9) expresion -> . expresion DIVIDIDO expresion
-    (10) expresion -> . MENOS expresion
-    (11) expresion -> . PARA expresion PARC
-    (12) expresion -> . ENTERO
-    (13) expresion -> . DECIMAL
+    (1) inicio -> etiquetas .
+    (2) etiquetas -> etiquetas . etiqueta
+    (4) etiqueta -> . IDENTIFICADOR DOBLEPUNTO instrucciones
+    (5) etiqueta -> . MAIN DOBLEPUNTO instrucciones
 
-    $end            reduce using rule 1 (inicio -> instrucciones .)
-    IMPRIMIR        shift and go to state 5
-    MENOS           shift and go to state 7
-    PARA            shift and go to state 6
-    ENTERO          shift and go to state 8
-    DECIMAL         shift and go to state 9
+    $end            reduce using rule 1 (inicio -> etiquetas .)
+    IDENTIFICADOR   shift and go to state 4
+    MAIN            shift and go to state 5
 
-    instruccion                    shift and go to state 10
-    expresion                      shift and go to state 4
+    etiqueta                       shift and go to state 6
 
 state 3
 
-    (3) instrucciones -> instruccion .
+    (3) etiquetas -> etiqueta .
 
-    IMPRIMIR        reduce using rule 3 (instrucciones -> instruccion .)
-    MENOS           reduce using rule 3 (instrucciones -> instruccion .)
-    PARA            reduce using rule 3 (instrucciones -> instruccion .)
-    ENTERO          reduce using rule 3 (instrucciones -> instruccion .)
-    DECIMAL         reduce using rule 3 (instrucciones -> instruccion .)
-    $end            reduce using rule 3 (instrucciones -> instruccion .)
+    IDENTIFICADOR   reduce using rule 3 (etiquetas -> etiqueta .)
+    MAIN            reduce using rule 3 (etiquetas -> etiqueta .)
+    $end            reduce using rule 3 (etiquetas -> etiqueta .)
 
 
 state 4
 
-    (4) instruccion -> expresion . PUNTOCOMA
-    (6) expresion -> expresion . MAS expresion
-    (7) expresion -> expresion . MENOS expresion
-    (8) expresion -> expresion . POR expresion
-    (9) expresion -> expresion . DIVIDIDO expresion
+    (4) etiqueta -> IDENTIFICADOR . DOBLEPUNTO instrucciones
 
-    PUNTOCOMA       shift and go to state 11
-    MAS             shift and go to state 12
-    MENOS           shift and go to state 13
-    POR             shift and go to state 14
-    DIVIDIDO        shift and go to state 15
+    DOBLEPUNTO      shift and go to state 7
 
 
 state 5
 
-    (5) instruccion -> IMPRIMIR . PARA expresion PARC PUNTOCOMA
+    (5) etiqueta -> MAIN . DOBLEPUNTO instrucciones
 
-    PARA            shift and go to state 16
+    DOBLEPUNTO      shift and go to state 8
 
 
 state 6
 
-    (11) expresion -> PARA . expresion PARC
-    (6) expresion -> . expresion MAS expresion
-    (7) expresion -> . expresion MENOS expresion
-    (8) expresion -> . expresion POR expresion
-    (9) expresion -> . expresion DIVIDIDO expresion
-    (10) expresion -> . MENOS expresion
-    (11) expresion -> . PARA expresion PARC
-    (12) expresion -> . ENTERO
-    (13) expresion -> . DECIMAL
+    (2) etiquetas -> etiquetas etiqueta .
 
-    MENOS           shift and go to state 7
-    PARA            shift and go to state 6
-    ENTERO          shift and go to state 8
-    DECIMAL         shift and go to state 9
+    IDENTIFICADOR   reduce using rule 2 (etiquetas -> etiquetas etiqueta .)
+    MAIN            reduce using rule 2 (etiquetas -> etiquetas etiqueta .)
+    $end            reduce using rule 2 (etiquetas -> etiquetas etiqueta .)
 
-    expresion                      shift and go to state 17
 
 state 7
 
-    (10) expresion -> MENOS . expresion
-    (6) expresion -> . expresion MAS expresion
-    (7) expresion -> . expresion MENOS expresion
-    (8) expresion -> . expresion POR expresion
-    (9) expresion -> . expresion DIVIDIDO expresion
-    (10) expresion -> . MENOS expresion
-    (11) expresion -> . PARA expresion PARC
-    (12) expresion -> . ENTERO
-    (13) expresion -> . DECIMAL
+    (4) etiqueta -> IDENTIFICADOR DOBLEPUNTO . instrucciones
+    (6) instrucciones -> . instrucciones instruccion
+    (7) instrucciones -> . instruccion
+    (8) instruccion -> . EXIT PUNTOCOMA
+    (9) instruccion -> . IMPRIMIR PARA expresion PARC PUNTOCOMA
+    (10) instruccion -> . DOLAR IDENTIFICADOR IGUAL expresion PUNTOCOMA
+    (11) instruccion -> . GOTO IDENTIFICADOR PUNTOCOMA
 
-    MENOS           shift and go to state 7
-    PARA            shift and go to state 6
-    ENTERO          shift and go to state 8
-    DECIMAL         shift and go to state 9
+    EXIT            shift and go to state 11
+    IMPRIMIR        shift and go to state 12
+    DOLAR           shift and go to state 13
+    GOTO            shift and go to state 14
 
-    expresion                      shift and go to state 18
+    instrucciones                  shift and go to state 9
+    instruccion                    shift and go to state 10
 
 state 8
 
-    (12) expresion -> ENTERO .
+    (5) etiqueta -> MAIN DOBLEPUNTO . instrucciones
+    (6) instrucciones -> . instrucciones instruccion
+    (7) instrucciones -> . instruccion
+    (8) instruccion -> . EXIT PUNTOCOMA
+    (9) instruccion -> . IMPRIMIR PARA expresion PARC PUNTOCOMA
+    (10) instruccion -> . DOLAR IDENTIFICADOR IGUAL expresion PUNTOCOMA
+    (11) instruccion -> . GOTO IDENTIFICADOR PUNTOCOMA
 
-    PUNTOCOMA       reduce using rule 12 (expresion -> ENTERO .)
-    MAS             reduce using rule 12 (expresion -> ENTERO .)
-    MENOS           reduce using rule 12 (expresion -> ENTERO .)
-    POR             reduce using rule 12 (expresion -> ENTERO .)
-    DIVIDIDO        reduce using rule 12 (expresion -> ENTERO .)
-    PARC            reduce using rule 12 (expresion -> ENTERO .)
+    EXIT            shift and go to state 11
+    IMPRIMIR        shift and go to state 12
+    DOLAR           shift and go to state 13
+    GOTO            shift and go to state 14
 
+    instrucciones                  shift and go to state 15
+    instruccion                    shift and go to state 10
 
 state 9
 
-    (13) expresion -> DECIMAL .
+    (4) etiqueta -> IDENTIFICADOR DOBLEPUNTO instrucciones .
+    (6) instrucciones -> instrucciones . instruccion
+    (8) instruccion -> . EXIT PUNTOCOMA
+    (9) instruccion -> . IMPRIMIR PARA expresion PARC PUNTOCOMA
+    (10) instruccion -> . DOLAR IDENTIFICADOR IGUAL expresion PUNTOCOMA
+    (11) instruccion -> . GOTO IDENTIFICADOR PUNTOCOMA
 
-    PUNTOCOMA       reduce using rule 13 (expresion -> DECIMAL .)
-    MAS             reduce using rule 13 (expresion -> DECIMAL .)
-    MENOS           reduce using rule 13 (expresion -> DECIMAL .)
-    POR             reduce using rule 13 (expresion -> DECIMAL .)
-    DIVIDIDO        reduce using rule 13 (expresion -> DECIMAL .)
-    PARC            reduce using rule 13 (expresion -> DECIMAL .)
+    IDENTIFICADOR   reduce using rule 4 (etiqueta -> IDENTIFICADOR DOBLEPUNTO instrucciones .)
+    MAIN            reduce using rule 4 (etiqueta -> IDENTIFICADOR DOBLEPUNTO instrucciones .)
+    $end            reduce using rule 4 (etiqueta -> IDENTIFICADOR DOBLEPUNTO instrucciones .)
+    EXIT            shift and go to state 11
+    IMPRIMIR        shift and go to state 12
+    DOLAR           shift and go to state 13
+    GOTO            shift and go to state 14
 
+    instruccion                    shift and go to state 16
 
 state 10
 
-    (2) instrucciones -> instrucciones instruccion .
+    (7) instrucciones -> instruccion .
 
-    IMPRIMIR        reduce using rule 2 (instrucciones -> instrucciones instruccion .)
-    MENOS           reduce using rule 2 (instrucciones -> instrucciones instruccion .)
-    PARA            reduce using rule 2 (instrucciones -> instrucciones instruccion .)
-    ENTERO          reduce using rule 2 (instrucciones -> instrucciones instruccion .)
-    DECIMAL         reduce using rule 2 (instrucciones -> instrucciones instruccion .)
-    $end            reduce using rule 2 (instrucciones -> instrucciones instruccion .)
+    EXIT            reduce using rule 7 (instrucciones -> instruccion .)
+    IMPRIMIR        reduce using rule 7 (instrucciones -> instruccion .)
+    DOLAR           reduce using rule 7 (instrucciones -> instruccion .)
+    GOTO            reduce using rule 7 (instrucciones -> instruccion .)
+    IDENTIFICADOR   reduce using rule 7 (instrucciones -> instruccion .)
+    MAIN            reduce using rule 7 (instrucciones -> instruccion .)
+    $end            reduce using rule 7 (instrucciones -> instruccion .)
 
 
 state 11
 
-    (4) instruccion -> expresion PUNTOCOMA .
+    (8) instruccion -> EXIT . PUNTOCOMA
 
-    IMPRIMIR        reduce using rule 4 (instruccion -> expresion PUNTOCOMA .)
-    MENOS           reduce using rule 4 (instruccion -> expresion PUNTOCOMA .)
-    PARA            reduce using rule 4 (instruccion -> expresion PUNTOCOMA .)
-    ENTERO          reduce using rule 4 (instruccion -> expresion PUNTOCOMA .)
-    DECIMAL         reduce using rule 4 (instruccion -> expresion PUNTOCOMA .)
-    $end            reduce using rule 4 (instruccion -> expresion PUNTOCOMA .)
+    PUNTOCOMA       shift and go to state 17
 
 
 state 12
 
-    (6) expresion -> expresion MAS . expresion
-    (6) expresion -> . expresion MAS expresion
-    (7) expresion -> . expresion MENOS expresion
-    (8) expresion -> . expresion POR expresion
-    (9) expresion -> . expresion DIVIDIDO expresion
-    (10) expresion -> . MENOS expresion
-    (11) expresion -> . PARA expresion PARC
-    (12) expresion -> . ENTERO
-    (13) expresion -> . DECIMAL
+    (9) instruccion -> IMPRIMIR . PARA expresion PARC PUNTOCOMA
 
-    MENOS           shift and go to state 7
-    PARA            shift and go to state 6
-    ENTERO          shift and go to state 8
-    DECIMAL         shift and go to state 9
+    PARA            shift and go to state 18
 
-    expresion                      shift and go to state 19
 
 state 13
 
-    (7) expresion -> expresion MENOS . expresion
-    (6) expresion -> . expresion MAS expresion
-    (7) expresion -> . expresion MENOS expresion
-    (8) expresion -> . expresion POR expresion
-    (9) expresion -> . expresion DIVIDIDO expresion
-    (10) expresion -> . MENOS expresion
-    (11) expresion -> . PARA expresion PARC
-    (12) expresion -> . ENTERO
-    (13) expresion -> . DECIMAL
+    (10) instruccion -> DOLAR . IDENTIFICADOR IGUAL expresion PUNTOCOMA
 
-    MENOS           shift and go to state 7
-    PARA            shift and go to state 6
-    ENTERO          shift and go to state 8
-    DECIMAL         shift and go to state 9
+    IDENTIFICADOR   shift and go to state 19
 
-    expresion                      shift and go to state 20
 
 state 14
 
-    (8) expresion -> expresion POR . expresion
-    (6) expresion -> . expresion MAS expresion
-    (7) expresion -> . expresion MENOS expresion
-    (8) expresion -> . expresion POR expresion
-    (9) expresion -> . expresion DIVIDIDO expresion
-    (10) expresion -> . MENOS expresion
-    (11) expresion -> . PARA expresion PARC
-    (12) expresion -> . ENTERO
-    (13) expresion -> . DECIMAL
+    (11) instruccion -> GOTO . IDENTIFICADOR PUNTOCOMA
 
-    MENOS           shift and go to state 7
-    PARA            shift and go to state 6
-    ENTERO          shift and go to state 8
-    DECIMAL         shift and go to state 9
+    IDENTIFICADOR   shift and go to state 20
 
-    expresion                      shift and go to state 21
 
 state 15
 
-    (9) expresion -> expresion DIVIDIDO . expresion
-    (6) expresion -> . expresion MAS expresion
-    (7) expresion -> . expresion MENOS expresion
-    (8) expresion -> . expresion POR expresion
-    (9) expresion -> . expresion DIVIDIDO expresion
-    (10) expresion -> . MENOS expresion
-    (11) expresion -> . PARA expresion PARC
-    (12) expresion -> . ENTERO
-    (13) expresion -> . DECIMAL
+    (5) etiqueta -> MAIN DOBLEPUNTO instrucciones .
+    (6) instrucciones -> instrucciones . instruccion
+    (8) instruccion -> . EXIT PUNTOCOMA
+    (9) instruccion -> . IMPRIMIR PARA expresion PARC PUNTOCOMA
+    (10) instruccion -> . DOLAR IDENTIFICADOR IGUAL expresion PUNTOCOMA
+    (11) instruccion -> . GOTO IDENTIFICADOR PUNTOCOMA
 
-    MENOS           shift and go to state 7
-    PARA            shift and go to state 6
-    ENTERO          shift and go to state 8
-    DECIMAL         shift and go to state 9
+    IDENTIFICADOR   reduce using rule 5 (etiqueta -> MAIN DOBLEPUNTO instrucciones .)
+    MAIN            reduce using rule 5 (etiqueta -> MAIN DOBLEPUNTO instrucciones .)
+    $end            reduce using rule 5 (etiqueta -> MAIN DOBLEPUNTO instrucciones .)
+    EXIT            shift and go to state 11
+    IMPRIMIR        shift and go to state 12
+    DOLAR           shift and go to state 13
+    GOTO            shift and go to state 14
 
-    expresion                      shift and go to state 22
+    instruccion                    shift and go to state 16
 
 state 16
 
-    (5) instruccion -> IMPRIMIR PARA . expresion PARC PUNTOCOMA
-    (6) expresion -> . expresion MAS expresion
-    (7) expresion -> . expresion MENOS expresion
-    (8) expresion -> . expresion POR expresion
-    (9) expresion -> . expresion DIVIDIDO expresion
-    (10) expresion -> . MENOS expresion
-    (11) expresion -> . PARA expresion PARC
-    (12) expresion -> . ENTERO
-    (13) expresion -> . DECIMAL
+    (6) instrucciones -> instrucciones instruccion .
 
-    MENOS           shift and go to state 7
-    PARA            shift and go to state 6
-    ENTERO          shift and go to state 8
-    DECIMAL         shift and go to state 9
+    EXIT            reduce using rule 6 (instrucciones -> instrucciones instruccion .)
+    IMPRIMIR        reduce using rule 6 (instrucciones -> instrucciones instruccion .)
+    DOLAR           reduce using rule 6 (instrucciones -> instrucciones instruccion .)
+    GOTO            reduce using rule 6 (instrucciones -> instrucciones instruccion .)
+    IDENTIFICADOR   reduce using rule 6 (instrucciones -> instrucciones instruccion .)
+    MAIN            reduce using rule 6 (instrucciones -> instrucciones instruccion .)
+    $end            reduce using rule 6 (instrucciones -> instrucciones instruccion .)
 
-    expresion                      shift and go to state 23
 
 state 17
 
-    (11) expresion -> PARA expresion . PARC
-    (6) expresion -> expresion . MAS expresion
-    (7) expresion -> expresion . MENOS expresion
-    (8) expresion -> expresion . POR expresion
-    (9) expresion -> expresion . DIVIDIDO expresion
+    (8) instruccion -> EXIT PUNTOCOMA .
 
-    PARC            shift and go to state 24
-    MAS             shift and go to state 12
-    MENOS           shift and go to state 13
-    POR             shift and go to state 14
-    DIVIDIDO        shift and go to state 15
+    EXIT            reduce using rule 8 (instruccion -> EXIT PUNTOCOMA .)
+    IMPRIMIR        reduce using rule 8 (instruccion -> EXIT PUNTOCOMA .)
+    DOLAR           reduce using rule 8 (instruccion -> EXIT PUNTOCOMA .)
+    GOTO            reduce using rule 8 (instruccion -> EXIT PUNTOCOMA .)
+    IDENTIFICADOR   reduce using rule 8 (instruccion -> EXIT PUNTOCOMA .)
+    MAIN            reduce using rule 8 (instruccion -> EXIT PUNTOCOMA .)
+    $end            reduce using rule 8 (instruccion -> EXIT PUNTOCOMA .)
 
 
 state 18
 
-    (10) expresion -> MENOS expresion .
-    (6) expresion -> expresion . MAS expresion
-    (7) expresion -> expresion . MENOS expresion
-    (8) expresion -> expresion . POR expresion
-    (9) expresion -> expresion . DIVIDIDO expresion
+    (9) instruccion -> IMPRIMIR PARA . expresion PARC PUNTOCOMA
+    (12) expresion -> . valor MAS valor
+    (13) expresion -> . valor MENOS valor
+    (14) expresion -> . valor POR valor
+    (15) expresion -> . valor DIVIDIDO valor
+    (16) expresion -> . valor
+    (17) expresion -> . MENOS valor
+    (18) expresion -> . PARA valor PARC
+    (19) valor -> . ENTERO
+    (20) valor -> . DOLAR IDENTIFICADOR
 
-    PUNTOCOMA       reduce using rule 10 (expresion -> MENOS expresion .)
-    MAS             reduce using rule 10 (expresion -> MENOS expresion .)
-    MENOS           reduce using rule 10 (expresion -> MENOS expresion .)
-    POR             reduce using rule 10 (expresion -> MENOS expresion .)
-    DIVIDIDO        reduce using rule 10 (expresion -> MENOS expresion .)
-    PARC            reduce using rule 10 (expresion -> MENOS expresion .)
+    MENOS           shift and go to state 24
+    PARA            shift and go to state 21
+    ENTERO          shift and go to state 25
+    DOLAR           shift and go to state 26
 
-  ! MAS             [ shift and go to state 12 ]
-  ! MENOS           [ shift and go to state 13 ]
-  ! POR             [ shift and go to state 14 ]
-  ! DIVIDIDO        [ shift and go to state 15 ]
-
+    expresion                      shift and go to state 22
+    valor                          shift and go to state 23
 
 state 19
 
-    (6) expresion -> expresion MAS expresion .
-    (6) expresion -> expresion . MAS expresion
-    (7) expresion -> expresion . MENOS expresion
-    (8) expresion -> expresion . POR expresion
-    (9) expresion -> expresion . DIVIDIDO expresion
+    (10) instruccion -> DOLAR IDENTIFICADOR . IGUAL expresion PUNTOCOMA
 
-    PUNTOCOMA       reduce using rule 6 (expresion -> expresion MAS expresion .)
-    MAS             reduce using rule 6 (expresion -> expresion MAS expresion .)
-    MENOS           reduce using rule 6 (expresion -> expresion MAS expresion .)
-    PARC            reduce using rule 6 (expresion -> expresion MAS expresion .)
-    POR             shift and go to state 14
-    DIVIDIDO        shift and go to state 15
-
-  ! POR             [ reduce using rule 6 (expresion -> expresion MAS expresion .) ]
-  ! DIVIDIDO        [ reduce using rule 6 (expresion -> expresion MAS expresion .) ]
-  ! MAS             [ shift and go to state 12 ]
-  ! MENOS           [ shift and go to state 13 ]
+    IGUAL           shift and go to state 27
 
 
 state 20
 
-    (7) expresion -> expresion MENOS expresion .
-    (6) expresion -> expresion . MAS expresion
-    (7) expresion -> expresion . MENOS expresion
-    (8) expresion -> expresion . POR expresion
-    (9) expresion -> expresion . DIVIDIDO expresion
+    (11) instruccion -> GOTO IDENTIFICADOR . PUNTOCOMA
 
-    PUNTOCOMA       reduce using rule 7 (expresion -> expresion MENOS expresion .)
-    MAS             reduce using rule 7 (expresion -> expresion MENOS expresion .)
-    MENOS           reduce using rule 7 (expresion -> expresion MENOS expresion .)
-    PARC            reduce using rule 7 (expresion -> expresion MENOS expresion .)
-    POR             shift and go to state 14
-    DIVIDIDO        shift and go to state 15
-
-  ! POR             [ reduce using rule 7 (expresion -> expresion MENOS expresion .) ]
-  ! DIVIDIDO        [ reduce using rule 7 (expresion -> expresion MENOS expresion .) ]
-  ! MAS             [ shift and go to state 12 ]
-  ! MENOS           [ shift and go to state 13 ]
+    PUNTOCOMA       shift and go to state 28
 
 
 state 21
 
-    (8) expresion -> expresion POR expresion .
-    (6) expresion -> expresion . MAS expresion
-    (7) expresion -> expresion . MENOS expresion
-    (8) expresion -> expresion . POR expresion
-    (9) expresion -> expresion . DIVIDIDO expresion
+    (18) expresion -> PARA . valor PARC
+    (19) valor -> . ENTERO
+    (20) valor -> . DOLAR IDENTIFICADOR
 
-    PUNTOCOMA       reduce using rule 8 (expresion -> expresion POR expresion .)
-    MAS             reduce using rule 8 (expresion -> expresion POR expresion .)
-    MENOS           reduce using rule 8 (expresion -> expresion POR expresion .)
-    POR             reduce using rule 8 (expresion -> expresion POR expresion .)
-    DIVIDIDO        reduce using rule 8 (expresion -> expresion POR expresion .)
-    PARC            reduce using rule 8 (expresion -> expresion POR expresion .)
+    ENTERO          shift and go to state 25
+    DOLAR           shift and go to state 26
 
-  ! MAS             [ shift and go to state 12 ]
-  ! MENOS           [ shift and go to state 13 ]
-  ! POR             [ shift and go to state 14 ]
-  ! DIVIDIDO        [ shift and go to state 15 ]
-
+    valor                          shift and go to state 29
 
 state 22
 
-    (9) expresion -> expresion DIVIDIDO expresion .
-    (6) expresion -> expresion . MAS expresion
-    (7) expresion -> expresion . MENOS expresion
-    (8) expresion -> expresion . POR expresion
-    (9) expresion -> expresion . DIVIDIDO expresion
+    (9) instruccion -> IMPRIMIR PARA expresion . PARC PUNTOCOMA
 
-    PUNTOCOMA       reduce using rule 9 (expresion -> expresion DIVIDIDO expresion .)
-    MAS             reduce using rule 9 (expresion -> expresion DIVIDIDO expresion .)
-    MENOS           reduce using rule 9 (expresion -> expresion DIVIDIDO expresion .)
-    POR             reduce using rule 9 (expresion -> expresion DIVIDIDO expresion .)
-    DIVIDIDO        reduce using rule 9 (expresion -> expresion DIVIDIDO expresion .)
-    PARC            reduce using rule 9 (expresion -> expresion DIVIDIDO expresion .)
-
-  ! MAS             [ shift and go to state 12 ]
-  ! MENOS           [ shift and go to state 13 ]
-  ! POR             [ shift and go to state 14 ]
-  ! DIVIDIDO        [ shift and go to state 15 ]
+    PARC            shift and go to state 30
 
 
 state 23
 
-    (5) instruccion -> IMPRIMIR PARA expresion . PARC PUNTOCOMA
-    (6) expresion -> expresion . MAS expresion
-    (7) expresion -> expresion . MENOS expresion
-    (8) expresion -> expresion . POR expresion
-    (9) expresion -> expresion . DIVIDIDO expresion
+    (12) expresion -> valor . MAS valor
+    (13) expresion -> valor . MENOS valor
+    (14) expresion -> valor . POR valor
+    (15) expresion -> valor . DIVIDIDO valor
+    (16) expresion -> valor .
 
-    PARC            shift and go to state 25
-    MAS             shift and go to state 12
-    MENOS           shift and go to state 13
-    POR             shift and go to state 14
-    DIVIDIDO        shift and go to state 15
+    MAS             shift and go to state 31
+    MENOS           shift and go to state 32
+    POR             shift and go to state 33
+    DIVIDIDO        shift and go to state 34
+    PARC            reduce using rule 16 (expresion -> valor .)
+    PUNTOCOMA       reduce using rule 16 (expresion -> valor .)
 
 
 state 24
 
-    (11) expresion -> PARA expresion PARC .
+    (17) expresion -> MENOS . valor
+    (19) valor -> . ENTERO
+    (20) valor -> . DOLAR IDENTIFICADOR
 
-    PUNTOCOMA       reduce using rule 11 (expresion -> PARA expresion PARC .)
-    MAS             reduce using rule 11 (expresion -> PARA expresion PARC .)
-    MENOS           reduce using rule 11 (expresion -> PARA expresion PARC .)
-    POR             reduce using rule 11 (expresion -> PARA expresion PARC .)
-    DIVIDIDO        reduce using rule 11 (expresion -> PARA expresion PARC .)
-    PARC            reduce using rule 11 (expresion -> PARA expresion PARC .)
+    ENTERO          shift and go to state 25
+    DOLAR           shift and go to state 26
 
+    valor                          shift and go to state 35
 
 state 25
 
-    (5) instruccion -> IMPRIMIR PARA expresion PARC . PUNTOCOMA
+    (19) valor -> ENTERO .
 
-    PUNTOCOMA       shift and go to state 26
+    MAS             reduce using rule 19 (valor -> ENTERO .)
+    MENOS           reduce using rule 19 (valor -> ENTERO .)
+    POR             reduce using rule 19 (valor -> ENTERO .)
+    DIVIDIDO        reduce using rule 19 (valor -> ENTERO .)
+    PARC            reduce using rule 19 (valor -> ENTERO .)
+    PUNTOCOMA       reduce using rule 19 (valor -> ENTERO .)
 
 
 state 26
 
-    (5) instruccion -> IMPRIMIR PARA expresion PARC PUNTOCOMA .
+    (20) valor -> DOLAR . IDENTIFICADOR
 
-    IMPRIMIR        reduce using rule 5 (instruccion -> IMPRIMIR PARA expresion PARC PUNTOCOMA .)
-    MENOS           reduce using rule 5 (instruccion -> IMPRIMIR PARA expresion PARC PUNTOCOMA .)
-    PARA            reduce using rule 5 (instruccion -> IMPRIMIR PARA expresion PARC PUNTOCOMA .)
-    ENTERO          reduce using rule 5 (instruccion -> IMPRIMIR PARA expresion PARC PUNTOCOMA .)
-    DECIMAL         reduce using rule 5 (instruccion -> IMPRIMIR PARA expresion PARC PUNTOCOMA .)
-    $end            reduce using rule 5 (instruccion -> IMPRIMIR PARA expresion PARC PUNTOCOMA .)
+    IDENTIFICADOR   shift and go to state 36
+
+
+state 27
+
+    (10) instruccion -> DOLAR IDENTIFICADOR IGUAL . expresion PUNTOCOMA
+    (12) expresion -> . valor MAS valor
+    (13) expresion -> . valor MENOS valor
+    (14) expresion -> . valor POR valor
+    (15) expresion -> . valor DIVIDIDO valor
+    (16) expresion -> . valor
+    (17) expresion -> . MENOS valor
+    (18) expresion -> . PARA valor PARC
+    (19) valor -> . ENTERO
+    (20) valor -> . DOLAR IDENTIFICADOR
+
+    MENOS           shift and go to state 24
+    PARA            shift and go to state 21
+    ENTERO          shift and go to state 25
+    DOLAR           shift and go to state 26
+
+    expresion                      shift and go to state 37
+    valor                          shift and go to state 23
+
+state 28
+
+    (11) instruccion -> GOTO IDENTIFICADOR PUNTOCOMA .
+
+    EXIT            reduce using rule 11 (instruccion -> GOTO IDENTIFICADOR PUNTOCOMA .)
+    IMPRIMIR        reduce using rule 11 (instruccion -> GOTO IDENTIFICADOR PUNTOCOMA .)
+    DOLAR           reduce using rule 11 (instruccion -> GOTO IDENTIFICADOR PUNTOCOMA .)
+    GOTO            reduce using rule 11 (instruccion -> GOTO IDENTIFICADOR PUNTOCOMA .)
+    IDENTIFICADOR   reduce using rule 11 (instruccion -> GOTO IDENTIFICADOR PUNTOCOMA .)
+    MAIN            reduce using rule 11 (instruccion -> GOTO IDENTIFICADOR PUNTOCOMA .)
+    $end            reduce using rule 11 (instruccion -> GOTO IDENTIFICADOR PUNTOCOMA .)
+
+
+state 29
+
+    (18) expresion -> PARA valor . PARC
+
+    PARC            shift and go to state 38
+
+
+state 30
+
+    (9) instruccion -> IMPRIMIR PARA expresion PARC . PUNTOCOMA
+
+    PUNTOCOMA       shift and go to state 39
+
+
+state 31
+
+    (12) expresion -> valor MAS . valor
+    (19) valor -> . ENTERO
+    (20) valor -> . DOLAR IDENTIFICADOR
+
+    ENTERO          shift and go to state 25
+    DOLAR           shift and go to state 26
+
+    valor                          shift and go to state 40
+
+state 32
+
+    (13) expresion -> valor MENOS . valor
+    (19) valor -> . ENTERO
+    (20) valor -> . DOLAR IDENTIFICADOR
+
+    ENTERO          shift and go to state 25
+    DOLAR           shift and go to state 26
+
+    valor                          shift and go to state 41
+
+state 33
+
+    (14) expresion -> valor POR . valor
+    (19) valor -> . ENTERO
+    (20) valor -> . DOLAR IDENTIFICADOR
+
+    ENTERO          shift and go to state 25
+    DOLAR           shift and go to state 26
+
+    valor                          shift and go to state 42
+
+state 34
+
+    (15) expresion -> valor DIVIDIDO . valor
+    (19) valor -> . ENTERO
+    (20) valor -> . DOLAR IDENTIFICADOR
+
+    ENTERO          shift and go to state 25
+    DOLAR           shift and go to state 26
+
+    valor                          shift and go to state 43
+
+state 35
+
+    (17) expresion -> MENOS valor .
+
+    PARC            reduce using rule 17 (expresion -> MENOS valor .)
+    PUNTOCOMA       reduce using rule 17 (expresion -> MENOS valor .)
+
+
+state 36
+
+    (20) valor -> DOLAR IDENTIFICADOR .
+
+    MAS             reduce using rule 20 (valor -> DOLAR IDENTIFICADOR .)
+    MENOS           reduce using rule 20 (valor -> DOLAR IDENTIFICADOR .)
+    POR             reduce using rule 20 (valor -> DOLAR IDENTIFICADOR .)
+    DIVIDIDO        reduce using rule 20 (valor -> DOLAR IDENTIFICADOR .)
+    PARC            reduce using rule 20 (valor -> DOLAR IDENTIFICADOR .)
+    PUNTOCOMA       reduce using rule 20 (valor -> DOLAR IDENTIFICADOR .)
+
+
+state 37
+
+    (10) instruccion -> DOLAR IDENTIFICADOR IGUAL expresion . PUNTOCOMA
+
+    PUNTOCOMA       shift and go to state 44
+
+
+state 38
+
+    (18) expresion -> PARA valor PARC .
+
+    PARC            reduce using rule 18 (expresion -> PARA valor PARC .)
+    PUNTOCOMA       reduce using rule 18 (expresion -> PARA valor PARC .)
+
+
+state 39
+
+    (9) instruccion -> IMPRIMIR PARA expresion PARC PUNTOCOMA .
+
+    EXIT            reduce using rule 9 (instruccion -> IMPRIMIR PARA expresion PARC PUNTOCOMA .)
+    IMPRIMIR        reduce using rule 9 (instruccion -> IMPRIMIR PARA expresion PARC PUNTOCOMA .)
+    DOLAR           reduce using rule 9 (instruccion -> IMPRIMIR PARA expresion PARC PUNTOCOMA .)
+    GOTO            reduce using rule 9 (instruccion -> IMPRIMIR PARA expresion PARC PUNTOCOMA .)
+    IDENTIFICADOR   reduce using rule 9 (instruccion -> IMPRIMIR PARA expresion PARC PUNTOCOMA .)
+    MAIN            reduce using rule 9 (instruccion -> IMPRIMIR PARA expresion PARC PUNTOCOMA .)
+    $end            reduce using rule 9 (instruccion -> IMPRIMIR PARA expresion PARC PUNTOCOMA .)
+
+
+state 40
+
+    (12) expresion -> valor MAS valor .
+
+    PARC            reduce using rule 12 (expresion -> valor MAS valor .)
+    PUNTOCOMA       reduce using rule 12 (expresion -> valor MAS valor .)
+
+
+state 41
+
+    (13) expresion -> valor MENOS valor .
+
+    PARC            reduce using rule 13 (expresion -> valor MENOS valor .)
+    PUNTOCOMA       reduce using rule 13 (expresion -> valor MENOS valor .)
+
+
+state 42
+
+    (14) expresion -> valor POR valor .
+
+    PARC            reduce using rule 14 (expresion -> valor POR valor .)
+    PUNTOCOMA       reduce using rule 14 (expresion -> valor POR valor .)
+
+
+state 43
+
+    (15) expresion -> valor DIVIDIDO valor .
+
+    PARC            reduce using rule 15 (expresion -> valor DIVIDIDO valor .)
+    PUNTOCOMA       reduce using rule 15 (expresion -> valor DIVIDIDO valor .)
+
+
+state 44
+
+    (10) instruccion -> DOLAR IDENTIFICADOR IGUAL expresion PUNTOCOMA .
+
+    EXIT            reduce using rule 10 (instruccion -> DOLAR IDENTIFICADOR IGUAL expresion PUNTOCOMA .)
+    IMPRIMIR        reduce using rule 10 (instruccion -> DOLAR IDENTIFICADOR IGUAL expresion PUNTOCOMA .)
+    DOLAR           reduce using rule 10 (instruccion -> DOLAR IDENTIFICADOR IGUAL expresion PUNTOCOMA .)
+    GOTO            reduce using rule 10 (instruccion -> DOLAR IDENTIFICADOR IGUAL expresion PUNTOCOMA .)
+    IDENTIFICADOR   reduce using rule 10 (instruccion -> DOLAR IDENTIFICADOR IGUAL expresion PUNTOCOMA .)
+    MAIN            reduce using rule 10 (instruccion -> DOLAR IDENTIFICADOR IGUAL expresion PUNTOCOMA .)
+    $end            reduce using rule 10 (instruccion -> DOLAR IDENTIFICADOR IGUAL expresion PUNTOCOMA .)
 
