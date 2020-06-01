@@ -16,7 +16,7 @@ class Instruccion(ABC):
         pass
 
 
-class ListaInstruccion(Instruccion):
+class ListaEtiqueta(Instruccion):
     lst = []
 
     def __init__(self, lst: []):
@@ -31,6 +31,28 @@ class ListaInstruccion(Instruccion):
         contenido += self.str_arbol()
         contenido += "}"
         return contenido
+
+    def str_arbol(self):
+        concatenar = ""
+        concatenar += str(id(self)) + "[shape=rect,sides=4,skew=.4,label=\"" + "LISTA_ETIQUETA" + "\"]\n"
+        for elemento in self.lst:
+            concatenar += elemento.str_arbol()
+            concatenar += str(id(self)) + " -> " + str(id(elemento)) + "\n"
+        return concatenar
+
+    def agregar(self, nuevo: Instruccion):
+        self.lst.append(nuevo)
+
+
+class ListaInstruccion(Instruccion):
+    lst = []
+
+    def __init__(self, lst: []):
+        self.lst = lst
+
+    def ejecutar(self):
+        for elemento in self.lst:
+            elemento.ejecutar()
 
     def str_arbol(self):
         concatenar = ""

@@ -6,9 +6,9 @@ _tabversion = '3.10'
 
 _lr_method = 'LALR'
 
-_lr_signature = 'leftMASMENOSleftPORDIVIDIDOrightUMENOSCORA CORC DECIMAL DIVIDIDO DOBLEPUNTO DOLAR ENTERO EXIT GOTO IDENTIFICADOR IGUAL IMPRIMIR MAIN MAS MENOS PARA PARC POR PUNTOCOMA READ UNSETinicio    : etiquetasetiquetas : etiquetas etiquetaetiquetas : etiquetaetiqueta : IDENTIFICADOR DOBLEPUNTO instruccionesetiqueta : MAIN DOBLEPUNTO instruccionesinstrucciones :  instrucciones instruccion instrucciones : instruccion instruccion :  EXIT PUNTOCOMAinstruccion :  IMPRIMIR  PARA expresion PARC PUNTOCOMAinstruccion :  DOLAR  IDENTIFICADOR IGUAL expresion PUNTOCOMAinstruccion :  GOTO  IDENTIFICADOR  PUNTOCOMAexpresion : valor MAS valor\n                  | valor MENOS valor\n                  | valor POR valor\n                  | valor DIVIDIDO valorexpresion :  valorexpresion : MENOS valor %prec UMENOSexpresion : PARA valor PARCvalor    : ENTEROvalor    : DOLAR IDENTIFICADOR'
+_lr_signature = 'leftMASMENOSleftPORDIVIDIDOrightUMENOSABS AND ANDB CORA CORC DECIMAL DIFERENTE DIVIDIDO DOBLEPUNTO DOLAR ENTERO EXIT GOTO IDENTIFICADOR IF IGUAL IGUALDOBLE IMPRIMIR MAIN MAS MAYOR MAYORIGUAL MENOR MENORIGUAL MENOS MOD NOT NOTB OR ORB PARA PARC POR PUNTOCOMA READ SHIFTD SHIFTI UNSET XOR XORBinicio    : etiquetasetiquetas : etiquetas etiquetaetiquetas : etiquetaetiqueta : IDENTIFICADOR DOBLEPUNTO instruccionesetiqueta : MAIN DOBLEPUNTO instruccionesinstrucciones :  instrucciones instruccion instrucciones : instruccion instruccion :  EXIT PUNTOCOMAinstruccion :  IMPRIMIR  PARA expresion PARC PUNTOCOMAinstruccion :  UNSET  PARA expresion PARC PUNTOCOMAinstruccion :  DOLAR  IDENTIFICADOR IGUAL expresion PUNTOCOMAinstruccion :  GOTO  IDENTIFICADOR  PUNTOCOMAinstruccion :  IF   expresion  instruccion  expresion : valor MAS valor\n                  | valor MENOS valor\n                  | valor POR valor\n                  | valor DIVIDIDO valor\n\n\n\n\n                  | valor ANDB valor\n                  | valor DIFERENTE valor\n                  | valor IGUALDOBLE valor\n                  | valor MAYOR valor\n                  | valor MAYORIGUAL valor\n                  | valor MENORIGUAL valor\n                  | valor MOD valor\n                  | valor NOTB valor\n                  | valor AND valor\n                  | valor OR valor\n                  | NOT valor\n                  | valor ORB valor\n                  | valor XORB valor\n                  | valor SHIFTD valor\n                  | valor SHIFTI valor\n                  | valor XOR valor\n                  | valor MENOR valor\n                  | READ PARA PARC PUNTOCOMA\n                  | ABS PARA valor PARCexpresion :  valorexpresion : MENOS valor %prec UMENOSexpresion : PARA expresion PARCvalor    : ENTEROvalor    : DECIMALvalor    : DOLAR IDENTIFICADOR'
     
-_lr_action_items = {'IDENTIFICADOR':([0,2,3,6,9,10,13,14,15,16,17,26,28,39,44,],[4,4,-3,-2,-4,-7,19,20,-5,-6,-8,36,-11,-9,-10,]),'MAIN':([0,2,3,6,9,10,15,16,17,28,39,44,],[5,5,-3,-2,-4,-7,-5,-6,-8,-11,-9,-10,]),'$end':([1,2,3,6,9,10,15,16,17,28,39,44,],[0,-1,-3,-2,-4,-7,-5,-6,-8,-11,-9,-10,]),'DOBLEPUNTO':([4,5,],[7,8,]),'EXIT':([7,8,9,10,15,16,17,28,39,44,],[11,11,11,-7,11,-6,-8,-11,-9,-10,]),'IMPRIMIR':([7,8,9,10,15,16,17,28,39,44,],[12,12,12,-7,12,-6,-8,-11,-9,-10,]),'DOLAR':([7,8,9,10,15,16,17,18,21,24,27,28,31,32,33,34,39,44,],[13,13,13,-7,13,-6,-8,26,26,26,26,-11,26,26,26,26,-9,-10,]),'GOTO':([7,8,9,10,15,16,17,28,39,44,],[14,14,14,-7,14,-6,-8,-11,-9,-10,]),'PUNTOCOMA':([11,20,23,25,30,35,36,37,38,40,41,42,43,],[17,28,-16,-19,39,-17,-20,44,-18,-12,-13,-14,-15,]),'PARA':([12,18,27,],[18,21,21,]),'MENOS':([18,23,25,27,36,],[24,32,-19,24,-20,]),'ENTERO':([18,21,24,27,31,32,33,34,],[25,25,25,25,25,25,25,25,]),'IGUAL':([19,],[27,]),'PARC':([22,23,25,29,35,36,38,40,41,42,43,],[30,-16,-19,38,-17,-20,-18,-12,-13,-14,-15,]),'MAS':([23,25,36,],[31,-19,-20,]),'POR':([23,25,36,],[33,-19,-20,]),'DIVIDIDO':([23,25,36,],[34,-19,-20,]),}
+_lr_action_items = {'IDENTIFICADOR':([0,2,3,6,9,10,14,15,17,18,19,33,37,38,91,92,93,],[4,4,-3,-2,-4,-7,22,23,-5,-6,-8,64,-12,-13,-9,-10,-11,]),'MAIN':([0,2,3,6,9,10,17,18,19,37,38,91,92,93,],[5,5,-3,-2,-4,-7,-5,-6,-8,-12,-13,-9,-10,-11,]),'$end':([1,2,3,6,9,10,17,18,19,37,38,91,92,93,],[0,-1,-3,-2,-4,-7,-5,-6,-8,-12,-13,-9,-10,-11,]),'DOBLEPUNTO':([4,5,],[7,8,]),'EXIT':([7,8,9,10,17,18,19,24,25,31,32,37,38,59,60,64,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,89,91,92,93,94,95,],[11,11,11,-7,11,-6,-8,11,-37,-40,-41,-12,-13,-38,-28,-42,-14,-15,-16,-17,-18,-19,-20,-21,-22,-23,-24,-25,-26,-27,-29,-30,-31,-32,-33,-34,-39,-9,-10,-11,-35,-36,]),'IMPRIMIR':([7,8,9,10,17,18,19,24,25,31,32,37,38,59,60,64,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,89,91,92,93,94,95,],[12,12,12,-7,12,-6,-8,12,-37,-40,-41,-12,-13,-38,-28,-42,-14,-15,-16,-17,-18,-19,-20,-21,-22,-23,-24,-25,-26,-27,-29,-30,-31,-32,-33,-34,-39,-9,-10,-11,-35,-36,]),'UNSET':([7,8,9,10,17,18,19,24,25,31,32,37,38,59,60,64,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,89,91,92,93,94,95,],[13,13,13,-7,13,-6,-8,13,-37,-40,-41,-12,-13,-38,-28,-42,-14,-15,-16,-17,-18,-19,-20,-21,-22,-23,-24,-25,-26,-27,-29,-30,-31,-32,-33,-34,-39,-9,-10,-11,-35,-36,]),'DOLAR':([7,8,9,10,16,17,18,19,20,21,24,25,26,27,29,31,32,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,63,64,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,89,91,92,93,94,95,],[14,14,14,-7,33,14,-6,-8,33,33,14,-37,33,33,33,-40,-41,33,-12,-13,33,33,33,33,33,33,33,33,33,33,33,33,33,33,33,33,33,33,33,33,-38,-28,33,-42,-14,-15,-16,-17,-18,-19,-20,-21,-22,-23,-24,-25,-26,-27,-29,-30,-31,-32,-33,-34,-39,-9,-10,-11,-35,-36,]),'GOTO':([7,8,9,10,17,18,19,24,25,31,32,37,38,59,60,64,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,89,91,92,93,94,95,],[15,15,15,-7,15,-6,-8,15,-37,-40,-41,-12,-13,-38,-28,-42,-14,-15,-16,-17,-18,-19,-20,-21,-22,-23,-24,-25,-26,-27,-29,-30,-31,-32,-33,-34,-39,-9,-10,-11,-35,-36,]),'IF':([7,8,9,10,17,18,19,24,25,31,32,37,38,59,60,64,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,89,91,92,93,94,95,],[16,16,16,-7,16,-6,-8,16,-37,-40,-41,-12,-13,-38,-28,-42,-14,-15,-16,-17,-18,-19,-20,-21,-22,-23,-24,-25,-26,-27,-29,-30,-31,-32,-33,-34,-39,-9,-10,-11,-35,-36,]),'PUNTOCOMA':([11,23,25,31,32,59,60,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,94,95,],[19,37,-37,-40,-41,-38,-28,-42,91,92,93,-14,-15,-16,-17,-18,-19,-20,-21,-22,-23,-24,-25,-26,-27,-29,-30,-31,-32,-33,-34,94,-39,-35,-36,]),'PARA':([12,13,16,20,21,28,29,30,36,],[20,21,29,29,29,61,29,63,29,]),'NOT':([16,20,21,29,36,],[27,27,27,27,27,]),'READ':([16,20,21,29,36,],[28,28,28,28,28,]),'ABS':([16,20,21,29,36,],[30,30,30,30,30,]),'MENOS':([16,20,21,25,29,31,32,36,64,],[26,26,26,40,26,-40,-41,26,-42,]),'ENTERO':([16,20,21,26,27,29,36,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,63,],[31,31,31,31,31,31,31,31,31,31,31,31,31,31,31,31,31,31,31,31,31,31,31,31,31,31,31,31,]),'DECIMAL':([16,20,21,26,27,29,36,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,63,],[32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,]),'IGUAL':([22,],[36,]),'MAS':([25,31,32,64,],[39,-40,-41,-42,]),'POR':([25,31,32,64,],[41,-40,-41,-42,]),'DIVIDIDO':([25,31,32,64,],[42,-40,-41,-42,]),'ANDB':([25,31,32,64,],[43,-40,-41,-42,]),'DIFERENTE':([25,31,32,64,],[44,-40,-41,-42,]),'IGUALDOBLE':([25,31,32,64,],[45,-40,-41,-42,]),'MAYOR':([25,31,32,64,],[46,-40,-41,-42,]),'MAYORIGUAL':([25,31,32,64,],[47,-40,-41,-42,]),'MENORIGUAL':([25,31,32,64,],[48,-40,-41,-42,]),'MOD':([25,31,32,64,],[49,-40,-41,-42,]),'NOTB':([25,31,32,64,],[50,-40,-41,-42,]),'AND':([25,31,32,64,],[51,-40,-41,-42,]),'OR':([25,31,32,64,],[52,-40,-41,-42,]),'ORB':([25,31,32,64,],[53,-40,-41,-42,]),'XORB':([25,31,32,64,],[54,-40,-41,-42,]),'SHIFTD':([25,31,32,64,],[55,-40,-41,-42,]),'SHIFTI':([25,31,32,64,],[56,-40,-41,-42,]),'XOR':([25,31,32,64,],[57,-40,-41,-42,]),'MENOR':([25,31,32,64,],[58,-40,-41,-42,]),'PARC':([25,31,32,34,35,59,60,61,62,64,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,89,90,94,95,],[-37,-40,-41,65,66,-38,-28,88,89,-42,-14,-15,-16,-17,-18,-19,-20,-21,-22,-23,-24,-25,-26,-27,-29,-30,-31,-32,-33,-34,-39,95,-35,-36,]),}
 
 _lr_action = {}
 for _k, _v in _lr_action_items.items():
@@ -17,7 +17,7 @@ for _k, _v in _lr_action_items.items():
       _lr_action[_x][_k] = _y
 del _lr_action_items
 
-_lr_goto_items = {'inicio':([0,],[1,]),'etiquetas':([0,],[2,]),'etiqueta':([0,2,],[3,6,]),'instrucciones':([7,8,],[9,15,]),'instruccion':([7,8,9,15,],[10,10,16,16,]),'expresion':([18,27,],[22,37,]),'valor':([18,21,24,27,31,32,33,34,],[23,29,35,23,40,41,42,43,]),}
+_lr_goto_items = {'inicio':([0,],[1,]),'etiquetas':([0,],[2,]),'etiqueta':([0,2,],[3,6,]),'instrucciones':([7,8,],[9,17,]),'instruccion':([7,8,9,17,24,],[10,10,18,18,38,]),'expresion':([16,20,21,29,36,],[24,34,35,62,67,]),'valor':([16,20,21,26,27,29,36,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,63,],[25,25,25,59,60,25,25,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,90,]),}
 
 _lr_goto = {}
 for _k, _v in _lr_goto_items.items():
@@ -36,15 +36,37 @@ _lr_productions = [
   ('instrucciones -> instruccion','instrucciones',1,'p_instrucciones_lista_inicio','Sintactico.py',39),
   ('instruccion -> EXIT PUNTOCOMA','instruccion',2,'p_instrucciones_exit','Sintactico.py',45),
   ('instruccion -> IMPRIMIR PARA expresion PARC PUNTOCOMA','instruccion',5,'p_instrucciones_imprimir','Sintactico.py',49),
-  ('instruccion -> DOLAR IDENTIFICADOR IGUAL expresion PUNTOCOMA','instruccion',5,'p_instrucciones_asignar','Sintactico.py',53),
-  ('instruccion -> GOTO IDENTIFICADOR PUNTOCOMA','instruccion',3,'p_instrucciones_goto','Sintactico.py',57),
-  ('expresion -> valor MAS valor','expresion',3,'p_expresion_binaria','Sintactico.py',61),
-  ('expresion -> valor MENOS valor','expresion',3,'p_expresion_binaria','Sintactico.py',62),
-  ('expresion -> valor POR valor','expresion',3,'p_expresion_binaria','Sintactico.py',63),
-  ('expresion -> valor DIVIDIDO valor','expresion',3,'p_expresion_binaria','Sintactico.py',64),
-  ('expresion -> valor','expresion',1,'p_expresion_sola','Sintactico.py',75),
-  ('expresion -> MENOS valor','expresion',2,'p_expresion_unaria','Sintactico.py',79),
-  ('expresion -> PARA valor PARC','expresion',3,'p_expresion_agrupacion','Sintactico.py',84),
-  ('valor -> ENTERO','valor',1,'p_expresion_entero','Sintactico.py',89),
-  ('valor -> DOLAR IDENTIFICADOR','valor',2,'p_expresion_decimal','Sintactico.py',100),
+  ('instruccion -> UNSET PARA expresion PARC PUNTOCOMA','instruccion',5,'p_instrucciones_unset','Sintactico.py',53),
+  ('instruccion -> DOLAR IDENTIFICADOR IGUAL expresion PUNTOCOMA','instruccion',5,'p_instrucciones_asignar','Sintactico.py',57),
+  ('instruccion -> GOTO IDENTIFICADOR PUNTOCOMA','instruccion',3,'p_instrucciones_goto','Sintactico.py',61),
+  ('instruccion -> IF expresion instruccion','instruccion',3,'p_instrucciones_if','Sintactico.py',65),
+  ('expresion -> valor MAS valor','expresion',3,'p_expresion_binaria','Sintactico.py',69),
+  ('expresion -> valor MENOS valor','expresion',3,'p_expresion_binaria','Sintactico.py',70),
+  ('expresion -> valor POR valor','expresion',3,'p_expresion_binaria','Sintactico.py',71),
+  ('expresion -> valor DIVIDIDO valor','expresion',3,'p_expresion_binaria','Sintactico.py',72),
+  ('expresion -> valor ANDB valor','expresion',3,'p_expresion_binaria','Sintactico.py',77),
+  ('expresion -> valor DIFERENTE valor','expresion',3,'p_expresion_binaria','Sintactico.py',78),
+  ('expresion -> valor IGUALDOBLE valor','expresion',3,'p_expresion_binaria','Sintactico.py',79),
+  ('expresion -> valor MAYOR valor','expresion',3,'p_expresion_binaria','Sintactico.py',80),
+  ('expresion -> valor MAYORIGUAL valor','expresion',3,'p_expresion_binaria','Sintactico.py',81),
+  ('expresion -> valor MENORIGUAL valor','expresion',3,'p_expresion_binaria','Sintactico.py',82),
+  ('expresion -> valor MOD valor','expresion',3,'p_expresion_binaria','Sintactico.py',83),
+  ('expresion -> valor NOTB valor','expresion',3,'p_expresion_binaria','Sintactico.py',84),
+  ('expresion -> valor AND valor','expresion',3,'p_expresion_binaria','Sintactico.py',85),
+  ('expresion -> valor OR valor','expresion',3,'p_expresion_binaria','Sintactico.py',86),
+  ('expresion -> NOT valor','expresion',2,'p_expresion_binaria','Sintactico.py',87),
+  ('expresion -> valor ORB valor','expresion',3,'p_expresion_binaria','Sintactico.py',88),
+  ('expresion -> valor XORB valor','expresion',3,'p_expresion_binaria','Sintactico.py',89),
+  ('expresion -> valor SHIFTD valor','expresion',3,'p_expresion_binaria','Sintactico.py',90),
+  ('expresion -> valor SHIFTI valor','expresion',3,'p_expresion_binaria','Sintactico.py',91),
+  ('expresion -> valor XOR valor','expresion',3,'p_expresion_binaria','Sintactico.py',92),
+  ('expresion -> valor MENOR valor','expresion',3,'p_expresion_binaria','Sintactico.py',93),
+  ('expresion -> READ PARA PARC PUNTOCOMA','expresion',4,'p_expresion_binaria','Sintactico.py',94),
+  ('expresion -> ABS PARA valor PARC','expresion',4,'p_expresion_binaria','Sintactico.py',95),
+  ('expresion -> valor','expresion',1,'p_expresion_sola','Sintactico.py',108),
+  ('expresion -> MENOS valor','expresion',2,'p_expresion_unaria','Sintactico.py',112),
+  ('expresion -> PARA expresion PARC','expresion',3,'p_expresion_agrupacion','Sintactico.py',117),
+  ('valor -> ENTERO','valor',1,'p_expresion_entero','Sintactico.py',122),
+  ('valor -> DECIMAL','valor',1,'p_expresion_decimal','Sintactico.py',128),
+  ('valor -> DOLAR IDENTIFICADOR','valor',2,'p_expresion_valor_unico_variable','Sintactico.py',133),
 ]

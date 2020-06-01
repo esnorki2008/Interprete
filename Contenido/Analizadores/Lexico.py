@@ -4,7 +4,11 @@ reserved = {
     'unset': 'UNSET',
     'goto': 'GOTO',
     'read': 'READ',
-    'exit': 'EXIT'
+    'exit': 'EXIT',
+    'if' : 'IF',
+    'abs' : 'ABS',
+    'xor' : 'XOR',
+
 
 }
 tokens = [
@@ -22,7 +26,23 @@ tokens = [
              'IDENTIFICADOR',
              'DOBLEPUNTO',
              'DOLAR',
-             'IGUAL'
+             'IGUAL',
+             'MOD',
+             'NOT',
+             'AND',
+             'OR',
+             'NOTB',
+             'ANDB',
+             'ORB',
+             'XORB',
+             'SHIFTI',
+             'SHIFTD',
+             'IGUALDOBLE',
+             'DIFERENTE',
+             'MENOR',
+             'MENORIGUAL',
+             'MAYOR',
+             'MAYORIGUAL',
          ] + list(reserved.values())
 
 # Tokens
@@ -37,8 +57,25 @@ t_DIVIDIDO = r'/'
 t_PUNTOCOMA = r';'
 t_DOBLEPUNTO = r':'
 t_DOLAR = r'\$'
-t_IGUAL = r'='
+t_IGUAL = r'\='
+t_MOD = r'\%'
+t_NOT = r'\!'
+t_AND= r'\&\&'
+t_OR= r'\|\|'
 
+t_NOTB= r'\~'
+t_ANDB= r'\&'
+t_ORB= r'\|'
+t_XORB= r'\^'
+t_SHIFTI= r'<<'
+t_SHIFTD= r'>>'
+
+t_IGUALDOBLE= r'\=\='
+t_DIFERENTE= r'\!\='
+t_MAYOR= r'\>'
+t_MENOR= r'\<'
+t_MENORIGUAL= r'\<\='
+t_MAYORIGUAL= r'\>\='
 
 # Expresiones Regulares
 def t_IDENTIFICADOR(t):
@@ -75,7 +112,9 @@ def t_newline(t):
     r'\n+'
     t.lexer.lineno += t.value.count("\n")
 
-
+def t_comentario(t):
+    r'\#(.*)(\n)?'
+    t.lexer.lineno += t.value.count("\n")
 
 
 def t_error(t):

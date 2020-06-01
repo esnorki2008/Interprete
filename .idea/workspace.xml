@@ -20,19 +20,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2b56b3b3-d50e-48b4-a1f8-80a87387fe55" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Contenido/LstInstruccion/Registro/Asignar.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Contenido/LstInstruccion/Registro/Exit.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Contenido/LstInstruccion/Registro/VariableValor.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Contenido/LstInstruccion/Registro/goto.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Contenido/LstInstruccion/Instruccion/Etiqueta.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Contenido/LstInstruccion/Instruccion/Exit.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Contenido/LstInstruccion/Instruccion/Unset.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Contenido/Analizadores/Lexico.py" beforeDir="false" afterPath="$PROJECT_DIR$/Contenido/Analizadores/Lexico.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Contenido/Analizadores/Sintactico.py" beforeDir="false" afterPath="$PROJECT_DIR$/Contenido/Analizadores/Sintactico.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Contenido/LstInstruccion/Operacion/Aritmetica/Division.py" beforeDir="false" afterPath="$PROJECT_DIR$/Contenido/LstInstruccion/Operacion/Aritmetica/Division.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Contenido/LstInstruccion/Operacion/Aritmetica/Multiplicacion.py" beforeDir="false" afterPath="$PROJECT_DIR$/Contenido/LstInstruccion/Operacion/Aritmetica/Multiplicacion.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Contenido/LstInstruccion/Operacion/Aritmetica/Resta.py" beforeDir="false" afterPath="$PROJECT_DIR$/Contenido/LstInstruccion/Operacion/Aritmetica/Resta.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Contenido/LstInstruccion/Operacion/Aritmetica/Suma.py" beforeDir="false" afterPath="$PROJECT_DIR$/Contenido/LstInstruccion/Operacion/Aritmetica/Suma.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Contenido/LstInstruccion/Registro/Valor.py" beforeDir="false" afterPath="$PROJECT_DIR$/Contenido/LstInstruccion/Registro/Valor.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Contenido/LstInstruccion/ABCInstruccion.py" beforeDir="false" afterPath="$PROJECT_DIR$/Contenido/LstInstruccion/ABCInstruccion.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Main.py" beforeDir="false" afterPath="$PROJECT_DIR$/Main.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/entrada.txt" beforeDir="false" afterPath="$PROJECT_DIR$/entrada.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/parser.out" beforeDir="false" afterPath="$PROJECT_DIR$/parser.out" afterDir="false" />
@@ -80,9 +75,9 @@
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
-      <option name="SDK_HOME" value="C:\Users\Esnorki\Desktop\Interprete\venv\Scripts\python.exe" />
+      <option name="SDK_HOME" value="" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="false" />
+      <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Main.py" />
@@ -121,32 +116,42 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="137" y="19" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1590888658750">
-      <screen x="0" y="0" width="1366" height="728" />
+    <state x="136" y="19" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1591046152462">
+      <screen x="0" y="0" width="1360" height="728" />
     </state>
+    <state x="136" y="19" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1360.728@0.0.1360.728" timestamp="1591046152462" />
     <state x="137" y="19" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1366.728@0.0.1366.728" timestamp="1590888658750" />
-    <state x="463" y="119" key="FileChooserDialogImpl" timestamp="1590888654438">
-      <screen x="0" y="0" width="1366" height="728" />
+    <state x="485" y="80" key="#com.intellij.ide.util.MemberChooser" timestamp="1591050824014">
+      <screen x="0" y="0" width="1360" height="728" />
     </state>
+    <state x="485" y="80" key="#com.intellij.ide.util.MemberChooser/0.0.1360.728@0.0.1360.728" timestamp="1591050824014" />
+    <state x="461" y="119" key="FileChooserDialogImpl" timestamp="1591046151716">
+      <screen x="0" y="0" width="1360" height="728" />
+    </state>
+    <state x="461" y="119" key="FileChooserDialogImpl/0.0.1360.728@0.0.1360.728" timestamp="1591046151716" />
     <state x="463" y="119" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1590888654438" />
-    <state width="1345" height="179" key="GridCell.Tab.0.bottom" timestamp="1591037676791">
-      <screen x="0" y="0" width="1366" height="728" />
+    <state width="1339" height="179" key="GridCell.Tab.0.bottom" timestamp="1591054496963">
+      <screen x="0" y="0" width="1360" height="728" />
     </state>
+    <state width="1339" height="179" key="GridCell.Tab.0.bottom/0.0.1360.728@0.0.1360.728" timestamp="1591054496963" />
     <state width="1345" height="179" key="GridCell.Tab.0.bottom/0.0.1366.728/1366.0.1440.860@0.0.1366.728" timestamp="1591037676791" />
     <state width="1345" height="179" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1591023356979" />
-    <state width="1345" height="179" key="GridCell.Tab.0.center" timestamp="1591037676790">
-      <screen x="0" y="0" width="1366" height="728" />
+    <state width="1339" height="179" key="GridCell.Tab.0.center" timestamp="1591054496963">
+      <screen x="0" y="0" width="1360" height="728" />
     </state>
+    <state width="1339" height="179" key="GridCell.Tab.0.center/0.0.1360.728@0.0.1360.728" timestamp="1591054496963" />
     <state width="1345" height="179" key="GridCell.Tab.0.center/0.0.1366.728/1366.0.1440.860@0.0.1366.728" timestamp="1591037676790" />
     <state width="1345" height="179" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1591023356979" />
-    <state width="1345" height="179" key="GridCell.Tab.0.left" timestamp="1591037676790">
-      <screen x="0" y="0" width="1366" height="728" />
+    <state width="1339" height="179" key="GridCell.Tab.0.left" timestamp="1591054496963">
+      <screen x="0" y="0" width="1360" height="728" />
     </state>
+    <state width="1339" height="179" key="GridCell.Tab.0.left/0.0.1360.728@0.0.1360.728" timestamp="1591054496963" />
     <state width="1345" height="179" key="GridCell.Tab.0.left/0.0.1366.728/1366.0.1440.860@0.0.1366.728" timestamp="1591037676790" />
     <state width="1345" height="179" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1591023356979" />
-    <state width="1345" height="179" key="GridCell.Tab.0.right" timestamp="1591037676790">
-      <screen x="0" y="0" width="1366" height="728" />
+    <state width="1339" height="179" key="GridCell.Tab.0.right" timestamp="1591054496963">
+      <screen x="0" y="0" width="1360" height="728" />
     </state>
+    <state width="1339" height="179" key="GridCell.Tab.0.right/0.0.1360.728@0.0.1360.728" timestamp="1591054496963" />
     <state width="1345" height="179" key="GridCell.Tab.0.right/0.0.1366.728/1366.0.1440.860@0.0.1366.728" timestamp="1591037676790" />
     <state width="1345" height="179" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1591023356979" />
     <state x="288" y="0" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1591036614212">
