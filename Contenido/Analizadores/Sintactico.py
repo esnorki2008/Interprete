@@ -3,6 +3,9 @@ from Contenido.LstInstruccion import ABCInstruccion
 from Contenido.LstInstruccion.Instruccion.Etiqueta import Etiqueta
 from Contenido.LstInstruccion.Instruccion.Exit import Exit
 from Contenido.LstInstruccion.Instruccion.Unset import Unset
+from Contenido.LstInstruccion.Registro.Asignar import Asignar
+from Contenido.LstInstruccion.Instruccion.goto import Goto
+from  Contenido.LstInstruccion.Instruccion.If import If
 precedence = (
     ('left', 'MAS', 'MENOS'),
     ('left', 'POR', 'DIVIDIDO'),
@@ -53,21 +56,21 @@ def p_instrucciones_imprimir(t):
     t[0] = ABCInstruccion.Imprimir(t[3])
 
 def p_instrucciones_unset(t):
-    'instruccion :  UNSET  PARA expresion PARC PUNTOCOMA'
-    t[0] = Unset(t[3])
+    'instruccion :  UNSET  PARA DOLAR IDENTIFICADOR PARC PUNTOCOMA'
+    t[0] = Unset(t[4])
 
 def p_instrucciones_asignar(t):
     'instruccion :  DOLAR  IDENTIFICADOR IGUAL expresion PUNTOCOMA'
-    t[0] = ABCInstruccion.Imprimir(t[3])
+    t[0] = Asignar(t[2],t[4])
 
 def p_instrucciones_goto(t):
     'instruccion :  GOTO  IDENTIFICADOR  PUNTOCOMA'
-    t[0] = ABCInstruccion.Imprimir(t[3])
+    t[0] = Goto(t[2])
 
 def p_instrucciones_if(t):
     'instruccion :  IF   expresion  instruccion  '
-    t[0] = ABCInstruccion.Imprimir(t[3])
-
+    t[0] = If(t[2],t[3])
+#HASTA AQUI HAY GRAFICA
 def p_expresion_binaria(t):
     '''expresion : valor MAS valor
                   | valor MENOS valor
@@ -84,18 +87,16 @@ def p_expresion_binaria(t):
                   | valor MAYORIGUAL valor
                   | valor MENORIGUAL valor
                   | valor MOD valor
-                  | valor NOTB valor
+
                   | valor AND valor
                   | valor OR valor
-                  | NOT valor
                   | valor ORB valor
                   | valor XORB valor
                   | valor SHIFTD valor
                   | valor SHIFTI valor
                   | valor XOR valor
                   | valor MENOR valor
-                  | READ PARA PARC PUNTOCOMA
-                  | ABS PARA valor PARC'''
+                  | READ PARA PARC PUNTOCOMA'''
 
 
 
@@ -112,7 +113,10 @@ def p_expresion_sola(t):
     t[0] = t[1]
 
 def p_expresion_unaria(t):
-    'expresion : MENOS valor %prec UMENOS'
+    '''expresion : MENOS valor %prec UMENOS
+                | ABS PARA valor PARC
+                | NOTB valor
+                | NOT valor'''
     t[0] = -t[2]
 
 

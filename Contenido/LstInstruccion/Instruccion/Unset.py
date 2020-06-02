@@ -12,7 +12,7 @@ class Unset(Instruccion):
         pass
 
     def str_arbol(self):
-        rst = self.lst.str_arbol()
-        rst += str(id(self)) + "[shape=rect,sides=4,skew=.4,label=\"" + "Unset" + "\"]\n"
-        rst += str(id(self)) + " -> " + str(id(self.lst)) + "\n"
+        rst = str(
+            id(self)) + "[shape=rect,sides=4,skew=.4,label=\"" + "Unse( " + self.vaue.dar_identificador() + " )\"]\n"
+
         return rst

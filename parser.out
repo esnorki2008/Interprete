@@ -17,7 +17,7 @@ Rule 6     instrucciones -> instrucciones instruccion
 Rule 7     instrucciones -> instruccion
 Rule 8     instruccion -> EXIT PUNTOCOMA
 Rule 9     instruccion -> IMPRIMIR PARA expresion PARC PUNTOCOMA
-Rule 10    instruccion -> UNSET PARA expresion PARC PUNTOCOMA
+Rule 10    instruccion -> UNSET PARA DOLAR IDENTIFICADOR PARC PUNTOCOMA
 Rule 11    instruccion -> DOLAR IDENTIFICADOR IGUAL expresion PUNTOCOMA
 Rule 12    instruccion -> GOTO IDENTIFICADOR PUNTOCOMA
 Rule 13    instruccion -> IF expresion instruccion
@@ -62,11 +62,11 @@ DECIMAL              : 41
 DIFERENTE            : 19
 DIVIDIDO             : 17
 DOBLEPUNTO           : 4 5
-DOLAR                : 11 42
+DOLAR                : 10 11 42
 ENTERO               : 40
 EXIT                 : 8
 GOTO                 : 12
-IDENTIFICADOR        : 4 11 12 42
+IDENTIFICADOR        : 4 10 11 12 42
 IF                   : 13
 IGUAL                : 11
 IGUALDOBLE           : 20
@@ -99,7 +99,7 @@ Nonterminals, with rules where they appear
 
 etiqueta             : 2 3
 etiquetas            : 1 2
-expresion            : 9 10 11 13 39
+expresion            : 9 11 13 39
 inicio               : 0
 instruccion          : 6 7 13
 instrucciones        : 4 5 6
@@ -181,7 +181,7 @@ state 7
     (7) instrucciones -> . instruccion
     (8) instruccion -> . EXIT PUNTOCOMA
     (9) instruccion -> . IMPRIMIR PARA expresion PARC PUNTOCOMA
-    (10) instruccion -> . UNSET PARA expresion PARC PUNTOCOMA
+    (10) instruccion -> . UNSET PARA DOLAR IDENTIFICADOR PARC PUNTOCOMA
     (11) instruccion -> . DOLAR IDENTIFICADOR IGUAL expresion PUNTOCOMA
     (12) instruccion -> . GOTO IDENTIFICADOR PUNTOCOMA
     (13) instruccion -> . IF expresion instruccion
@@ -203,7 +203,7 @@ state 8
     (7) instrucciones -> . instruccion
     (8) instruccion -> . EXIT PUNTOCOMA
     (9) instruccion -> . IMPRIMIR PARA expresion PARC PUNTOCOMA
-    (10) instruccion -> . UNSET PARA expresion PARC PUNTOCOMA
+    (10) instruccion -> . UNSET PARA DOLAR IDENTIFICADOR PARC PUNTOCOMA
     (11) instruccion -> . DOLAR IDENTIFICADOR IGUAL expresion PUNTOCOMA
     (12) instruccion -> . GOTO IDENTIFICADOR PUNTOCOMA
     (13) instruccion -> . IF expresion instruccion
@@ -224,7 +224,7 @@ state 9
     (6) instrucciones -> instrucciones . instruccion
     (8) instruccion -> . EXIT PUNTOCOMA
     (9) instruccion -> . IMPRIMIR PARA expresion PARC PUNTOCOMA
-    (10) instruccion -> . UNSET PARA expresion PARC PUNTOCOMA
+    (10) instruccion -> . UNSET PARA DOLAR IDENTIFICADOR PARC PUNTOCOMA
     (11) instruccion -> . DOLAR IDENTIFICADOR IGUAL expresion PUNTOCOMA
     (12) instruccion -> . GOTO IDENTIFICADOR PUNTOCOMA
     (13) instruccion -> . IF expresion instruccion
@@ -272,7 +272,7 @@ state 12
 
 state 13
 
-    (10) instruccion -> UNSET . PARA expresion PARC PUNTOCOMA
+    (10) instruccion -> UNSET . PARA DOLAR IDENTIFICADOR PARC PUNTOCOMA
 
     PARA            shift and go to state 21
 
@@ -342,7 +342,7 @@ state 17
     (6) instrucciones -> instrucciones . instruccion
     (8) instruccion -> . EXIT PUNTOCOMA
     (9) instruccion -> . IMPRIMIR PARA expresion PARC PUNTOCOMA
-    (10) instruccion -> . UNSET PARA expresion PARC PUNTOCOMA
+    (10) instruccion -> . UNSET PARA DOLAR IDENTIFICADOR PARC PUNTOCOMA
     (11) instruccion -> . DOLAR IDENTIFICADOR IGUAL expresion PUNTOCOMA
     (12) instruccion -> . GOTO IDENTIFICADOR PUNTOCOMA
     (13) instruccion -> . IF expresion instruccion
@@ -436,48 +436,10 @@ state 20
 
 state 21
 
-    (10) instruccion -> UNSET PARA . expresion PARC PUNTOCOMA
-    (14) expresion -> . valor MAS valor
-    (15) expresion -> . valor MENOS valor
-    (16) expresion -> . valor POR valor
-    (17) expresion -> . valor DIVIDIDO valor
-    (18) expresion -> . valor ANDB valor
-    (19) expresion -> . valor DIFERENTE valor
-    (20) expresion -> . valor IGUALDOBLE valor
-    (21) expresion -> . valor MAYOR valor
-    (22) expresion -> . valor MAYORIGUAL valor
-    (23) expresion -> . valor MENORIGUAL valor
-    (24) expresion -> . valor MOD valor
-    (25) expresion -> . valor NOTB valor
-    (26) expresion -> . valor AND valor
-    (27) expresion -> . valor OR valor
-    (28) expresion -> . NOT valor
-    (29) expresion -> . valor ORB valor
-    (30) expresion -> . valor XORB valor
-    (31) expresion -> . valor SHIFTD valor
-    (32) expresion -> . valor SHIFTI valor
-    (33) expresion -> . valor XOR valor
-    (34) expresion -> . valor MENOR valor
-    (35) expresion -> . READ PARA PARC PUNTOCOMA
-    (36) expresion -> . ABS PARA valor PARC
-    (37) expresion -> . valor
-    (38) expresion -> . MENOS valor
-    (39) expresion -> . PARA expresion PARC
-    (40) valor -> . ENTERO
-    (41) valor -> . DECIMAL
-    (42) valor -> . DOLAR IDENTIFICADOR
+    (10) instruccion -> UNSET PARA . DOLAR IDENTIFICADOR PARC PUNTOCOMA
 
-    NOT             shift and go to state 27
-    READ            shift and go to state 28
-    ABS             shift and go to state 30
-    MENOS           shift and go to state 26
-    PARA            shift and go to state 29
-    ENTERO          shift and go to state 31
-    DECIMAL         shift and go to state 32
-    DOLAR           shift and go to state 33
+    DOLAR           shift and go to state 35
 
-    expresion                      shift and go to state 35
-    valor                          shift and go to state 25
 
 state 22
 
@@ -498,7 +460,7 @@ state 24
     (13) instruccion -> IF expresion . instruccion
     (8) instruccion -> . EXIT PUNTOCOMA
     (9) instruccion -> . IMPRIMIR PARA expresion PARC PUNTOCOMA
-    (10) instruccion -> . UNSET PARA expresion PARC PUNTOCOMA
+    (10) instruccion -> . UNSET PARA DOLAR IDENTIFICADOR PARC PUNTOCOMA
     (11) instruccion -> . DOLAR IDENTIFICADOR IGUAL expresion PUNTOCOMA
     (12) instruccion -> . GOTO IDENTIFICADOR PUNTOCOMA
     (13) instruccion -> . IF expresion instruccion
@@ -735,9 +697,9 @@ state 34
 
 state 35
 
-    (10) instruccion -> UNSET PARA expresion . PARC PUNTOCOMA
+    (10) instruccion -> UNSET PARA DOLAR . IDENTIFICADOR PARC PUNTOCOMA
 
-    PARC            shift and go to state 66
+    IDENTIFICADOR   shift and go to state 66
 
 
 state 36
@@ -1173,9 +1135,9 @@ state 65
 
 state 66
 
-    (10) instruccion -> UNSET PARA expresion PARC . PUNTOCOMA
+    (10) instruccion -> UNSET PARA DOLAR IDENTIFICADOR . PARC PUNTOCOMA
 
-    PUNTOCOMA       shift and go to state 92
+    PARC            shift and go to state 92
 
 
 state 67
@@ -1510,17 +1472,9 @@ state 91
 
 state 92
 
-    (10) instruccion -> UNSET PARA expresion PARC PUNTOCOMA .
+    (10) instruccion -> UNSET PARA DOLAR IDENTIFICADOR PARC . PUNTOCOMA
 
-    EXIT            reduce using rule 10 (instruccion -> UNSET PARA expresion PARC PUNTOCOMA .)
-    IMPRIMIR        reduce using rule 10 (instruccion -> UNSET PARA expresion PARC PUNTOCOMA .)
-    UNSET           reduce using rule 10 (instruccion -> UNSET PARA expresion PARC PUNTOCOMA .)
-    DOLAR           reduce using rule 10 (instruccion -> UNSET PARA expresion PARC PUNTOCOMA .)
-    GOTO            reduce using rule 10 (instruccion -> UNSET PARA expresion PARC PUNTOCOMA .)
-    IF              reduce using rule 10 (instruccion -> UNSET PARA expresion PARC PUNTOCOMA .)
-    IDENTIFICADOR   reduce using rule 10 (instruccion -> UNSET PARA expresion PARC PUNTOCOMA .)
-    MAIN            reduce using rule 10 (instruccion -> UNSET PARA expresion PARC PUNTOCOMA .)
-    $end            reduce using rule 10 (instruccion -> UNSET PARA expresion PARC PUNTOCOMA .)
+    PUNTOCOMA       shift and go to state 96
 
 
 state 93
@@ -1564,4 +1518,19 @@ state 95
     IF              reduce using rule 36 (expresion -> ABS PARA valor PARC .)
     PARC            reduce using rule 36 (expresion -> ABS PARA valor PARC .)
     PUNTOCOMA       reduce using rule 36 (expresion -> ABS PARA valor PARC .)
+
+
+state 96
+
+    (10) instruccion -> UNSET PARA DOLAR IDENTIFICADOR PARC PUNTOCOMA .
+
+    EXIT            reduce using rule 10 (instruccion -> UNSET PARA DOLAR IDENTIFICADOR PARC PUNTOCOMA .)
+    IMPRIMIR        reduce using rule 10 (instruccion -> UNSET PARA DOLAR IDENTIFICADOR PARC PUNTOCOMA .)
+    UNSET           reduce using rule 10 (instruccion -> UNSET PARA DOLAR IDENTIFICADOR PARC PUNTOCOMA .)
+    DOLAR           reduce using rule 10 (instruccion -> UNSET PARA DOLAR IDENTIFICADOR PARC PUNTOCOMA .)
+    GOTO            reduce using rule 10 (instruccion -> UNSET PARA DOLAR IDENTIFICADOR PARC PUNTOCOMA .)
+    IF              reduce using rule 10 (instruccion -> UNSET PARA DOLAR IDENTIFICADOR PARC PUNTOCOMA .)
+    IDENTIFICADOR   reduce using rule 10 (instruccion -> UNSET PARA DOLAR IDENTIFICADOR PARC PUNTOCOMA .)
+    MAIN            reduce using rule 10 (instruccion -> UNSET PARA DOLAR IDENTIFICADOR PARC PUNTOCOMA .)
+    $end            reduce using rule 10 (instruccion -> UNSET PARA DOLAR IDENTIFICADOR PARC PUNTOCOMA .)
 

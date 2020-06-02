@@ -7,8 +7,8 @@ from Contenido.Analizadores.Sintactico import *
 lexer = lex.lex()
 parser = yacc.yacc()
 
-f = open("C:/Users/norki/Desktop/interprete/entrada.txt", "r")
-#f = open("C:/Users/Esnorki/Desktop/interprete/entrada.txt", "r")
+#f = open("C:/Users/norki/Desktop/interprete/entrada.txt", "r")
+f = open("C:/Users/Esnorki/Desktop/interprete/entrada.txt", "r")
 input: str = f.read()
 # print(input)
 raiz_produccion: ABCInstruccion.ListaInstruccion = parser.parse(input)

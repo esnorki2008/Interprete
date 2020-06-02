@@ -1,4 +1,6 @@
 main:
  print(5);
  exit;
+ $hoa= 5;
+ goto tempoletal;
  #print($v0);

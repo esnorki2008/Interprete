@@ -16,6 +16,8 @@ class Valor:
     def dar_valor(self):
         return self.contenido
 
+    def dar_identificador(self):
+        return self.contenido
 
     def dar_tipo_str(self):
         if self.tipo==0:
