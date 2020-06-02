@@ -20,13 +20,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2b56b3b3-d50e-48b4-a1f8-80a87387fe55" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/Contenido/LstInstruccion/Operacion/Aritmetica/Mod.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Contenido/LstInstruccion/Operacion/Bitwise/AndBinario.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Contenido/LstInstruccion/Operacion/Bitwise/OrBinario.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Contenido/LstInstruccion/Operacion/Bitwise/ShiftDerecha.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Contenido/LstInstruccion/Operacion/Bitwise/ShiftIzquierda.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Contenido/LstInstruccion/Operacion/Bitwise/XorBinario.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Contenido/Analizadores/Sintactico.py" beforeDir="false" afterPath="$PROJECT_DIR$/Contenido/Analizadores/Sintactico.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Contenido/LstInstruccion/Instruccion/Unset.py" beforeDir="false" afterPath="$PROJECT_DIR$/Contenido/LstInstruccion/Instruccion/Unset.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Contenido/LstInstruccion/ABCInstruccion.py" beforeDir="false" afterPath="$PROJECT_DIR$/Contenido/LstInstruccion/ABCInstruccion.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Contenido/LstInstruccion/Registro/Asignar.py" beforeDir="false" afterPath="$PROJECT_DIR$/Contenido/LstInstruccion/Registro/Asignar.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Contenido/LstInstruccion/Registro/Exit.py" beforeDir="false" afterPath="$PROJECT_DIR$/Contenido/LstInstruccion/Instruccion/If.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Contenido/LstInstruccion/Registro/Valor.py" beforeDir="false" afterPath="$PROJECT_DIR$/Contenido/LstInstruccion/Registro/Valor.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Contenido/LstInstruccion/Registro/goto.py" beforeDir="false" afterPath="$PROJECT_DIR$/Contenido/LstInstruccion/Instruccion/goto.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Contenido/LstInstruccion/Registro/VariableValor.py" beforeDir="false" afterPath="$PROJECT_DIR$/Contenido/LstInstruccion/Registro/VariableValor.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Contenido/TablaDeSimbolos.py" beforeDir="false" afterPath="$PROJECT_DIR$/Contenido/TablaDeSimbolos.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Main.py" beforeDir="false" afterPath="$PROJECT_DIR$/Main.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/entrada.txt" beforeDir="false" afterPath="$PROJECT_DIR$/entrada.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/parser.out" beforeDir="false" afterPath="$PROJECT_DIR$/parser.out" afterDir="false" />
@@ -60,11 +65,11 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Norki\Desktop\Interprete\Contenido\LstInstruccion\Operacion" />
       <recent name="C:\Users\Esnorki\Desktop\Interprete\Contenido\LstInstruccion\Instruccion" />
       <recent name="C:\Users\Esnorki\Desktop\Interprete\Contenido\LstInstruccion\Operacion\Aritmetica" />
       <recent name="C:\Users\Esnorki\Desktop\Interprete\Contenido" />
       <recent name="C:\Users\Esnorki\Desktop\Interprete\Contenido\Analizadores" />
-      <recent name="C:\Users\Esnorki\Desktop\Interprete\Contenido\Auxiliares\LstInstruccion\Registros" />
     </key>
   </component>
   <component name="RunManager">
@@ -130,31 +135,31 @@
     </state>
     <state x="461" y="119" key="FileChooserDialogImpl/0.0.1360.728@0.0.1360.728" timestamp="1591046151716" />
     <state x="463" y="119" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1590888654438" />
-    <state width="1419" height="179" key="GridCell.Tab.0.bottom" timestamp="1591112341641">
-      <screen x="1366" y="0" width="1440" height="860" />
+    <state width="1339" height="179" key="GridCell.Tab.0.bottom" timestamp="1591126138515">
+      <screen x="0" y="0" width="1360" height="728" />
     </state>
-    <state width="1339" height="179" key="GridCell.Tab.0.bottom/0.0.1360.728@0.0.1360.728" timestamp="1591054496963" />
+    <state width="1339" height="179" key="GridCell.Tab.0.bottom/0.0.1360.728@0.0.1360.728" timestamp="1591126138515" />
     <state width="1345" height="179" key="GridCell.Tab.0.bottom/0.0.1366.728/1366.0.1440.860@0.0.1366.728" timestamp="1591070521241" />
     <state width="1419" height="179" key="GridCell.Tab.0.bottom/0.0.1366.728/1366.0.1440.860@1366.0.1440.860" timestamp="1591112341641" />
     <state width="1345" height="179" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1591023356979" />
-    <state width="1419" height="179" key="GridCell.Tab.0.center" timestamp="1591112341640">
-      <screen x="1366" y="0" width="1440" height="860" />
+    <state width="1339" height="179" key="GridCell.Tab.0.center" timestamp="1591126138515">
+      <screen x="0" y="0" width="1360" height="728" />
     </state>
-    <state width="1339" height="179" key="GridCell.Tab.0.center/0.0.1360.728@0.0.1360.728" timestamp="1591054496963" />
+    <state width="1339" height="179" key="GridCell.Tab.0.center/0.0.1360.728@0.0.1360.728" timestamp="1591126138515" />
     <state width="1345" height="179" key="GridCell.Tab.0.center/0.0.1366.728/1366.0.1440.860@0.0.1366.728" timestamp="1591070521241" />
     <state width="1419" height="179" key="GridCell.Tab.0.center/0.0.1366.728/1366.0.1440.860@1366.0.1440.860" timestamp="1591112341640" />
     <state width="1345" height="179" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1591023356979" />
-    <state width="1419" height="179" key="GridCell.Tab.0.left" timestamp="1591112341640">
-      <screen x="1366" y="0" width="1440" height="860" />
+    <state width="1339" height="179" key="GridCell.Tab.0.left" timestamp="1591126138515">
+      <screen x="0" y="0" width="1360" height="728" />
     </state>
-    <state width="1339" height="179" key="GridCell.Tab.0.left/0.0.1360.728@0.0.1360.728" timestamp="1591054496963" />
+    <state width="1339" height="179" key="GridCell.Tab.0.left/0.0.1360.728@0.0.1360.728" timestamp="1591126138515" />
     <state width="1345" height="179" key="GridCell.Tab.0.left/0.0.1366.728/1366.0.1440.860@0.0.1366.728" timestamp="1591070521241" />
     <state width="1419" height="179" key="GridCell.Tab.0.left/0.0.1366.728/1366.0.1440.860@1366.0.1440.860" timestamp="1591112341640" />
     <state width="1345" height="179" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1591023356979" />
-    <state width="1419" height="179" key="GridCell.Tab.0.right" timestamp="1591112341640">
-      <screen x="1366" y="0" width="1440" height="860" />
+    <state width="1339" height="179" key="GridCell.Tab.0.right" timestamp="1591126138515">
+      <screen x="0" y="0" width="1360" height="728" />
     </state>
-    <state width="1339" height="179" key="GridCell.Tab.0.right/0.0.1360.728@0.0.1360.728" timestamp="1591054496963" />
+    <state width="1339" height="179" key="GridCell.Tab.0.right/0.0.1360.728@0.0.1360.728" timestamp="1591126138515" />
     <state width="1345" height="179" key="GridCell.Tab.0.right/0.0.1366.728/1366.0.1440.860@0.0.1366.728" timestamp="1591070521241" />
     <state width="1419" height="179" key="GridCell.Tab.0.right/0.0.1366.728/1366.0.1440.860@1366.0.1440.860" timestamp="1591112341640" />
     <state width="1345" height="179" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1591023356979" />

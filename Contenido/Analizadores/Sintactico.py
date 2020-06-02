@@ -6,6 +6,7 @@ from Contenido.LstInstruccion.Instruccion.Unset import Unset
 from Contenido.LstInstruccion.Registro.Asignar import Asignar
 from Contenido.LstInstruccion.Instruccion.goto import Goto
 from  Contenido.LstInstruccion.Instruccion.If import If
+from  Contenido.LstInstruccion.Registro.VariableValor import VariableValor
 precedence = (
     ('left', 'MAS', 'MENOS'),
     ('left', 'POR', 'DIVIDIDO'),
@@ -62,6 +63,7 @@ def p_instrucciones_unset(t):
 def p_instrucciones_asignar(t):
     'instruccion :  DOLAR  IDENTIFICADOR IGUAL expresion PUNTOCOMA'
     t[0] = Asignar(t[2],t[4])
+    print("ES HOY")
 
 def p_instrucciones_goto(t):
     'instruccion :  GOTO  IDENTIFICADOR  PUNTOCOMA'
@@ -70,6 +72,7 @@ def p_instrucciones_goto(t):
 def p_instrucciones_if(t):
     'instruccion :  IF   expresion  instruccion  '
     t[0] = If(t[2],t[3])
+
 #HASTA AQUI HAY GRAFICA
 def p_expresion_binaria(t):
     '''expresion : valor MAS valor
@@ -77,34 +80,27 @@ def p_expresion_binaria(t):
                   | valor POR valor
                   | valor DIVIDIDO valor
 
-
-
-
                   | valor ANDB valor
+                  | valor ORB valor
+                  | valor XORB valor
+                  | valor SHIFTD valor
+                  | valor SHIFTI valor
+
+
+                  | valor MOD valor
+
+                  | valor AND valor
+                  | valor OR valor
+                  | valor XOR valor
+
+
                   | valor DIFERENTE valor
                   | valor IGUALDOBLE valor
                   | valor MAYOR valor
                   | valor MAYORIGUAL valor
                   | valor MENORIGUAL valor
-                  | valor MOD valor
+                  | valor MENOR valor'''
 
-                  | valor AND valor
-                  | valor OR valor
-                  | valor ORB valor
-                  | valor XORB valor
-                  | valor SHIFTD valor
-                  | valor SHIFTI valor
-                  | valor XOR valor
-                  | valor MENOR valor
-                  | READ PARA PARC PUNTOCOMA'''
-
-
-
-
-    # if t[2] == '+'  : t[0] = t[1] + t[3]
-    # elif t[2] == '-': t[0] = t[1] - t[3]
-    # elif t[2] == '*': t[0] = t[1] * t[3]
-    # elif t[2] == '/': t[0] = t[1] / t[3]
     t[0] = ABCInstruccion.ExpresionDoble(t[1], t[2], t[3])
 
 
@@ -116,7 +112,8 @@ def p_expresion_unaria(t):
     '''expresion : MENOS valor %prec UMENOS
                 | ABS PARA valor PARC
                 | NOTB valor
-                | NOT valor'''
+                | NOT valor
+                | READ PARA PARC PUNTOCOMA'''
     t[0] = -t[2]
 
 
@@ -138,7 +135,7 @@ def p_expresion_decimal(t):
 
 def p_expresion_valor_unico_variable(t):
     'valor    : DOLAR IDENTIFICADOR'
-
+    t[0] = VariableValor(t[2])
 
 
 def p_error(t):

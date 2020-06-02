@@ -1,6 +1,4 @@
 main:
- print(5);
- exit;
- $hoa= 5;
- goto tempoletal;
- #print($v0);
+ $var=50;
+ $var1=59;
+ print($var*$var1);

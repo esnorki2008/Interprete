@@ -1,7 +1,18 @@
+
+from  Contenido.TablaDeSimbolos import  TablaDeSimbolos
 from abc import ABC, abstractmethod
+from .Operacion.Aritmetica import Division
+from .Operacion.Aritmetica import Resta
+from .Operacion.Aritmetica import Multiplicacion
 from .Operacion.Aritmetica import Suma
 from Contenido.LstInstruccion.Registro.Valor import Valor
+from Contenido.LstInstruccion.Operacion.Bitwise import AndBinario
+from Contenido.LstInstruccion.Operacion.Bitwise import OrBinario
+from Contenido.LstInstruccion.Operacion.Bitwise import XorBinario
+from Contenido.LstInstruccion.Operacion.Bitwise import ShiftDerecha
+from Contenido.LstInstruccion.Operacion.Bitwise import ShiftIzquierda
 
+Ts = TablaDeSimbolos()
 
 class Instruccion(ABC):
     def __init__(self, *args):
@@ -89,9 +100,28 @@ class ExpresionDoble(Instruccion):
         resultado = None
         val_izq = self.hijo_izquierdo.ejecutar()
         val_der = self.hijo_derecho.ejecutar()
-
+        # Aritmeticos
         if self.tipo_operacion == "+":
             resultado = Suma.sumar(val_izq, val_der)
+        elif self.tipo_operacion == "-":
+            resultado = Resta.restar(val_izq, val_der)
+        elif self.tipo_operacion == "*":
+            resultado = Multiplicacion.multiplicar(val_izq, val_der)
+        elif self.tipo_operacion == "/":
+            resultado = Division.dividir(val_izq, val_der)
+        # Bit a bit
+        elif self.tipo_operacion == "&":
+            resultado = AndBinario.and_binario(val_izq, val_der)
+        elif self.tipo_operacion == "|":
+            resultado = OrBinario.or_binario(val_izq, val_der)
+        elif self.tipo_operacion == "^":
+            resultado = XorBinario.xor_binario(val_izq, val_der)
+        elif self.tipo_operacion == "<<":
+            resultado = ShiftIzquierda.shift_izquierdo(val_izq, val_der)
+        elif self.tipo_operacion == ">>":
+            resultado = ShiftDerecha.shift_derecho(val_izq, val_der)
+        else:
+            print("Operacion No Detectada   " + self.tipo_operacion)
         return resultado
 
 

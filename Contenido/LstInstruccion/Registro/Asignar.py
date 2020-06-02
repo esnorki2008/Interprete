@@ -1,4 +1,5 @@
-from ..ABCInstruccion import Instruccion, ListaInstruccion
+
+from ..ABCInstruccion import Instruccion, ListaInstruccion,Ts
 from Contenido.LstInstruccion.Registro.Valor import Valor
 from Contenido.LstInstruccion.ABCInstruccion import Instruccion
 
@@ -12,7 +13,10 @@ class Asignar(Instruccion):
         self.origen = origen
 
     def ejecutar(self):
-        pass
+        global  Ts
+        vaue :Valor=self.origen.ejecutar()
+        Ts.variable_cambiar_valor(self.destino,vaue)
+
 
     def str_arbol(self):
         rst = self.origen.str_arbol()
