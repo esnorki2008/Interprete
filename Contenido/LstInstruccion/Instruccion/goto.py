@@ -1,6 +1,6 @@
 from ..ABCInstruccion import Instruccion, ListaInstruccion
 from Contenido.LstInstruccion.Registro.Valor import Valor
-
+from Contenido.LstInstruccion.ABCInstruccion import Ts
 
 class Goto(Instruccion):
     etique: str = None
@@ -9,8 +9,12 @@ class Goto(Instruccion):
         self.etique = etique
 
     def ejecutar(self):
-        pass
+        Ts.ejecutar_etiqueta(self.etique)
+
 
     def str_arbol(self):
         rst = str(id(self)) + "[shape=rect,sides=4,skew=.4,label=\"" + "Goto ( " + self.etique + " )\"]\n"
         return rst
+
+    def detener_ejecucion(self):
+        return 1

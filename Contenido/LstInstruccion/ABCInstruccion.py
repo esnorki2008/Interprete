@@ -1,18 +1,27 @@
-
-from  Contenido.TablaDeSimbolos import  TablaDeSimbolos
+from Contenido.TablaDeSimbolos import TablaDeSimbolos
 from abc import ABC, abstractmethod
 from .Operacion.Aritmetica import Division
 from .Operacion.Aritmetica import Resta
 from .Operacion.Aritmetica import Multiplicacion
 from .Operacion.Aritmetica import Suma
+from .Operacion.Aritmetica import Mod
 from Contenido.LstInstruccion.Registro.Valor import Valor
 from Contenido.LstInstruccion.Operacion.Bitwise import AndBinario
 from Contenido.LstInstruccion.Operacion.Bitwise import OrBinario
 from Contenido.LstInstruccion.Operacion.Bitwise import XorBinario
 from Contenido.LstInstruccion.Operacion.Bitwise import ShiftDerecha
 from Contenido.LstInstruccion.Operacion.Bitwise import ShiftIzquierda
-
+from Contenido.LstInstruccion.Operacion.Logica import And
+from Contenido.LstInstruccion.Operacion.Logica import Or
+from Contenido.LstInstruccion.Operacion.Logica import Xor
+from Contenido.LstInstruccion.Operacion.Comparacion import  Diferente
+from Contenido.LstInstruccion.Operacion.Comparacion import  Igual
+from Contenido.LstInstruccion.Operacion.Comparacion import  Mayor
+from Contenido.LstInstruccion.Operacion.Comparacion import  MayorIgual
+from Contenido.LstInstruccion.Operacion.Comparacion import  Menor
+from Contenido.LstInstruccion.Operacion.Comparacion import  MenorIgual
 Ts = TablaDeSimbolos()
+print("Nueva Tabla")
 
 class Instruccion(ABC):
     def __init__(self, *args):
@@ -25,6 +34,10 @@ class Instruccion(ABC):
     @abstractmethod
     def ejecutar(self):
         pass
+
+
+    def detener_ejecucion(self):
+        return 0
 
 
 class ListaEtiqueta(Instruccion):
@@ -64,6 +77,11 @@ class ListaInstruccion(Instruccion):
     def ejecutar(self):
         for elemento in self.lst:
             elemento.ejecutar()
+            if elemento.detener_ejecucion() == 1:
+                break ;
+
+
+        return 0
 
     def str_arbol(self):
         concatenar = ""
@@ -109,6 +127,8 @@ class ExpresionDoble(Instruccion):
             resultado = Multiplicacion.multiplicar(val_izq, val_der)
         elif self.tipo_operacion == "/":
             resultado = Division.dividir(val_izq, val_der)
+        elif self.tipo_operacion == "%":
+            resultado = Mod.modular(val_izq, val_der)
         # Bit a bit
         elif self.tipo_operacion == "&":
             resultado = AndBinario.and_binario(val_izq, val_der)
@@ -120,6 +140,26 @@ class ExpresionDoble(Instruccion):
             resultado = ShiftIzquierda.shift_izquierdo(val_izq, val_der)
         elif self.tipo_operacion == ">>":
             resultado = ShiftDerecha.shift_derecho(val_izq, val_der)
+        #Logica
+        elif self.tipo_operacion == "&&":
+            resultado = And.and_entero(val_izq, val_der)
+        elif self.tipo_operacion == "||":
+            resultado = Or.or_entero(val_izq, val_der)
+        elif self.tipo_operacion == "xor":
+            resultado = Xor.xor_entero(val_izq, val_der)
+        #Comparacion
+        elif self.tipo_operacion == "!=":
+            resultado = Diferente.diferente(val_izq, val_der)
+        elif self.tipo_operacion == "==":
+            resultado = Igual.igual(val_izq, val_der)
+        elif self.tipo_operacion == ">":
+            resultado = Mayor.mayor(val_izq, val_der)
+        elif self.tipo_operacion == ">=":
+            resultado = MayorIgual.mayor_igual(val_izq, val_der)
+        elif self.tipo_operacion == "<":
+            resultado = Menor.menor(val_izq, val_der)
+        elif self.tipo_operacion == "<=":
+            resultado = MenorIgual.menor_igual(val_izq, val_der)
         else:
             print("Operacion No Detectada   " + self.tipo_operacion)
         return resultado

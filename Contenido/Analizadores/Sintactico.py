@@ -63,7 +63,7 @@ def p_instrucciones_unset(t):
 def p_instrucciones_asignar(t):
     'instruccion :  DOLAR  IDENTIFICADOR IGUAL expresion PUNTOCOMA'
     t[0] = Asignar(t[2],t[4])
-    print("ES HOY")
+
 
 def p_instrucciones_goto(t):
     'instruccion :  GOTO  IDENTIFICADOR  PUNTOCOMA'
@@ -79,7 +79,7 @@ def p_expresion_binaria(t):
                   | valor MENOS valor
                   | valor POR valor
                   | valor DIVIDIDO valor
-
+                  | valor MOD valor
                   | valor ANDB valor
                   | valor ORB valor
                   | valor XORB valor
@@ -87,7 +87,7 @@ def p_expresion_binaria(t):
                   | valor SHIFTI valor
 
 
-                  | valor MOD valor
+
 
                   | valor AND valor
                   | valor OR valor
