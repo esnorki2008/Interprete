@@ -151,3 +151,4 @@ parser.out
 *.out
 parser.out
 *.xml
+.idea/workspace.xml
