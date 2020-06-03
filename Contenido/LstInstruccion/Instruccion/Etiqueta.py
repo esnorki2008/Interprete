@@ -5,14 +5,14 @@ class Etiqueta(Instruccion):
     lst: ListaInstruccion = None
     nombre: str = None
 
+
     def __init__(self, lst: ListaInstruccion, nombre: str):
         self.lst = lst
         self.nombre = nombre
 
     def ejecutar(self):
-        self.lst.ejecutar()
 
-
+        return self.lst.ejecutar()
 
     def str_arbol(self):
         rst = self.lst.str_arbol()

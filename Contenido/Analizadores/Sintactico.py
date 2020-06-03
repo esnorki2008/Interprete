@@ -7,6 +7,9 @@ from Contenido.LstInstruccion.Registro.Asignar import Asignar
 from Contenido.LstInstruccion.Instruccion.goto import Goto
 from  Contenido.LstInstruccion.Instruccion.If import If
 from  Contenido.LstInstruccion.Registro.VariableValor import VariableValor
+from .Lexico import *
+import ply.lex as lex
+import ply.yacc as yacc
 precedence = (
     ('left', 'MAS', 'MENOS'),
     ('left', 'POR', 'DIVIDIDO'),
@@ -140,3 +143,10 @@ def p_expresion_valor_unico_variable(t):
 
 def p_error(t):
     print("Error sintáctico en '%s'" % t)
+
+
+def analizar_ascendente(input : str):
+    # Construyendo el analizador léxico
+    lexer = lex.lex()
+    parser = yacc.yacc()
+    return  parser.parse(input)

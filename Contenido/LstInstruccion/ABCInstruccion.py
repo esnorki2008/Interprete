@@ -14,14 +14,16 @@ from Contenido.LstInstruccion.Operacion.Bitwise import ShiftIzquierda
 from Contenido.LstInstruccion.Operacion.Logica import And
 from Contenido.LstInstruccion.Operacion.Logica import Or
 from Contenido.LstInstruccion.Operacion.Logica import Xor
-from Contenido.LstInstruccion.Operacion.Comparacion import  Diferente
-from Contenido.LstInstruccion.Operacion.Comparacion import  Igual
-from Contenido.LstInstruccion.Operacion.Comparacion import  Mayor
-from Contenido.LstInstruccion.Operacion.Comparacion import  MayorIgual
-from Contenido.LstInstruccion.Operacion.Comparacion import  Menor
-from Contenido.LstInstruccion.Operacion.Comparacion import  MenorIgual
+from Contenido.LstInstruccion.Operacion.Comparacion import Diferente
+from Contenido.LstInstruccion.Operacion.Comparacion import Igual
+from Contenido.LstInstruccion.Operacion.Comparacion import Mayor
+from Contenido.LstInstruccion.Operacion.Comparacion import MayorIgual
+from Contenido.LstInstruccion.Operacion.Comparacion import Menor
+from Contenido.LstInstruccion.Operacion.Comparacion import MenorIgual
+
 Ts = TablaDeSimbolos()
 print("Nueva Tabla")
+
 
 class Instruccion(ABC):
     def __init__(self, *args):
@@ -34,7 +36,6 @@ class Instruccion(ABC):
     @abstractmethod
     def ejecutar(self):
         pass
-
 
     def detener_ejecucion(self):
         return 0
@@ -78,8 +79,7 @@ class ListaInstruccion(Instruccion):
         for elemento in self.lst:
             elemento.ejecutar()
             if elemento.detener_ejecucion() == 1:
-                break ;
-
+                return 1
 
         return 0
 
@@ -140,14 +140,14 @@ class ExpresionDoble(Instruccion):
             resultado = ShiftIzquierda.shift_izquierdo(val_izq, val_der)
         elif self.tipo_operacion == ">>":
             resultado = ShiftDerecha.shift_derecho(val_izq, val_der)
-        #Logica
+        # Logica
         elif self.tipo_operacion == "&&":
             resultado = And.and_entero(val_izq, val_der)
         elif self.tipo_operacion == "||":
             resultado = Or.or_entero(val_izq, val_der)
         elif self.tipo_operacion == "xor":
             resultado = Xor.xor_entero(val_izq, val_der)
-        #Comparacion
+        # Comparacion
         elif self.tipo_operacion == "!=":
             resultado = Diferente.diferente(val_izq, val_der)
         elif self.tipo_operacion == "==":
@@ -194,4 +194,5 @@ class Imprimir(Instruccion):
 
     def ejecutar(self):
         vaue: Valor = self.contenido.ejecutar()
-        print(vaue.dar_valor())
+        global Ts
+        Ts.print(vaue.dar_valor())
