@@ -3,6 +3,13 @@ import sys
 from PyQt5 import QtCore, QtGui, QtWidgets
 from Gui import Ui_MainWindow
 
+
+
+
+
+
+
+
 def cargar_ventana():
 
     app = QtWidgets.QApplication(sys.argv)
@@ -18,7 +25,6 @@ def cargar_ventana():
 
 
 ventana:Ui_MainWindow =cargar_ventana()
-
 
 
 

@@ -6,7 +6,7 @@ class Errores:
     tipo: int = 110
     pos_x: int = 0
     pos_y: int = 0
-
+    exit_exec:int =0
     def __init__(self, descripcion, tipo):
         self.descripcion = descripcion
         self.tipo = tipo
@@ -33,6 +33,7 @@ class TablaDeSimbolos:
     salida_consola = None
 
     def __init__(self):
+        self.exit_exec=0
         self.lista_etiquetas = {}
         self.lista_variables = {}
         self.lista_errores = []
@@ -55,6 +56,8 @@ class TablaDeSimbolos:
         return retorno
 
     def nueva_ejecucion(self):
+        print("Limpieza Tabla")
+        self.exit_exec=1
         self.lista_etiquetas = {}
         self.lista_variables = {}
         self.lista_errores = []
@@ -71,6 +74,8 @@ class TablaDeSimbolos:
             self.lista_etiquetas[elemento.nombre] = elemento
 
     def ejecutar_main(self):
+        if self.exit_exec == 0:
+            return
         maincito = self.lista_etiquetas.get("main", None)
         if maincito is None:
             print("No Se Puede Ejecutar Si No Hay Main")
@@ -84,19 +89,25 @@ class TablaDeSimbolos:
 
 
     def ejecutar_etiqueta(self, nombre: str):
+        if self.exit_exec == 0:
+            return
         maincito = self.lista_etiquetas.get(nombre, None)
         if maincito is None:
             print("No Se Puede Ejecutar, No Existe La Etiqueta :" + nombre)
             self.lista_errores.append(Errores("No Se Puede Ejecutar, No Existe La Etiqueta :" + nombre, 2))
         else:
-            maincito.ejecutar()
-            #aceptar=False
-           # if maincito.ejecutar() == 1:
-            #    return
-           # for llave in self.lista_etiquetas.keys():
-           #     if aceptar:
-            #        self.ejecutar_etiqueta(llave)
-             #   if llave == nombre:
-              #      aceptar=True
+            retu=maincito.ejecutar()
+            aceptar=False
+            if retu == 1:
+                return 1
+            #print(nombre)
+            for llave in self.lista_etiquetas.keys():
+
+                if aceptar:
+                    #print(llave + "____" + nombre + "_____" + str(aceptar))
+                    self.ejecutar_etiqueta(llave)
+
+                if llave == nombre:
+                    aceptar=True
 
 

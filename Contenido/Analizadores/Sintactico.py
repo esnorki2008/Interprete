@@ -13,7 +13,7 @@ import ply.yacc as yacc
 precedence = (
     ('left', 'MAS', 'MENOS'),
     ('left', 'POR', 'DIVIDIDO'),
-    ('right', 'UMENOS'),
+
 )
 
 
@@ -112,12 +112,16 @@ def p_expresion_sola(t):
     t[0] = t[1]
 
 def p_expresion_unaria(t):
-    '''expresion : MENOS valor %prec UMENOS
+    '''expresion : MENOS valor
                 | ABS PARA valor PARC
                 | NOTB valor
                 | NOT valor
-                | READ PARA PARC PUNTOCOMA'''
-    t[0] = -t[2]
+                | MAS valor
+                | READ PARA  PARC '''
+    if (t[2]=="("):
+        t[0] = ABCInstruccion.ExpresionSimpleOperacion(t[3],t[1])
+    else:
+        t[0] = ABCInstruccion.ExpresionSimpleOperacion(t[2],t[1])
 
 
 def p_expresion_agrupacion(t):

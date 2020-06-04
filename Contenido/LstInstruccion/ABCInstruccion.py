@@ -5,12 +5,15 @@ from .Operacion.Aritmetica import Resta
 from .Operacion.Aritmetica import Multiplicacion
 from .Operacion.Aritmetica import Suma
 from .Operacion.Aritmetica import Mod
+from .Operacion.Aritmetica import Negacion
+from .Operacion.Aritmetica import Not
 from Contenido.LstInstruccion.Registro.Valor import Valor
 from Contenido.LstInstruccion.Operacion.Bitwise import AndBinario
 from Contenido.LstInstruccion.Operacion.Bitwise import OrBinario
 from Contenido.LstInstruccion.Operacion.Bitwise import XorBinario
 from Contenido.LstInstruccion.Operacion.Bitwise import ShiftDerecha
 from Contenido.LstInstruccion.Operacion.Bitwise import ShiftIzquierda
+from Contenido.LstInstruccion.Operacion.Bitwise import NegacionBinario
 from Contenido.LstInstruccion.Operacion.Logica import And
 from Contenido.LstInstruccion.Operacion.Logica import Or
 from Contenido.LstInstruccion.Operacion.Logica import Xor
@@ -20,6 +23,8 @@ from Contenido.LstInstruccion.Operacion.Comparacion import Mayor
 from Contenido.LstInstruccion.Operacion.Comparacion import MayorIgual
 from Contenido.LstInstruccion.Operacion.Comparacion import Menor
 from Contenido.LstInstruccion.Operacion.Comparacion import MenorIgual
+from Contenido.LstInstruccion.Operacion.ValorOperacion import Abs
+from Contenido.LstInstruccion.Operacion.ValorOperacion import Read
 
 Ts = TablaDeSimbolos()
 print("Nueva Tabla")
@@ -161,7 +166,47 @@ class ExpresionDoble(Instruccion):
         elif self.tipo_operacion == "<=":
             resultado = MenorIgual.menor_igual(val_izq, val_der)
         else:
-            print("Operacion No Detectada   " + self.tipo_operacion)
+            print("Operacion DOBLE No Detectada   " + self.tipo_operacion)
+        return resultado
+
+
+class ExpresionSimpleOperacion(Instruccion):
+    hijo: Instruccion = None
+    tipo_operacion: str = None
+
+    def __init__(self, hijo, tipo_operacion: str):
+        self.hijo = hijo
+        self.tipo_operacion = tipo_operacion
+
+    def str_arbol(self):
+        nodo_str = self.hijo.str_arbol() + "\n"
+        nodo_str += str(id(self)) + "[shape=rect,sides=4,skew=.4,label=\"" + str(self.tipo_operacion) + "\"]\n"
+        nodo_str += str(id(self)) + " -> " + str(id(self.hijo)) + "\n"
+
+        return nodo_str
+
+    def ejecutar(self):
+        resultado = None
+        vaue = None
+
+        if self.tipo_operacion!="read":
+            self.hijo.ejecutar()
+
+        if self.tipo_operacion == "+":
+            resultado = vaue
+        elif self.tipo_operacion == "-":
+            resultado = Negacion.negar(vaue)
+        elif self.tipo_operacion == "!":
+            resultado = Not.not_num(vaue)
+        elif self.tipo_operacion == "abs":
+            resultado = Abs.absoluto(vaue)
+        elif self.tipo_operacion == "read":
+            resultado = Read.read()
+        elif self.tipo_operacion == "~":
+            resultado = NegacionBinario.negar_binario(vaue)
+
+        else:
+            print("Operacion SIMPLE No Detectada   " + self.tipo_operacion)
         return resultado
 
 
@@ -196,3 +241,4 @@ class Imprimir(Instruccion):
         vaue: Valor = self.contenido.ejecutar()
         global Ts
         Ts.print(vaue.dar_valor())
+        print(vaue.dar_valor())
