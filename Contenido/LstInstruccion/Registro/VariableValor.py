@@ -6,15 +6,26 @@ from Contenido.LstInstruccion.ABCInstruccion import Instruccion
 
 class VariableValor(Instruccion):
     destino: str = None
-
+    lst : [] = None
 
     def __init__(self, destino: str ):
         self.destino = destino
+        self.lst=[]
 
+    def indices(self, lst :[]):
+        self.lst = lst
 
     def ejecutar(self):
         global  Ts
-        return Ts.variable_obtener_valor(self.destino)
+        if len(self.lst)== 0 :
+            return Ts.variable_obtener_valor(self.destino)
+        else :
+            tope = len(self.lst) - 1
+            lista_invertida = []
+            for index in range(tope, -1, -1):
+                lista_invertida.append(self.lst[index].ejecutar().dar_valor())
+
+            return  Ts.arreglo_obtener_valor(self.destino,lista_invertida)
 
 
     def str_arbol(self):

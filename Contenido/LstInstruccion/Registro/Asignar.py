@@ -7,16 +7,29 @@ from Contenido.LstInstruccion.ABCInstruccion import Instruccion
 class Asignar(Instruccion):
     destino: str = None
     origen: Instruccion = None
+    lst :[] = None
 
     def __init__(self, destino: str , origen : Instruccion):
         self.destino = destino
         self.origen = origen
+        self.lst = []
 
     def ejecutar(self):
+        vaue: Valor = self.origen.ejecutar()
         global  Ts
-        vaue :Valor=self.origen.ejecutar()
-        Ts.variable_cambiar_valor(self.destino,vaue)
+        if len(self.lst) == 0 :
+            Ts.variable_cambiar_valor(self.destino,vaue)
+        else :
+            tope = len(self.lst)-1
+            lista_invertida = []
+            for index in range(tope,-1,-1) :
+                lista_invertida.append(self.lst[index].ejecutar().dar_valor())
 
+            Ts.arreglo_cambiar_valor(self.destino,lista_invertida,vaue)
+
+
+    def indices(self, lst :[]):
+        self.lst = lst
 
     def str_arbol(self):
         rst = self.origen.str_arbol()

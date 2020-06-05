@@ -11,6 +11,7 @@ reserved = {
     'int' : 'INT',
     'float' : 'FLOAT',
     'char' : 'CHAR',
+    'array' : 'ARRAY'
 
 
 

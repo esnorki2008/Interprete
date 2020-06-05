@@ -25,6 +25,7 @@ from Contenido.LstInstruccion.Operacion.Comparacion import Menor
 from Contenido.LstInstruccion.Operacion.Comparacion import MenorIgual
 from Contenido.LstInstruccion.Operacion.ValorOperacion import Abs
 from Contenido.LstInstruccion.Operacion.ValorOperacion import Read
+from Contenido.LstInstruccion.Operacion.ValorOperacion import Array
 from Contenido.LstInstruccion.Operacion.Cast import INT
 from Contenido.LstInstruccion.Operacion.Cast import FLOAT
 from Contenido.LstInstruccion.Operacion.Cast import CHAR
@@ -192,7 +193,7 @@ class ExpresionSimpleOperacion(Instruccion):
         resultado = None
         vaue = None
 
-        if self.tipo_operacion!="read":
+        if self.tipo_operacion!="read" and self.tipo_operacion!="array":
             vaue=self.hijo.ejecutar()
 
         if self.tipo_operacion == "+":
@@ -205,6 +206,8 @@ class ExpresionSimpleOperacion(Instruccion):
             resultado = Abs.absoluto(vaue)
         elif self.tipo_operacion == "read":
             resultado = Read.read()
+        elif self.tipo_operacion == "array":
+            resultado = Array.array()
         elif self.tipo_operacion == "~":
             resultado = NegacionBinario.negar_binario(vaue)
         elif self.tipo_operacion == "int":

@@ -5,11 +5,12 @@ from Contenido.LstInstruccion.Instruccion.Exit import Exit
 from Contenido.LstInstruccion.Instruccion.Unset import Unset
 from Contenido.LstInstruccion.Registro.Asignar import Asignar
 from Contenido.LstInstruccion.Instruccion.goto import Goto
-from  Contenido.LstInstruccion.Instruccion.If import If
-from  Contenido.LstInstruccion.Registro.VariableValor import VariableValor
+from Contenido.LstInstruccion.Instruccion.If import If
+from Contenido.LstInstruccion.Registro.VariableValor import VariableValor
 from .Lexico import *
 import ply.lex as lex
 import ply.yacc as yacc
+
 precedence = (
     ('left', 'MAS', 'MENOS'),
     ('left', 'POR', 'DIVIDIDO'),
@@ -22,22 +23,27 @@ def p_inicio(t):
     'inicio    : etiquetas'
     t[0] = t[1]
 
+
 def p_etiquetas_lista(t):
     'etiquetas : etiquetas etiqueta'
     t[0] = t[1]
     t[0].agregar(t[2])
 
+
 def p_etiquetas_lista_inicio(t):
     'etiquetas : etiqueta'
-    t[0]=ABCInstruccion.ListaEtiqueta([t[1]])
+    t[0] = ABCInstruccion.ListaEtiqueta([t[1]])
+
 
 def p_etiqueta_contenido(t):
     'etiqueta : IDENTIFICADOR DOBLEPUNTO instrucciones'
-    t[0]=Etiqueta(t[3],t[1])
+    t[0] = Etiqueta(t[3], t[1])
+
 
 def p_etiqueta_principal(t):
     'etiqueta : MAIN DOBLEPUNTO instrucciones'
-    t[0]=Etiqueta(t[3],t[1])
+    t[0] = Etiqueta(t[3], t[1])
+
 
 def p_instrucciones_lista(t):
     'instrucciones :  instrucciones instruccion '
@@ -50,33 +56,49 @@ def p_instrucciones_lista_inicio(t):
     t[0] = ABCInstruccion.ListaInstruccion([t[1]])
 
 
-
 def p_instrucciones_exit(t):
     'instruccion :  EXIT PUNTOCOMA'
     t[0] = Exit()
+
 
 def p_instrucciones_imprimir(t):
     'instruccion :  IMPRIMIR  PARA expresion PARC PUNTOCOMA'
     t[0] = ABCInstruccion.Imprimir(t[3])
 
+
 def p_instrucciones_unset(t):
     'instruccion :  UNSET  PARA DOLAR IDENTIFICADOR PARC PUNTOCOMA'
     t[0] = Unset(t[4])
 
+
 def p_instrucciones_asignar(t):
-    'instruccion :  DOLAR  IDENTIFICADOR IGUAL expresion PUNTOCOMA'
-    t[0] = Asignar(t[2],t[4])
+    'instruccion :  DOLAR  IDENTIFICADOR arra IGUAL expresion PUNTOCOMA'
+    t[0] = Asignar(t[2], t[5])
+    t[0].indices(t[3])
+
+
+def p_arreglo_indice(t):
+    'arra : CORA expresion CORC  arra '
+    t[0] = t[4]
+    t[0].append(t[2])
+
+
+def p_arreglo_indice_epsilon(t):
+    'arra : '
+    t[0] = []
 
 
 def p_instrucciones_goto(t):
     'instruccion :  GOTO  IDENTIFICADOR  PUNTOCOMA'
     t[0] = Goto(t[2])
 
+
 def p_instrucciones_if(t):
     'instruccion :  IF   expresion  instruccion  '
-    t[0] = If(t[2],t[3])
+    t[0] = If(t[2], t[3])
 
-#HASTA AQUI HAY GRAFICA
+
+# HASTA AQUI HAY GRAFICA
 def p_expresion_binaria(t):
     '''expresion : valor MAS valor
                   | valor MENOS valor
@@ -111,28 +133,33 @@ def p_expresion_sola(t):
     'expresion :  valor'
     t[0] = t[1]
 
+
 def p_expresion_unaria(t):
     '''expresion : MENOS valor
                 | ABS PARA valor PARC
                 | NOTB valor
                 | NOT valor
                 | MAS valor
-                | READ PARA  PARC '''
-    if (t[2]=="("):
-        t[0] = ABCInstruccion.ExpresionSimpleOperacion(t[3],t[1])
+                | READ PARA  PARC
+                | ARRAY PARA  PARC '''
+
+    if t[2] == "(":
+        t[0] = ABCInstruccion.ExpresionSimpleOperacion(t[3], t[1])
     else:
-        t[0] = ABCInstruccion.ExpresionSimpleOperacion(t[2],t[1])
+        t[0] = ABCInstruccion.ExpresionSimpleOperacion(t[2], t[1])
 
 
 def p_expresion_agrupacion(t):
-    '''expresion : PARA expresion PARC
-                | PARA INT PARC expresion
+    '''expresion : PARA INT PARC expresion
                 | PARA FLOAT PARC expresion
                 | PARA CHAR PARC expresion'''
-    if t[3] == ")" :
-        t[0] = ABCInstruccion.ExpresionSimpleOperacion(t[4], t[2])
-    else:
-        t[0] = t[2]
+
+    t[0] = ABCInstruccion.ExpresionSimpleOperacion(t[4], t[2])
+
+
+def p_expresion_parentesis(t):
+    'expresion : PARA expresion PARC'
+    t[0] = t[2]
 
 
 def p_expresion_entero(t):
@@ -146,17 +173,19 @@ def p_expresion_decimal(t):
     t[0] = ABCInstruccion.Valor(t[1], 1)
     t[0] = ABCInstruccion.ExpresionSimple(t[0])
 
+
 def p_expresion_valor_unico_variable(t):
-    'valor    : DOLAR IDENTIFICADOR'
+    'valor    : DOLAR IDENTIFICADOR arra'
     t[0] = VariableValor(t[2])
+    t[0].indices(t[3])
 
 
 def p_error(t):
     print("Error sintáctico en '%s'" % t)
 
 
-def analizar_ascendente(input : str):
+def analizar_ascendente(input: str):
     # Construyendo el analizador léxico
     lexer = lex.lex()
     parser = yacc.yacc()
-    return  parser.parse(input)
+    return parser.parse(input)
