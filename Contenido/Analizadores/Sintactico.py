@@ -125,8 +125,14 @@ def p_expresion_unaria(t):
 
 
 def p_expresion_agrupacion(t):
-    'expresion : PARA expresion PARC'
-    t[0] = t[2]
+    '''expresion : PARA expresion PARC
+                | PARA INT PARC expresion
+                | PARA FLOAT PARC expresion
+                | PARA CHAR PARC expresion'''
+    if t[3] == ")" :
+        t[0] = ABCInstruccion.ExpresionSimpleOperacion(t[4], t[2])
+    else:
+        t[0] = t[2]
 
 
 def p_expresion_entero(t):

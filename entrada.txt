@@ -1,4 +1,7 @@
 main:
- #$t1 = read();
+ $t1 = read();
+ $t1 = (float)$t1+5;
 
- print($t2);
+
+
+ print($t1);

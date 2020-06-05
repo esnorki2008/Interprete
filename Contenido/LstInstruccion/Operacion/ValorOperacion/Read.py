@@ -13,6 +13,6 @@ def read():
         x = re.search("^\d+$", rst)
         if x is not None:
             tipo_resultante = 0
-        rst = int(rst)
-
+            rst = int(rst)
+    print(tipo_resultante)
     return Valor(rst, tipo_resultante)

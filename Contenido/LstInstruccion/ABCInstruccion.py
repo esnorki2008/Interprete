@@ -25,6 +25,9 @@ from Contenido.LstInstruccion.Operacion.Comparacion import Menor
 from Contenido.LstInstruccion.Operacion.Comparacion import MenorIgual
 from Contenido.LstInstruccion.Operacion.ValorOperacion import Abs
 from Contenido.LstInstruccion.Operacion.ValorOperacion import Read
+from Contenido.LstInstruccion.Operacion.Cast import INT
+from Contenido.LstInstruccion.Operacion.Cast import FLOAT
+from Contenido.LstInstruccion.Operacion.Cast import CHAR
 
 Ts = TablaDeSimbolos()
 print("Nueva Tabla")
@@ -190,7 +193,7 @@ class ExpresionSimpleOperacion(Instruccion):
         vaue = None
 
         if self.tipo_operacion!="read":
-            self.hijo.ejecutar()
+            vaue=self.hijo.ejecutar()
 
         if self.tipo_operacion == "+":
             resultado = vaue
@@ -204,6 +207,12 @@ class ExpresionSimpleOperacion(Instruccion):
             resultado = Read.read()
         elif self.tipo_operacion == "~":
             resultado = NegacionBinario.negar_binario(vaue)
+        elif self.tipo_operacion == "int":
+            resultado = INT.cast_int(vaue)
+        elif self.tipo_operacion == "float":
+            resultado = FLOAT.cast_float(vaue)
+        elif self.tipo_operacion == "char":
+            resultado = CHAR.cast_char(vaue)
 
         else:
             print("Operacion SIMPLE No Detectada   " + self.tipo_operacion)

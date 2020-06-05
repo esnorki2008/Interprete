@@ -8,6 +8,11 @@ reserved = {
     'if' : 'IF',
     'abs' : 'ABS',
     'xor' : 'XOR',
+    'int' : 'INT',
+    'float' : 'FLOAT',
+    'char' : 'CHAR',
+
+
 
 
 }

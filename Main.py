@@ -35,8 +35,9 @@ def cargar_sin_consola():
     Ts.guardar_consola(None)
     Ts.nueva_ejecucion()
     raiz_produccion: ListaInstruccion = analizar_ascendente(input)
-    Ts.cargar_etiquetas(raiz_produccion)
-    Ts.ejecutar_main()
+    if raiz_produccion is not None:
+        Ts.cargar_etiquetas(raiz_produccion)
+        Ts.ejecutar_main()
 cargar_sin_consola()
 
 
