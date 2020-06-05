@@ -6,9 +6,7 @@ from Contenido.LstInstruccion.ABCInstruccion import ListaInstruccion
 from Contenido.Analizadores.Sintactico import analizar_ascendente
 from Contenido.LstInstruccion.ABCInstruccion import Ts
 
-
-
-
+#sys.setrecursionlimit()
 
 
 def cargar_ventana():
@@ -25,7 +23,7 @@ def cargar_ventana():
 
 
 
-#ventana:Ui_MainWindow =cargar_ventana()
+
 
 def cargar_sin_consola():
     f = open("C:/Users/norki/Desktop/interprete/entrada.txt", "r")
@@ -38,8 +36,8 @@ def cargar_sin_consola():
     if raiz_produccion is not None:
         Ts.cargar_etiquetas(raiz_produccion)
         Ts.ejecutar_main()
-cargar_sin_consola()
-
+#cargar_sin_consola()
+ventana:Ui_MainWindow =cargar_ventana()
 
 #print(raiz_produccion.str_arbol_encabezado())
 #raiz_produccion.ejecutar()
