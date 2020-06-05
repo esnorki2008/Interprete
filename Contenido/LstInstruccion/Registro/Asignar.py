@@ -30,6 +30,12 @@ class Asignar(Instruccion):
 
     def indices(self, lst :[]):
         self.lst = lst
+    def corchetes(self) :
+        if len(self.lst) == 0:
+            return ""
+        rst += str(id(self)) + "[shape=rect,sides=4,skew=.4,label=\"" + " INDICES:" + "\"]\n"
+        rst += str(id(self)) + " -> " + str(id(self.origen)) + "\n"
+
 
     def str_arbol(self):
         rst = self.origen.str_arbol()

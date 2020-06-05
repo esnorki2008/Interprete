@@ -183,9 +183,12 @@ class ExpresionSimpleOperacion(Instruccion):
         self.tipo_operacion = tipo_operacion
 
     def str_arbol(self):
-        nodo_str = self.hijo.str_arbol() + "\n"
+        nodo_str = ""
+        if type(self.hijo) != str :
+            nodo_str += self.hijo.str_arbol() + "\n"
+            nodo_str += str(id(self)) + " -> " + str(id(self.hijo)) + "\n"
         nodo_str += str(id(self)) + "[shape=rect,sides=4,skew=.4,label=\"" + str(self.tipo_operacion) + "\"]\n"
-        nodo_str += str(id(self)) + " -> " + str(id(self.hijo)) + "\n"
+
 
         return nodo_str
 
