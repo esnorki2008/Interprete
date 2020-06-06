@@ -173,6 +173,10 @@ def p_expresion_decimal(t):
     t[0] = ABCInstruccion.Valor(t[1], 1)
     t[0] = ABCInstruccion.ExpresionSimple(t[0])
 
+def p_expresion_cadena(t):
+    'valor    : CADENA'
+    t[0] = ABCInstruccion.Valor(t[1], 2)
+    t[0] = ABCInstruccion.ExpresionSimple(t[0])
 
 def p_expresion_valor_unico_variable(t):
     'valor    : DOLAR IDENTIFICADOR arra'

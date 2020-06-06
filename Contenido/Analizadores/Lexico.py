@@ -49,6 +49,7 @@ tokens = [
              'MENORIGUAL',
              'MAYOR',
              'MAYORIGUAL',
+              'CADENA'
          ] + list(reserved.values())
 
 # Tokens
@@ -107,6 +108,15 @@ def t_ENTERO(t):
     except ValueError:
         print("Integer value too large %d", t.value)
         t.value = 0
+    return t
+
+def t_CADENA(t):
+    r'"([^"]*)"'
+    try:
+        t.value = t.value
+    except ValueError:
+        print("Error Cadena %d", t.value)
+        t.value = ""
     return t
 
 

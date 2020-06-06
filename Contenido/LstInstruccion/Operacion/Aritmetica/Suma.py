@@ -14,6 +14,10 @@ def sumar(param1 : Valor, param2 : Valor):
             #Decimal
             tipo_resultante = 1
             rst = param1.dar_valor() + param2.dar_valor()
+        elif param2.tipo==2:
+            #Decimal
+            tipo_resultante = 2
+            rst = str(param1.dar_valor()) + str(param2.dar_valor())
         else:
             print("Error En La Suma Con Tipos: "+param1.dar_tipo_str()+","+param2.dar_tipo_str())
     elif param1.tipo==1:
@@ -25,8 +29,16 @@ def sumar(param1 : Valor, param2 : Valor):
             #Decimal
             tipo_resultante = 1
             rst = param1.dar_valor() + param2.dar_valor()
+        elif param2.tipo==2:
+            #Decimal
+            tipo_resultante = 2
+            rst = str(param1.dar_valor()) + str(param2.dar_valor())
         else:
             print("Error En La Suma Con Tipos: "+param1.dar_tipo_str()+","+param2.dar_tipo_str())
+    elif param1.tipo == 2:
+        # Decimal
+        tipo_resultante = 2
+        rst = str(param1.dar_valor()) + str(param2.dar_valor())
     else:
         print("Error En La Suma Con Tipos: " + param1.dar_tipo_str() + "," + param2.dar_tipo_str())
 

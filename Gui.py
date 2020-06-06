@@ -75,8 +75,8 @@ class Ui_MainWindow(object):
         return re.sub(r'(#(.*)(\n)?)', ini_span + (r"\1") + "</span>", entrada)
 
     def pintar_valores(self,entrada):
-        ini_span = "<span style=" + chr(34) + "color: #015002" + chr(34) + ">"
-        return re.sub(r'(( "(.*|[^"])" )|(/d+)|(/d\./d+))', ini_span + (r"\1") + "</span>", entrada)
+        ini_span = "<span style=" + chr(34) + "color: #011E94 " + chr(34) + ">"
+        return re.sub(r'(("([^"]*)")|( [0-9]+ )|([0-9]\.[0-9]+))', ini_span + (r"\1") + "</span>", entrada)
 
     def pintar_simbolos(self,entrada):
         ini_span = "<span style=" + chr(34) + "color: #738786 " + chr(34) + ">"
@@ -97,15 +97,18 @@ class Ui_MainWindow(object):
     def color(self):
         self.txt_consola.clear()
         self.txt_entrada.clear()
-        #f = open("C:/Users/norki/Desktop/interprete/entrada.txt", "r")
-        f = open("C:/Users/Esnorki/Desktop/interprete/entrada.txt", "r")
+        f = open("C:/Users/norki/Desktop/interprete/entrada.txt", "r")
+        #f = open("C:/Users/Esnorki/Desktop/interprete/entrada.txt", "r")
         input: str = f.read()
 
         input = self.pintar_comentarios(input)
+
+        input = self.pintar_valores(input)
+
         input = self.pintar_reservadas_grises(input)
         input = self.pintar_reservadas_moradas(input)
         input = self.pintar_variables(input)
-        #input = self.pintar_valores(input)
+
         input = self.pintar_simbolos(input)
         input = re.sub(r"(;)", (r"\1") , input)
         input = re.sub(r"(\n)","<br>", input)
@@ -117,12 +120,13 @@ class Ui_MainWindow(object):
 
         #print(input)
         self.txt_entrada.append(input)
+        print(self.txt_entrada.toPlainText())
 
     def parser(self):
         self.txt_consola.clear()
         self.txt_entrada.clear()
-        #f = open("C:/Users/norki/Desktop/interprete/entrada.txt", "r")
-        f = open("C:/Users/Esnorki/Desktop/interprete/entrada.txt", "r")
+        f = open("C:/Users/norki/Desktop/interprete/entrada.txt", "r")
+        #f = open("C:/Users/Esnorki/Desktop/interprete/entrada.txt", "r")
         input: str = f.read()
         self.txt_entrada.append(input)
         global Ts
