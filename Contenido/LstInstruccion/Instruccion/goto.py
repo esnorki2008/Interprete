@@ -9,8 +9,8 @@ class Goto(Instruccion):
         self.etique = etique
 
     def ejecutar(self):
-        Ts.ejecutar_etiqueta(self.etique)
-
+        #Ts.ejecutar_etiqueta(self.etique)
+        return  self.etique
 
     def str_arbol(self):
         rst = str(id(self)) + "[shape=rect,sides=4,skew=.4,label=\"" + "Goto ( " + self.etique + " )\"]\n"

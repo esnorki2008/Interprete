@@ -86,11 +86,14 @@ class ListaInstruccion(Instruccion):
 
     def ejecutar(self):
         for elemento in self.lst:
-            elemento.ejecutar()
-            if elemento.detener_ejecucion() == 1:
-                return 1
+            exec=elemento.ejecutar()
+            if exec != None :
+                return  exec
+            #print(elemento.ejecutar())
+            #if elemento.detener_ejecucion() == 1:
+                #return 1
 
-        return 0
+        return None
 
     def str_arbol(self):
         concatenar = ""

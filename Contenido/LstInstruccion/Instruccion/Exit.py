@@ -10,6 +10,7 @@ class Exit(Instruccion):
     def ejecutar(self):
         global Ts
         Ts.exit_exec=0
+        return  "exit"
 
     def str_arbol(self):
         rst = str(id(self)) + "[shape=rect,sides=4,skew=.4,label=\"" + "EXIT" + "\"]\n"

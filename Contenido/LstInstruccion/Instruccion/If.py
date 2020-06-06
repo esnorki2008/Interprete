@@ -19,7 +19,7 @@ class If(Instruccion):
         condicion: Valor = self.booleano.ejecutar()
         if condicion.tipo == 0:
             if condicion.dar_valor() == 1:
-                self.cuerpo.ejecutar()
+                return self.cuerpo.ejecutar()
                 self.deten = self.cuerpo.detener_ejecucion()
         else:
             global Ts

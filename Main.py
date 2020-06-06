@@ -25,9 +25,6 @@ def cargar_ventana():
 
 
 
-
-
-
 def cargar_sin_consola():
     f = open("C:/Users/norki/Desktop/interprete/entrada.txt", "r")
     #f = open("C:/Users/Esnorki/Desktop/interprete/entrada.txt", "r")
@@ -50,31 +47,16 @@ def cargar_sin_consola():
 
 from IPython.display import Image, display
 
-class photo(QtWidgets.QDialog):
-    def __init__(self,parent=None):
-        super(photo, self).__init__(parent)
-        uic.loadUi('EmployeeUpdate.ui', self)
-        self.btn.clicked.connect(self.attachImage)
-
-    def attachImage(self):
-        lay = QtWidgets.QVBoxLayout(self.scrollAreaWidgetContents)
-        lay.setContentsMargins(0, 0, 0, 0)
-        lay.addWidget(self.imageLabel)
-        path = "G:/Data Analytics/Resnsol Face Recognition/a.jpg"
-        pixMap = QtGui.QPixmap(path)
-        self.imageLabel.setPixmap(pixMap)
-        self.imageScrollArea.setWidgetResizable(True)
-        self.imageLabel.setAlignment(QtCore.Qt.AlignHCenter | QtCore.Qt.AlignVCenter)
 
 
 
 
-
-#cargar_sin_consola()
-ventana:Ui_MainWindow =cargar_ventana()
+cargar_sin_consola()
+#ventana:Ui_MainWindow =cargar_ventana()
 
 #print(raiz_produccion.str_arbol_encabezado())
 #raiz_produccion.ejecutar()
 # for Prod in raiz_produccion:
 #   print(Prod.ejecutar().dar_valor())
 #  print(Prod.str_arbol())
+

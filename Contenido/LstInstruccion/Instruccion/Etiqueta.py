@@ -11,8 +11,8 @@ class Etiqueta(Instruccion):
         self.nombre = nombre
 
     def ejecutar(self):
-
-        return self.lst.ejecutar()
+        exec=self.lst.ejecutar()
+        return  exec
 
     def str_arbol(self):
         rst = self.lst.str_arbol()

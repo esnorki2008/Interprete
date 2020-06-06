@@ -134,7 +134,7 @@ Paso</string>
       </property>
       <widget class="QWidget" name="tab_7">
        <attribute name="title">
-        <string>Archivo1</string>
+        <string>Archivo</string>
        </attribute>
        <widget class="QTextEdit" name="txt_entrada">
         <property name="geometry">
@@ -187,7 +187,13 @@ Paso</string>
          </property>
          <layout class="QVBoxLayout" name="verticalLayout_3">
           <item>
-           <widget class="QTreeView" name="treeView"/>
+           <widget class="QTreeWidget" name="treeWidget">
+            <column>
+             <property name="text">
+              <string notr="true">1</string>
+             </property>
+            </column>
+           </widget>
           </item>
          </layout>
         </widget>
@@ -203,9 +209,9 @@ Paso</string>
       <property name="geometry">
        <rect>
         <x>10</x>
-        <y>30</y>
-        <width>671</width>
-        <height>391</height>
+        <y>10</y>
+        <width>681</width>
+        <height>411</height>
        </rect>
       </property>
       <property name="layoutDirection">
@@ -219,8 +225,8 @@ Paso</string>
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>669</width>
-         <height>389</height>
+         <width>679</width>
+         <height>409</height>
         </rect>
        </property>
        <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -236,7 +242,7 @@ Paso</string>
            <enum>QFrame::Panel</enum>
           </property>
           <property name="text">
-           <string>TextLabel</string>
+           <string/>
           </property>
           <property name="scaledContents">
            <bool>false</bool>
@@ -247,6 +253,44 @@ Paso</string>
          </widget>
         </item>
        </layout>
+      </widget>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="tab_3">
+     <attribute name="title">
+      <string>Reporte</string>
+     </attribute>
+     <widget class="QScrollArea" name="scrollArea">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>10</y>
+        <width>681</width>
+        <height>411</height>
+       </rect>
+      </property>
+      <property name="widgetResizable">
+       <bool>true</bool>
+      </property>
+      <widget class="QWidget" name="scrollAreaWidgetContents">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>0</y>
+         <width>679</width>
+         <height>409</height>
+        </rect>
+       </property>
+       <widget class="QTableWidget" name="tableWidget">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>10</y>
+          <width>661</width>
+          <height>391</height>
+         </rect>
+        </property>
+       </widget>
       </widget>
      </widget>
     </widget>

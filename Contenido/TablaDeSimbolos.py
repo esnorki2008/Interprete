@@ -108,10 +108,25 @@ class TablaDeSimbolos:
         maincito = self.lista_etiquetas.get("main", None)
         if maincito is None:
             print("No Se Puede Ejecutar Si No Hay Main")
-            self.lista_errores.append(Errores("No Se Puede Ejecutar Si No Hay Main", 1))
+            self.lista_errores.append(Errores("No Se Puede Ejecutar Si No Hay Main", 0))
         else:
-            if maincito.ejecutar() == 1:
-                return
+            exec = maincito.ejecutar()
+            temp = exec
+            while exec is not None :
+                if exec != "exit" :
+                    #print(exec)
+
+                    temp =exec
+                    exec = self.lista_etiquetas.get(exec, None)
+                    if exec is None:
+                        print("No Se Puede Ejecutar La Etiqueta "+str(temp))
+                        self.lista_errores.append(Errores("No Se Puede Ejecutar La Etiqueta "+temp, 0))
+                    else :
+                        exec = exec.ejecutar()
+                else :
+                    break
+            print("Operar Para ABAJO")
+            return
             for llave in self.lista_etiquetas.keys():
                 if llave != "main":
                     self.ejecutar_etiqueta(llave)
@@ -124,7 +139,10 @@ class TablaDeSimbolos:
             print("No Se Puede Ejecutar, No Existe La Etiqueta :" + nombre)
             self.lista_errores.append(Errores("No Se Puede Ejecutar, No Existe La Etiqueta :" + nombre, 2))
         else:
-            retu = maincito.ejecutar()
+            maincito.ejecutar()
+            #retu = maincito.ejecutar()
+            return 1
+            print("DETENER")
             aceptar = False
             if retu == 1:
                 return 1
