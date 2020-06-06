@@ -1,8 +1,8 @@
 main:
  $s0 = array();
  $sp = -1;
- $a0 = 3; #m
- $a1 = 4; #n
+ $a0 = 2; #m
+ $a1 = 2; #n
  $sp = $sp + 1;
  $s0[$sp] = $a0;
  goto ack;

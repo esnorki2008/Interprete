@@ -5,16 +5,13 @@ reserved = {
     'goto': 'GOTO',
     'read': 'READ',
     'exit': 'EXIT',
-    'if' : 'IF',
-    'abs' : 'ABS',
-    'xor' : 'XOR',
-    'int' : 'INT',
-    'float' : 'FLOAT',
-    'char' : 'CHAR',
-    'array' : 'ARRAY'
-
-
-
+    'if': 'IF',
+    'abs': 'ABS',
+    'xor': 'XOR',
+    'int': 'INT',
+    'float': 'FLOAT',
+    'char': 'CHAR',
+    'array': 'ARRAY'
 
 }
 tokens = [
@@ -49,7 +46,7 @@ tokens = [
              'MENORIGUAL',
              'MAYOR',
              'MAYORIGUAL',
-              'CADENA'
+             'CADENA'
          ] + list(reserved.values())
 
 # Tokens
@@ -67,22 +64,23 @@ t_DOLAR = r'\$'
 t_IGUAL = r'\='
 t_MOD = r'\%'
 t_NOT = r'\!'
-t_AND= r'\&\&'
-t_OR= r'\|\|'
+t_AND = r'\&\&'
+t_OR = r'\|\|'
 
-t_NOTB= r'\~'
-t_ANDB= r'\&'
-t_ORB= r'\|'
-t_XORB= r'\^'
-t_SHIFTI= r'<<'
-t_SHIFTD= r'>>'
+t_NOTB = r'\~'
+t_ANDB = r'\&'
+t_ORB = r'\|'
+t_XORB = r'\^'
+t_SHIFTI = r'<<'
+t_SHIFTD = r'>>'
 
-t_IGUALDOBLE= r'\=\='
-t_DIFERENTE= r'\!\='
-t_MAYOR= r'\>'
-t_MENOR= r'\<'
-t_MENORIGUAL= r'\<\='
-t_MAYORIGUAL= r'\>\='
+t_IGUALDOBLE = r'\=\='
+t_DIFERENTE = r'\!\='
+t_MAYOR = r'\>'
+t_MENOR = r'\<'
+t_MENORIGUAL = r'\<\='
+t_MAYORIGUAL = r'\>\='
+
 
 # Expresiones Regulares
 def t_IDENTIFICADOR(t):
@@ -110,10 +108,13 @@ def t_ENTERO(t):
         t.value = 0
     return t
 
+
 def t_CADENA(t):
-    r'"([^"]*)"'
+    r'("|\')([^"\']*)("|\')'
     try:
-        t.value = t.value
+        cadena: str = t.value
+        t.value = cadena.replace("\"", "")
+        t.value = t.value.replace("\'", "")
     except ValueError:
         print("Error Cadena %d", t.value)
         t.value = ""
@@ -127,6 +128,7 @@ t_ignore = " \t"
 def t_newline(t):
     r'\n+'
     t.lexer.lineno += t.value.count("\n")
+
 
 def t_comentario(t):
     r'\#(.*)(\n)?'
