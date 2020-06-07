@@ -14,9 +14,12 @@ class Asignar(Instruccion):
         self.lst = []
 
     def ejecutar(self):
+        print(self.origen)
+
         vaue: Valor = self.origen.ejecutar()
         global Ts
         if len(self.lst) == 0:
+
             Ts.variable_cambiar_valor(self.destino, vaue)
         else:
             tope = len(self.lst) - 1
