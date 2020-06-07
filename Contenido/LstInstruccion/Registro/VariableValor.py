@@ -16,10 +16,13 @@ class VariableValor(Instruccion):
         self.lst = lst
 
     def ejecutar(self):
+
         global  Ts
+
         if len(self.lst)== 0 :
             return Ts.variable_obtener_valor(self.destino)
         else :
+
             tope = len(self.lst) - 1
             lista_invertida = []
             for index in range(tope, -1, -1):

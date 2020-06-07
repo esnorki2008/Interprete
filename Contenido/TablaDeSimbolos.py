@@ -170,6 +170,7 @@ class TablaDeSimbolos:
     def variable_obtener_valor(self, nombre: str):
         retorno = self.lista_variables.get(nombre, None)
 
+
         if retorno is None:
             retorno = Valor(0, 0)
             print("El Registro " + nombre + " No Se Ha Inicializado")
@@ -178,6 +179,9 @@ class TablaDeSimbolos:
         else:
             if (retorno.tipo == 4):
                 return copy.deepcopy(retorno)
+            if (retorno.tipo == 5):
+
+                return retorno.contenido.ejecutar()
             else:
                 return retorno
 
@@ -185,17 +189,39 @@ class TablaDeSimbolos:
         self.lista_errores.append(Errores(descripcion, tipado))
 
     def variable_cambiar_valor(self, nombre: str, conte: Valor):
-        self.lista_variables[nombre] = conte
+        if conte.tipo == 5 :
+            self.lista_variables[nombre] = conte
+            nombre = conte.contenido.destino
+            conte = conte.contenido.ejecutar()
+
+        retorno = self.lista_variables.get(nombre, None)
+        if retorno is not None:
+            if retorno.tipo == 5 :
+                refe = retorno.contenido.destino
+                self.lista_variables[refe] = conte
+            else:
+                self.lista_variables[nombre] = conte
+        else :
+            self.lista_variables[nombre] = conte
 
     def arreglo_cambiar_valor(self, nombre: str, llaves: [], vaue: Valor):
+        #Si El Valor Es Una Referencio
+        if vaue.tipo == 5 :
+            nombre = vaue.contenido.destino
+            llaves = vaue.contenido.lst
+
         retorno = self.lista_variables.get(nombre, None)
         if retorno is None:
             self.lista_variables[nombre] = Valor({}, 4)
             retorno = self.lista_variables.get(nombre, None)
             retorno.guardar_arreglo(llaves, vaue)
         else:
+
             if retorno.tipo == 4:
                 retorno.guardar_arreglo(llaves, vaue)
+            if retorno.tipo == 5:
+                self.arreglo_cambiar_valor(retorno.contenido.destino,llaves,vaue)
+
             else:
                 self.lista_errores.append(Errores("El Registro " + nombre + " No Se Ha Inicializado", 0))
 
@@ -206,6 +232,8 @@ class TablaDeSimbolos:
         else:
             if retorno.tipo == 4:
                 return retorno.sacar_arreglo(llaves, nombre, self)
+            if retorno.tipo == 5:
+                return self.arreglo_obtener_valor(retorno.contenido.destino,llaves)
             else:
                 self.lista_errores.append(Errores("El Registro " + nombre + " No Se Ha Inicializado", 0))
 

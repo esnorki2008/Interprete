@@ -26,8 +26,8 @@ def cargar_ventana():
 
 
 def cargar_sin_consola():
-    #f = open("C:/Users/norki/Desktop/interprete/entrada.txt", "r")
-    f = open("C:/Users/Esnorki/Desktop/interprete/entrada.txt", "r")
+    f = open("C:/Users/norki/Desktop/interprete/entrada.txt", "r")
+    #f = open("C:/Users/Esnorki/Desktop/interprete/entrada.txt", "r")
     input: str = f.read()
     global Ts
     Ts.guardar_consola(None)
@@ -40,8 +40,8 @@ def cargar_sin_consola():
     #print(Ts.generar_dot())
 
 def graficar_sin_consola():
-        #f = open("C:/Users/norki/Desktop/interprete/entrada.txt", "r")
-        f = open("C:/Users/Esnorki/Desktop/interprete/entrada.txt", "r")
+        f = open("C:/Users/norki/Desktop/interprete/entrada.txt", "r")
+        #f = open("C:/Users/Esnorki/Desktop/interprete/entrada.txt", "r")
         input: str = f.read()
         global Ts
         Ts.guardar_consola(None)

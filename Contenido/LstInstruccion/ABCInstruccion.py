@@ -200,10 +200,12 @@ class ExpresionSimpleOperacion(Instruccion):
 
     def ejecutar(self):
         resultado = None
-        vaue = None
+        vaue: Valor = None
 
-        if self.tipo_operacion != "read" and self.tipo_operacion != "array":
-            vaue = self.hijo.ejecutar()
+        if self.tipo_operacion != "read" and self.tipo_operacion != "array" :
+            vaue  = self.hijo.ejecutar()
+
+
 
         if self.tipo_operacion == "+":
             resultado = vaue
@@ -225,6 +227,7 @@ class ExpresionSimpleOperacion(Instruccion):
             resultado = FLOAT.cast_float(vaue)
         elif self.tipo_operacion == "char":
             resultado = CHAR.cast_char(vaue)
+
 
         else:
             print("Operacion SIMPLE No Detectada   " + self.tipo_operacion)
