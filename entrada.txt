@@ -5,7 +5,9 @@ main:
  $a1 = 3; #n
  $sp = $sp + 1;
  $s0[$sp] = $a0;
+
  goto ack;
+
 ret0:
  print($v0);
  exit;

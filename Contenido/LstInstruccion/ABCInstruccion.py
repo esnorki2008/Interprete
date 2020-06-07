@@ -69,6 +69,7 @@ class ListaEtiqueta(Instruccion):
     def str_arbol(self):
         concatenar = ""
         concatenar += str(id(self)) + "[shape=rect,sides=4,skew=.4,label=\"" + "LISTA_ETIQUETA" + "\"]\n"
+
         for elemento in self.lst:
             concatenar += elemento.str_arbol()
             concatenar += str(id(self)) + " -> " + str(id(elemento)) + "\n"

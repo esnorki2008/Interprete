@@ -7,6 +7,7 @@ from Contenido.LstInstruccion.Registro.Asignar import Asignar
 from Contenido.LstInstruccion.Instruccion.goto import Goto
 from Contenido.LstInstruccion.Instruccion.If import If
 from Contenido.LstInstruccion.Registro.VariableValor import VariableValor
+from Contenido.LstInstruccion.ABCInstruccion import Ts
 from .Lexico import *
 import ply.lex as lex
 import ply.yacc as yacc
@@ -36,25 +37,36 @@ def p_etiquetas_lista_inicio(t):
 
 
 def p_etiqueta_contenido(t):
-    'etiqueta : IDENTIFICADOR DOBLEPUNTO instrucciones'
+    'etiqueta : IDENTIFICADOR ideti  instrucciones'
     t[0] = Etiqueta(t[3], t[1])
+    global Ts
+    Ts.consolidar_etiqueta()
 
+
+def p_etiqueta_id_error(t):
+    'ideti : DOBLEPUNTO'
+    global Ts
+    Ts.nueva_etiqueta(t[-1])
 
 def p_etiqueta_principal(t):
-    'etiqueta : MAIN DOBLEPUNTO instrucciones'
+    'etiqueta : MAIN ideti  instrucciones'
     t[0] = Etiqueta(t[3], t[1])
+    global Ts
+    Ts.consolidar_etiqueta()
 
 
 def p_instrucciones_lista(t):
     'instrucciones :  instrucciones instruccion '
     t[0] = t[1]
     t[0].agregar(t[2])
-
+    global Ts
+    Ts.nueva_instruaccion(t[2])
 
 def p_instrucciones_lista_inicio(t):
     'instrucciones : instruccion '
     t[0] = ABCInstruccion.ListaInstruccion([t[1]])
-
+    global Ts
+    Ts.nueva_instruaccion(t[1])
 
 def p_instrucciones_exit(t):
     'instruccion :  EXIT PUNTOCOMA'
@@ -185,6 +197,8 @@ def p_expresion_valor_unico_variable(t):
 
 
 def p_error(t):
+    global Ts
+    Ts.exit_exec=0
     print("Error sintáctico en '%s'" % t)
 
 

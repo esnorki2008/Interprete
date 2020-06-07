@@ -123,27 +123,13 @@ class Ui_MainWindow(object):
         self.btn_abrir.clicked.connect(self.color)
         self.btn_ejecutar.clicked.connect(self.parser)
 
-    def graficar_sin_consola(self):
-        f = open("C:/Users/norki/Desktop/interprete/entrada.txt", "r")
-        # f = open("C:/Users/Esnorki/Desktop/interprete/entrada.txt", "r")
-        input: str = f.read()
-        global Ts
-        Ts.guardar_consola(None)
-        Ts.nueva_ejecucion()
-        raiz_produccion: ListaInstruccion = analizar_ascendente(input)
-        if raiz_produccion is not None:
-            # Ts.cargar_etiquetas(raiz_produccion)
-            # Ts.
-            # print(raiz_produccion.str_arbol())
-            return raiz_produccion.str_arbol()
+
 
     def graficar_arbol(self):
+
         import pydot
-        dot_string = "graph { "
-
-        dot_string += self.graficar_sin_consola()
-
-        dot_string += " } "
+        global  Ts
+        dot_string = Ts.generar_dot()
         graphs = pydot.graph_from_dot_data(dot_string)
 
         from PyQt5.QtWidgets import QApplication
@@ -194,8 +180,8 @@ class Ui_MainWindow(object):
     def color(self):
         self.txt_consola.clear()
         self.txt_entrada.clear()
-        f = open("C:/Users/norki/Desktop/interprete/entrada.txt", "r")
-        #f = open("C:/Users/Esnorki/Desktop/interprete/entrada.txt", "r")
+        #f = open("C:/Users/norki/Desktop/interprete/entrada.txt", "r")
+        f = open("C:/Users/Esnorki/Desktop/interprete/entrada.txt", "r")
         input: str = f.read()
 
         input = self.pintar_comentarios(input)
@@ -217,14 +203,15 @@ class Ui_MainWindow(object):
 
         #print(input)
         self.txt_entrada.append(input)
-        self.graficar_arbol()
+
         #print(self.txt_entrada.toPlainText())
 
     def parser(self):
+
         self.txt_consola.clear()
         self.txt_entrada.clear()
-        f = open("C:/Users/norki/Desktop/interprete/entrada.txt", "r")
-        #f = open("C:/Users/Esnorki/Desktop/interprete/entrada.txt", "r")
+        #f = open("C:/Users/norki/Desktop/interprete/entrada.txt", "r")
+        f = open("C:/Users/Esnorki/Desktop/interprete/entrada.txt", "r")
         input: str = f.read()
         self.txt_entrada.append(input)
         global Ts
@@ -234,8 +221,8 @@ class Ui_MainWindow(object):
         if raiz_produccion is not None:
             Ts.cargar_etiquetas(raiz_produccion)
             Ts.ejecutar_main()
-
-
+        self.color()
+        self.graficar_arbol()
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
