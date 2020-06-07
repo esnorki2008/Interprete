@@ -1,6 +1,21 @@
+from PyQt5.QtGui import QStandardItem, QFont, QColor, QStandardItemModel
+
 from Contenido.LstInstruccion.Registro.Valor import Valor
 
 import copy
+
+
+class ArbolItem(QStandardItem):
+    def __init__(self, txt='', font_size=12, set_bold=False, color=QColor(0, 0, 0)):
+        super().__init__()
+
+        fnt = QFont('Open Sans', font_size)
+        fnt.setBold(set_bold)
+
+        self.setEditable(False)
+        self.setForeground(color)
+        self.setFont(fnt)
+        self.setText(txt)
 
 
 class Errores:
@@ -37,7 +52,7 @@ class TablaDeSimbolos:
     etiqueta_actual = None
     lista_instrucciones = None
     recuperacion_etiquetas = None
-
+    salida_arbol = None
     def nueva_ejecucion(self):
         print("Limpieza Tabla")
         self.exit_exec = 1
@@ -71,7 +86,7 @@ class TablaDeSimbolos:
         if len(self.lista_etiquetas) != 0:
             for item in self.lista_etiquetas.items():
                 l_temp.append(item[1])
-        else :
+        else:
             l_temp = self.recuperacion_etiquetas
 
         if len(self.lista_instrucciones) != 0:
@@ -91,6 +106,60 @@ class TablaDeSimbolos:
 
     def guardar_consola(self, consola):
         self.salida_consola = consola
+
+    def guardar_arbol(self, arbol):
+        self.salida_arbol = arbol
+
+    def actualizar_arbol(self):
+
+
+        if self.salida_arbol is None :
+            print("No Se Cargo El ARBOL DE SALIDA")
+        else :
+
+            var_raiz = ArbolItem("Variables",12,set_bold=True, color=QColor(0,0,0))
+
+            var_int = ArbolItem("int", 12, set_bold=True, color=QColor(0, 0, 0))
+            var_float = ArbolItem("float", 12, set_bold=True, color=QColor(0, 0, 0))
+            var_string = ArbolItem("string", 12, set_bold=True, color=QColor(0, 0, 0))
+            var_array = ArbolItem("array", 12, set_bold=True, color=QColor(0, 0, 0))
+
+            var_raiz.appendRow(var_int)
+            var_raiz.appendRow(var_float)
+            var_raiz.appendRow(var_string)
+            var_raiz.appendRow(var_array)
+
+            for vari in self.lista_variables.items() :
+                texto_nodo= "Id : $"+str(vari[0])
+
+                if vari[1].tipo != 4 :
+                    texto_nodo += " Valor : " + str(vari[1].dar_valor())
+                nuevo_nodo=ArbolItem(texto_nodo,8, color=QColor(7,26,142))
+
+                if vari[1].tipo == 0 :
+                    var_int.appendRow(nuevo_nodo)
+                elif vari[1].tipo == 1 :
+                    var_float.appendRow(nuevo_nodo)
+                elif vari[1].tipo == 2:
+                    var_string.appendRow(nuevo_nodo)
+                else:
+                    var_array.appendRow(nuevo_nodo)
+
+
+            treeModel = QStandardItemModel()
+            rootNode = treeModel.invisibleRootItem()
+            rootNode.appendRow(var_raiz)
+
+            self.salida_arbol.setModel(treeModel)
+            self.salida_arbol.expandAll()
+            self.salida_arbol.doubleClicked.connect(self.getValue)
+
+
+
+    def getValue(self, val):
+        print(val.data())
+        print(val.row())
+        print(val.column())
 
     def print(self, vaue):
         if (self.salida_consola is None):

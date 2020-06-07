@@ -56,6 +56,9 @@ class ListaEtiqueta(Instruccion):
     def __init__(self, lst: []):
         self.lst = lst
 
+    def ejecutar_a_paso(self):
+        pass
+
     def ejecutar(self):
         for elemento in self.lst:
             elemento.ejecutar()
@@ -87,12 +90,12 @@ class ListaInstruccion(Instruccion):
 
     def ejecutar(self):
         for elemento in self.lst:
-            exec=elemento.ejecutar()
-            if exec != None :
-                return  exec
-            #print(elemento.ejecutar())
-            #if elemento.detener_ejecucion() == 1:
-                #return 1
+            exec = elemento.ejecutar()
+            if exec != None:
+                return exec
+            # print(elemento.ejecutar())
+            # if elemento.detener_ejecucion() == 1:
+            # return 1
 
         return None
 
@@ -188,11 +191,10 @@ class ExpresionSimpleOperacion(Instruccion):
 
     def str_arbol(self):
         nodo_str = ""
-        if type(self.hijo) != str :
+        if type(self.hijo) != str:
             nodo_str += self.hijo.str_arbol() + "\n"
             nodo_str += str(id(self)) + " -> " + str(id(self.hijo)) + "\n"
         nodo_str += str(id(self)) + "[shape=rect,sides=4,skew=.4,label=\"" + str(self.tipo_operacion) + "\"]\n"
-
 
         return nodo_str
 
@@ -200,8 +202,8 @@ class ExpresionSimpleOperacion(Instruccion):
         resultado = None
         vaue = None
 
-        if self.tipo_operacion!="read" and self.tipo_operacion!="array":
-            vaue=self.hijo.ejecutar()
+        if self.tipo_operacion != "read" and self.tipo_operacion != "array":
+            vaue = self.hijo.ejecutar()
 
         if self.tipo_operacion == "+":
             resultado = vaue

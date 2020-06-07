@@ -52,18 +52,26 @@ class Ui_MainWindow(object):
         self.tab_5 = QtWidgets.QWidget()
         self.tab_5.setObjectName("tab_5")
         self.scrollArea_2 = QtWidgets.QScrollArea(self.tab_5)
+        self.scrollArea_2.setWidgetResizable(True)
         self.scrollArea_2.setGeometry(QtCore.QRect(10, 10, 276, 351))
         self.scrollArea_2.setWidgetResizable(True)
         self.scrollArea_2.setObjectName("scrollArea_2")
         self.scrollAreaWidgetContents_2 = QtWidgets.QWidget()
-        self.scrollAreaWidgetContents_2.setGeometry(QtCore.QRect(0, 0, 274, 349))
+        self.scrollAreaWidgetContents_2.setGeometry(QtCore.QRect(0, 0, 518, 332))
         self.scrollAreaWidgetContents_2.setObjectName("scrollAreaWidgetContents_2")
-        self.verticalLayout_3 = QtWidgets.QVBoxLayout(self.scrollAreaWidgetContents_2)
-        self.verticalLayout_3.setObjectName("verticalLayout_3")
-        self.treeWidget = QtWidgets.QTreeWidget(self.scrollAreaWidgetContents_2)
-        self.treeWidget.setObjectName("treeWidget")
-        self.treeWidget.headerItem().setText(0, "1")
-        self.verticalLayout_3.addWidget(self.treeWidget)
+        self.horizontalLayout = QtWidgets.QHBoxLayout(self.scrollAreaWidgetContents_2)
+        self.horizontalLayout.setObjectName("horizontalLayout")
+        self.treeView = QtWidgets.QTreeView(self.scrollAreaWidgetContents_2)        
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Minimum)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.treeView.sizePolicy().hasHeightForWidth())
+        self.treeView.setSizePolicy(sizePolicy)
+        self.treeView.setMinimumSize(QtCore.QSize(500, 0))
+        self.treeView.setLayoutDirection(QtCore.Qt.LeftToRight)
+        self.treeView.setAnimated(True)
+        self.treeView.setObjectName("treeView")
+        self.horizontalLayout.addWidget(self.treeView)
         self.scrollArea_2.setWidget(self.scrollAreaWidgetContents_2)
         self.tabWidget_2.addTab(self.tab_5, "")
         self.tabWidget.addTab(self.tab, "")
@@ -178,7 +186,7 @@ class Ui_MainWindow(object):
         return re.sub(r"((if)|(goto)|(array))", ini_span + (r"\1") + "</span>", entrada)
 
     def color(self):
-        self.txt_consola.clear()
+
         self.txt_entrada.clear()
         #f = open("C:/Users/norki/Desktop/interprete/entrada.txt", "r")
         f = open("C:/Users/Esnorki/Desktop/interprete/entrada.txt", "r")
@@ -207,22 +215,37 @@ class Ui_MainWindow(object):
         #print(self.txt_entrada.toPlainText())
 
     def parser(self):
+        try:
+            self.txt_consola.clear()
+            self.txt_entrada.clear()
+            #f = open("C:/Users/norki/Desktop/interprete/entrada.txt", "r")
+            f = open("C:/Users/Esnorki/Desktop/interprete/entrada.txt", "r")
+            input: str = f.read()
+            self.txt_entrada.append(input)
+            global Ts
+            Ts.guardar_consola(self.txt_consola)
 
-        self.txt_consola.clear()
-        self.txt_entrada.clear()
-        #f = open("C:/Users/norki/Desktop/interprete/entrada.txt", "r")
-        f = open("C:/Users/Esnorki/Desktop/interprete/entrada.txt", "r")
-        input: str = f.read()
-        self.txt_entrada.append(input)
-        global Ts
-        Ts.guardar_consola(self.txt_consola)
-        Ts.nueva_ejecucion()
-        raiz_produccion: ListaInstruccion = analizar_ascendente(input)
-        if raiz_produccion is not None:
-            Ts.cargar_etiquetas(raiz_produccion)
-            Ts.ejecutar_main()
-        self.color()
-        self.graficar_arbol()
+
+
+
+            Ts.nueva_ejecucion()
+            raiz_produccion: ListaInstruccion = analizar_ascendente(input)
+            if raiz_produccion is not None:
+                Ts.cargar_etiquetas(raiz_produccion)
+                Ts.ejecutar_main()
+            self.color()
+            self.graficar_arbol()
+
+            treeView = self.treeView
+            treeView.setHeaderHidden(True)
+            Ts.guardar_arbol(treeView)
+            Ts.actualizar_arbol()
+
+            from PyQt5.QtWidgets import QHeaderView
+
+        except:
+            import sys
+            print("Oops!", sys.exc_info()[0], "occurred.")
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
