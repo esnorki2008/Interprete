@@ -170,6 +170,7 @@ class TablaDeSimbolos:
     def variable_obtener_valor(self, nombre: str):
         retorno = self.lista_variables.get(nombre, None)
 
+
         if retorno is None:
             retorno = Valor(0, 0)
             print("El Registro " + nombre + " No Se Ha Inicializado")
@@ -178,6 +179,8 @@ class TablaDeSimbolos:
         else:
             if (retorno.tipo == 4):
                 return copy.deepcopy(retorno)
+            if (retorno.tipo == 5):
+                return retorno.contenido.ejecutar()
             else:
                 return retorno
 
@@ -185,9 +188,19 @@ class TablaDeSimbolos:
         self.lista_errores.append(Errores(descripcion, tipado))
 
     def variable_cambiar_valor(self, nombre: str, conte: Valor):
+        if conte.tipo == 5 :
+            self.lista_variables[nombre] = conte
+            nombre = conte.contenido.destino
+            conte = conte.contenido.ejecutar()
+
+
         self.lista_variables[nombre] = conte
 
     def arreglo_cambiar_valor(self, nombre: str, llaves: [], vaue: Valor):
+        if vaue.tipo == 5 :
+            nombre = vaue.contenido.destino
+            llaves = vaue.contenido.lst
+
         retorno = self.lista_variables.get(nombre, None)
         if retorno is None:
             self.lista_variables[nombre] = Valor({}, 4)

@@ -7,6 +7,7 @@ from Contenido.LstInstruccion.Registro.Asignar import Asignar
 from Contenido.LstInstruccion.Instruccion.goto import Goto
 from Contenido.LstInstruccion.Instruccion.If import If
 from Contenido.LstInstruccion.Registro.VariableValor import VariableValor
+from Contenido.LstInstruccion.Instruccion.Referencia import Referencia
 from Contenido.LstInstruccion.ABCInstruccion import Ts
 from .Lexico import *
 import ply.lex as lex
@@ -152,19 +153,23 @@ def p_expresion_unaria(t):
                 | NOTB valor
                 | NOT valor
                 | MAS valor
+                | ANDB DOLAR IDENTIFICADOR arra
                 | READ PARA  PARC
                 | ARRAY PARA  PARC '''
 
     if t[2] == "(":
         t[0] = ABCInstruccion.ExpresionSimpleOperacion(t[3], t[1])
+    elif t[1]== "&":
+        t[0] = Referencia(t[3],t[4])
+
     else:
         t[0] = ABCInstruccion.ExpresionSimpleOperacion(t[2], t[1])
 
 
 def p_expresion_agrupacion(t):
-    '''expresion : PARA INT PARC expresion
-                | PARA FLOAT PARC expresion
-                | PARA CHAR PARC expresion'''
+    '''expresion : PARA INT PARC valor
+                | PARA FLOAT PARC valor
+                | PARA CHAR PARC valor'''
 
     t[0] = ABCInstruccion.ExpresionSimpleOperacion(t[4], t[2])
 
