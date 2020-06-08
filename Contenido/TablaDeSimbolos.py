@@ -45,6 +45,7 @@ class ValorTabla:
 
 # Tipo De Error Maximo 3
 class TablaDeSimbolos:
+    texto_analisis = ""
     lista_variables = None
     lista_etiquetas = None
     lista_errores = None
@@ -54,7 +55,8 @@ class TablaDeSimbolos:
     recuperacion_etiquetas = None
     salida_arbol = None
     def nueva_ejecucion(self):
-        print("Limpieza Tabla")
+        self.texto_analisis=""
+        #print("Limpieza Tabla")
         self.exit_exec = 1
         self.lista_etiquetas = {}
         self.lista_variables = {}
@@ -224,6 +226,19 @@ class TablaDeSimbolos:
 
             else:
                 self.lista_errores.append(Errores("El Registro " + nombre + " No Se Ha Inicializado", 0))
+
+
+    def eliminar_variable(self,nombre : str ,llaves : []):
+        retorno = self.lista_variables.get(nombre, None)
+        if retorno is None:
+            self.lista_errores.append(Errores("El Registro " + nombre + " No Se Ha Inicializado", 0))
+        else:
+            if retorno.tipo == 4:
+                vaue : Valor = retorno
+                vaue.eliminar_arreglo(llaves,nombre,self)
+            else:
+                self.lista_variables.pop(nombre, None)
+
 
     def arreglo_obtener_valor(self, nombre: str, llaves: []):
         retorno = self.lista_variables.get(nombre, None)

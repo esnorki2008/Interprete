@@ -35,6 +35,12 @@ print("Nueva Tabla")
 
 
 class Instruccion(ABC):
+
+    tupla  :() = (0,0)
+
+    def n_t(self,tupla : ()):
+        self.tupla = tupla
+
     def __init__(self, *args):
         pass
 

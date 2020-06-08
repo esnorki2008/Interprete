@@ -22,6 +22,19 @@ class Valor:
 
         self.contenido[llave_maestra] = vaue
 
+    def eliminar_arreglo(self, llaves : [],nombre, Ts):
+        llave_maestra = ""
+        for item in llaves:
+            llave_maestra += str(item) + ",";
+
+        Obtenido = self.contenido.get(llave_maestra, None)
+        if Obtenido is None:
+            Ts.cargar_error("El Arreglo " + nombre + " En La Posicion " + llave_maestra + " No Se Ha Inicializado", 0)
+            return Valor(0, 0)
+        else:
+            self.contenido.pop(llave_maestra,None)
+
+
     def sacar_arreglo(self, llaves: [], Nombre, Ts):
         llave_maestra = ""
         for item in llaves:

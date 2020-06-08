@@ -26,12 +26,13 @@ def cargar_ventana():
 
 
 def cargar_sin_consola():
-    f = open("C:/Users/norki/Desktop/interprete/entrada.txt", "r")
-    #f = open("C:/Users/Esnorki/Desktop/interprete/entrada.txt", "r")
+    #f = open("C:/Users/norki/Desktop/interprete/entrada.txt", "r")
+    f = open("C:/Users/Esnorki/Desktop/interprete/entrada.txt", "r")
     input: str = f.read()
     global Ts
     Ts.guardar_consola(None)
     Ts.nueva_ejecucion()
+    Ts.texto_analisis = input
     raiz_produccion: ListaInstruccion = analizar_ascendente(input)
     if raiz_produccion is not None:
         Ts.cargar_etiquetas(raiz_produccion)

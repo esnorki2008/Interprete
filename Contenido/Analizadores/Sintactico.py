@@ -73,21 +73,32 @@ def p_instrucciones_exit(t):
     'instruccion :  EXIT PUNTOCOMA'
     t[0] = Exit()
 
+    global Ts
+    t[0].n_t(find_column(Ts.texto_analisis, t.slice[1]))
 
 def p_instrucciones_imprimir(t):
     'instruccion :  IMPRIMIR  PARA expresion PARC PUNTOCOMA'
     t[0] = ABCInstruccion.Imprimir(t[3])
 
+    global Ts
+    t[0].n_t(find_column(Ts.texto_analisis, t.slice[1]))
+
 
 def p_instrucciones_unset(t):
-    'instruccion :  UNSET  PARA DOLAR IDENTIFICADOR PARC PUNTOCOMA'
+    'instruccion :  UNSET  PARA DOLAR IDENTIFICADOR arra PARC PUNTOCOMA'
     t[0] = Unset(t[4])
+    t[0].indices(t[5])
 
+    global Ts
+    t[0].n_t(find_column(Ts.texto_analisis, t.slice[1]))
 
 def p_instrucciones_asignar(t):
     'instruccion :  DOLAR  IDENTIFICADOR arra IGUAL expresion PUNTOCOMA'
     t[0] = Asignar(t[2], t[5])
     t[0].indices(t[3])
+
+    global Ts
+    t[0].n_t(find_column(Ts.texto_analisis, t.slice[1]))
 
 
 def p_arreglo_indice(t):
@@ -105,10 +116,16 @@ def p_instrucciones_goto(t):
     'instruccion :  GOTO  IDENTIFICADOR  PUNTOCOMA'
     t[0] = Goto(t[2])
 
+    global Ts
+    t[0].n_t(find_column(Ts.texto_analisis, t.slice[1]))
+
 
 def p_instrucciones_if(t):
     'instruccion :  IF   expresion  instruccion  '
     t[0] = If(t[2], t[3])
+
+    global Ts
+    t[0].n_t(find_column(Ts.texto_analisis, t.slice[1]))
 
 
 # HASTA AQUI HAY GRAFICA
@@ -141,6 +158,8 @@ def p_expresion_binaria(t):
 
     t[0] = ABCInstruccion.ExpresionDoble(t[1], t[2], t[3])
 
+    global Ts
+    t[0].n_t(find_column(Ts.texto_analisis, t.slice[2]))
 
 def p_expresion_sola(t):
     'expresion :  valor'
@@ -165,6 +184,9 @@ def p_expresion_unaria(t):
     else:
         t[0] = ABCInstruccion.ExpresionSimpleOperacion(t[2], t[1])
 
+    global Ts
+    t[0].n_t(find_column(Ts.texto_analisis, t.slice[1]))
+
 
 def p_expresion_agrupacion(t):
     '''expresion : PARA INT PARC valor
@@ -173,6 +195,8 @@ def p_expresion_agrupacion(t):
 
     t[0] = ABCInstruccion.ExpresionSimpleOperacion(t[4], t[2])
 
+    global Ts
+    t[0].n_t(find_column(Ts.texto_analisis, t.slice[1]))
 
 def p_expresion_parentesis(t):
     'expresion : PARA expresion PARC'
@@ -184,26 +208,48 @@ def p_expresion_entero(t):
     t[0] = ABCInstruccion.Valor(t[1], 0)
     t[0] = ABCInstruccion.ExpresionSimple(t[0])
 
+    global Ts
+    t[0].n_t(find_column(Ts.texto_analisis, t.slice[1]))
+
+
 
 def p_expresion_decimal(t):
     'valor    : DECIMAL'
     t[0] = ABCInstruccion.Valor(t[1], 1)
     t[0] = ABCInstruccion.ExpresionSimple(t[0])
 
+    global Ts
+    t[0].n_t(find_column(Ts.texto_analisis, t.slice[1]))
+
 def p_expresion_cadena(t):
     'valor    : CADENA'
     t[0] = ABCInstruccion.Valor(t[1], 2)
     t[0] = ABCInstruccion.ExpresionSimple(t[0])
+
+    global Ts
+    t[0].n_t(find_column(Ts.texto_analisis, t.slice[1]))
+
 
 def p_expresion_valor_unico_variable(t):
     'valor    : DOLAR IDENTIFICADOR arra'
     t[0] = VariableValor(t[2])
     t[0].indices(t[3])
 
+    global Ts
+    t[0].n_t(find_column(Ts.texto_analisis, t.slice[1]))
+
+
+
+def find_column(input, token):
+    line_start = input.rfind('\n', 0, token.lexpos) + 1
+    return((token.lexpos - line_start) + 1, token.lineno)
+
 
 def p_error(t):
     global Ts
     Ts.exit_exec=0
+
+
     print("Error sintáctico en '%s'" % t)
 
 

@@ -1,12 +1,11 @@
 main:
-$s0=array();
-$s0[2]=50;
-$s1=&$s0[2];
-print($s1);
+$s0[69]=30;
+$s0[19]="S";
 
-Referencias
 
-Var-Var
-Var-Array
-Array-Var
-Array-Array
+
+
+
+
+
+

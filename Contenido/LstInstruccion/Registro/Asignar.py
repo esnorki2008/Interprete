@@ -14,7 +14,7 @@ class Asignar(Instruccion):
         self.lst = []
 
     def ejecutar(self):
-        print(self.origen)
+        #print(self.origen)
 
         vaue: Valor = self.origen.ejecutar()
         global Ts
