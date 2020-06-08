@@ -13,8 +13,8 @@ def cast_float(param: Valor):
         if param.dar_valor() != "":
             caracter = param.dar_valor()[0]
             rst = float(ord(caracter))
-    elif param.tipo == 3:
-        print("CAST FLOAT ARREGLO NO IMPLEMENTADO")
+    elif param.tipo == 4:
+        return cast_float(param.primer_elemento())
     else:
         print(" TIPO NO RECONOCIDO CASTEO")
 

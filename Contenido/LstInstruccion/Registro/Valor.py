@@ -34,6 +34,10 @@ class Valor:
         else:
             self.contenido.pop(llave_maestra,None)
 
+    def primer_elemento(self):
+        vista=self.contenido.values()
+        it=iter(vista)
+        return next(it)
 
     def sacar_arreglo(self, llaves: [], Nombre, Ts):
         llave_maestra = ""

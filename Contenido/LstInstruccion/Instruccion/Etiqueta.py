@@ -10,6 +10,17 @@ class Etiqueta(Instruccion):
         self.lst = lst
         self.nombre = nombre
 
+    def paso_a_paso_ejecutar(self,ins : int):
+
+        tama= len(self.lst.lst)
+        if ins >= tama:
+            return  None
+        else :
+            exec=self.lst.lst[ins].ejecutar()
+            if exec != None:
+                return exec
+            return 1
+
     def ejecutar(self):
         exec=self.lst.ejecutar()
         return  exec
