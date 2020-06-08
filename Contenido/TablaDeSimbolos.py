@@ -125,17 +125,24 @@ class TablaDeSimbolos:
             var_float = ArbolItem("float", 12, set_bold=True, color=QColor(0, 0, 0))
             var_string = ArbolItem("string", 12, set_bold=True, color=QColor(0, 0, 0))
             var_array = ArbolItem("array", 12, set_bold=True, color=QColor(0, 0, 0))
+            var_ref = ArbolItem("puntero", 12, set_bold=True, color=QColor(0, 0, 0))
 
             var_raiz.appendRow(var_int)
             var_raiz.appendRow(var_float)
             var_raiz.appendRow(var_string)
             var_raiz.appendRow(var_array)
+            var_raiz.appendRow(var_ref)
+
 
             for vari in self.lista_variables.items() :
                 texto_nodo= "Id : $"+str(vari[0])
 
                 if vari[1].tipo != 4 :
-                    texto_nodo += " Valor : " + str(vari[1].dar_valor())
+                    if vari[1].tipo == 5:
+                        texto_nodo += " Referencia : $" + str(vari[1].contenido.destino)
+                        texto_nodo +="";
+                    else:
+                        texto_nodo += " Valor : " + str(vari[1].dar_valor())
                 nuevo_nodo=ArbolItem(texto_nodo,8, color=QColor(7,26,142))
 
                 if vari[1].tipo == 0 :
@@ -144,6 +151,8 @@ class TablaDeSimbolos:
                     var_float.appendRow(nuevo_nodo)
                 elif vari[1].tipo == 2:
                     var_string.appendRow(nuevo_nodo)
+                elif vari[1].tipo == 5:
+                    var_ref.appendRow(nuevo_nodo)
                 else:
                     var_array.appendRow(nuevo_nodo)
 
@@ -268,11 +277,12 @@ class TablaDeSimbolos:
             print("No Se Puede Ejecutar Si No Hay Main")
             self.lista_errores.append(Errores("No Se Puede Ejecutar Si No Hay Main", 0))
         else:
-            exec = maincito.ejecutar()
-            temp = exec
+            #exec = maincito.ejecutar()
+            exec = "main"
+            temp = "main"
             while exec is not None:
                 if exec != "exit":
-                    # print(exec)
+
 
                     temp = exec
                     exec = self.lista_etiquetas.get(exec, None)
@@ -281,13 +291,27 @@ class TablaDeSimbolos:
                         self.lista_errores.append(Errores("No Se Puede Ejecutar La Etiqueta " + temp, 0))
                     else:
                         exec = exec.ejecutar()
+                        #BORRAR SI DA ERROR
+                        if exec is None :
+
+                            aceptar = False
+                            for llave in self.lista_etiquetas.keys():
+                                if aceptar:
+                                    maincito = self.lista_etiquetas.get(llave, None)
+                                    exec = maincito.ejecutar()
+                                    if exec is not None:
+                                        break
+
+                                if llave == temp:
+                                    aceptar = True
+
+                        #TERMINAR BORRADO
                 else:
                     break
-            print("Operar Para ABAJO")
-            return
-            for llave in self.lista_etiquetas.keys():
-                if llave != "main":
-                    self.ejecutar_etiqueta(llave)
+
+
+
+
 
     def ejecutar_etiqueta(self, nombre: str):
         if self.exit_exec == 0:
@@ -301,10 +325,11 @@ class TablaDeSimbolos:
             # retu = maincito.ejecutar()
             return 1
             print("DETENER")
-            aceptar = False
+
             if retu == 1:
                 return 1
             # print(nombre)
+            aceptar = False
             for llave in self.lista_etiquetas.keys():
 
                 if aceptar:

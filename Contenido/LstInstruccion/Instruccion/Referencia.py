@@ -23,9 +23,9 @@ class Referencia(Instruccion):
         return self.ref
 
     def str_arbol(self):
-        rst = str(id(self)) + "[shape=rect,sides=4,skew=.4,label=\"" + "If  )\"]\n"
-        rst += self.booleano.str_arbol()
-        rst += str(id(self)) + " -> " + str(id(self.booleano)) + "\n"
-        rst += self.cuerpo.str_arbol()
-        rst += str(id(self)) + " -> " + str(id(self.cuerpo)) + "\n"
+        rst = str(id(self)) + "[shape=rect,sides=4,skew=.4,label=\"" + "REF:"+ str(self.ref) +"\"]\n"
+        #rst += self.booleano.str_arbol()
+        #rst += str(id(self)) + " -> " + str(id(self.booleano)) + "\n"
+        #rst += self.cuerpo.str_arbol()
+        #rst += str(id(self)) + " -> " + str(id(self.cuerpo)) + "\n"
         return rst

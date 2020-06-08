@@ -1,4 +1,8 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5.QtCore import QRect, QSize
+
+from PyQt5.QtWidgets import QPlainTextEdit, QWidget
+
 from Contenido.LstInstruccion.ABCInstruccion import Ts
 from Contenido.LstInstruccion.ABCInstruccion import ListaInstruccion
 from Contenido.Analizadores.Sintactico import analizar_ascendente
@@ -128,9 +132,8 @@ class Ui_MainWindow(object):
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
 
-        self.btn_abrir.clicked.connect(self.color)
+        self.btn_abrir.clicked.connect(self.cargar)
         self.btn_ejecutar.clicked.connect(self.parser)
-
 
 
     def graficar_arbol(self):
@@ -184,6 +187,13 @@ class Ui_MainWindow(object):
     def pintar_reservadas_moradas(self,entrada):
         ini_span = "<span style=" + chr(34) + "color: #830495  " + chr(34) + ">"
         return re.sub(r"((if)|(goto)|(array))", ini_span + (r"\1") + "</span>", entrada)
+
+    def cargar(self):
+        self.txt_entrada.clear()
+        f = open("C:/Users/norki/Desktop/interprete/entrada.txt", "r")
+        # f = open("C:/Users/Esnorki/Desktop/interprete/entrada.txt", "r")
+        input: str = f.read()
+        self.txt_entrada.append(input)
 
     def color(self):
 
@@ -263,3 +273,5 @@ class Ui_MainWindow(object):
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab), _translate("MainWindow", "Archivo Entrada"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_2), _translate("MainWindow", "Visualizar"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_3), _translate("MainWindow", "Reporte"))
+
+
