@@ -227,16 +227,15 @@ class TablaDeSimbolos:
 
             if retorno.tipo == 4:
                 retorno.guardar_arreglo(llaves, vaue)
-            if retorno.tipo == 5:
+            elif retorno.tipo == 5:
                 self.arreglo_cambiar_valor(retorno.contenido.destino, llaves, vaue)
-
             else:
-                self.cargar_error("El Registro " + nombre + " No Se Ha Inicializado", 0,(0,0))
+                self.cargar_error("El Registro 11" + nombre +str(llaves) +" No Se Ha Inicializado", 0,(0,0))
 
     def eliminar_variable(self, nombre: str, llaves: []):
         retorno = self.lista_variables.get(nombre, None)
         if retorno is None:
-            self.cargar_error("El Registro " + nombre + " No Se Ha Inicializado", 0,(0,0))
+            self.cargar_error("El Registro " + nombre +str(llaves) + " No Se Ha Inicializado", 0,(0,0))
         else:
             if retorno.tipo == 4:
                 vaue: Valor = retorno
@@ -244,16 +243,7 @@ class TablaDeSimbolos:
             else:
                 self.lista_variables.pop(nombre, None)
 
-    def eliminar_variable(self, nombre: str, llaves: []):
-        retorno = self.lista_variables.get(nombre, None)
-        if retorno is None:
-            self.lista_errores.append(Errores("El Registro " + nombre + " No Se Ha Inicializado", 0))
-        else:
-            if retorno.tipo == 4:
-                vaue: Valor = retorno
-                vaue.eliminar_arreglo(llaves, nombre, self)
-            else:
-                self.lista_variables.pop(nombre, None)
+
 
     def arreglo_obtener_valor(self, nombre: str, llaves: []):
         retorno = self.lista_variables.get(nombre, None)
@@ -262,7 +252,7 @@ class TablaDeSimbolos:
         else:
             if retorno.tipo == 4:
                 return retorno.sacar_arreglo(llaves, nombre, self)
-            if retorno.tipo == 5:
+            elif retorno.tipo == 5:
                 return self.arreglo_obtener_valor(retorno.contenido.destino, llaves)
             else:
                 self.cargar_error("El Registro " + nombre + " No Se Ha Inicializado", 0,(0,0))
@@ -358,7 +348,7 @@ class TablaDeSimbolos:
         self.mensaje_info("Informacion", "Ejecucion Completada")
 
     def mensaje_info(self,Titulo,Texto):
-        return
+        #return
         from PyQt5.QtWidgets import QMessageBox
         msg = QMessageBox()
         msg.setIcon(QMessageBox.Information)

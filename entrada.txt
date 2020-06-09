@@ -2,15 +2,6 @@ main:
     $t1 = 0;
     $t2=0;
     $a1 = 0;
-    goto while;
     $t3=array();
-while:
-    if ($t1>=4) goto end;
-    $t2 = $t2 + $t1;
-    $t1 = $t1 + 1;
     $t3["S"+$t1]="S"+$t1;
-    print($t3["S"+$t1]);
-    goto while;
-end:
-    print($t2);
 

@@ -272,24 +272,6 @@ class Ui_MainWindow(object):
 
             if self.raiz_global is not None:
 
-
-                ex=Ts.paso_a_paso_ejecutar()
-                if ex == "exit" :
-                    print("EJECUCION COMPLETA")
-                treeView = self.treeView
-                treeView.setHeaderHidden(True)
-                Ts.guardar_arbol(treeView)
-                Ts.actualizar_arbol()
-
-
-        except:
-            import sys
-            print("Oops!", sys.exc_info()[0], "occurred.")
-
-        try:
-
-            if self.raiz_global is not None:
-
                 ex = Ts.paso_a_paso_ejecutar()
                 if ex == "exit":
                     Ts.mensaje_info("Informacion", "Ejecucion Paso A Paso Completo")
