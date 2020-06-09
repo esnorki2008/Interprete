@@ -14,7 +14,10 @@ class Referencia(Instruccion):
     def __init__(self, ref: str, lst: []):
         temp = VariableValor.VariableValor(ref)
         temp.indices(lst)
-        self.ref = Valor(temp, 5)
+        if len(lst) >0 :
+            self.ref = Valor(0,0)
+        else:
+            self.ref = Valor(temp, 5)
 
     def ejecutar(self):
         return self.ref

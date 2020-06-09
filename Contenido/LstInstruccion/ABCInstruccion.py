@@ -35,6 +35,14 @@ print("Nueva Tabla")
 
 
 class Instruccion(ABC):
+    tupla: () = (0, 0)
+
+    def n_t(self, tupla: ()):
+        self.tupla = tupla
+
+    def determinar_tipo_funcion(self):
+        return None
+
     def __init__(self, *args):
         pass
 
@@ -55,6 +63,11 @@ class ListaEtiqueta(Instruccion):
 
     def __init__(self, lst: []):
         self.lst = lst
+
+    def determinar_tipo_funcion(self):
+        for item in self.lst:
+            item.determinar_tipo_funcion(self.lst)
+        return None
 
     def ejecutar_a_paso(self):
         pass
@@ -221,10 +234,8 @@ class ExpresionSimpleOperacion(Instruccion):
         resultado = None
         vaue: Valor = None
 
-        if self.tipo_operacion != "read" and self.tipo_operacion != "array" :
-            vaue  = self.hijo.ejecutar()
-
-
+        if self.tipo_operacion != "read" and self.tipo_operacion != "array":
+            vaue = self.hijo.ejecutar()
 
         if self.tipo_operacion == "+":
             resultado = vaue

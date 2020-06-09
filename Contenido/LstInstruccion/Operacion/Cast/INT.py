@@ -13,8 +13,8 @@ def cast_int(param: Valor):
         if param.dar_valor() != "":
             caracter = param.dar_valor()[0]
             rst = ord(caracter)
-    elif param.tipo == 3:
-        print("CAST INT ARREGLO NO IMPLEMENTADO")
+    elif param.tipo == 4:
+        return cast_int(param.primer_elemento())
     else:
         print(" TIPO NO RECONOCIDO CASTEO")
 

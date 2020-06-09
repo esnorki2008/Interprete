@@ -32,6 +32,7 @@ def cargar_sin_consola():
     global Ts
     Ts.guardar_consola(None)
     Ts.nueva_ejecucion()
+    Ts.texto_analisis = input
     raiz_produccion: ListaInstruccion = analizar_ascendente(input)
     if raiz_produccion is not None:
         Ts.cargar_etiquetas(raiz_produccion)
