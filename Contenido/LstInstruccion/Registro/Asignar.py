@@ -13,8 +13,15 @@ class Asignar(Instruccion):
         self.origen = origen
         self.lst = []
 
+    def determinar_tipo_funcion(self):
+        if self.destino[0] == "v":
+            return "v"
+        elif self.destino[0] == "a":
+            return "a"
+        return None
+
     def ejecutar(self):
-        #print(self.origen)
+        # print(self.origen)
 
         vaue: Valor = self.origen.ejecutar()
         global Ts
@@ -39,7 +46,7 @@ class Asignar(Instruccion):
         rst += str(id(self.lst)) + "[shape=rect,sides=4,skew=.4,label=\"" + " INDICES:" + "\"]\n"
         for item in self.lst:
             rst += str(id(self.lst)) + " -> " + str(id(item)) + "\n"
-            rst +=  item.str_arbol()
+            rst += item.str_arbol()
         return rst
 
     def str_arbol(self):

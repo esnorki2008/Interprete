@@ -8,6 +8,9 @@ class Goto(Instruccion):
     def __init__(self, etique: str):
         self.etique = etique
 
+    def determinar_tipo_funcion(self):
+        return self.etique
+
     def ejecutar(self):
         #Ts.ejecutar_etiqueta(self.etique)
         return  self.etique

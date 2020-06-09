@@ -274,7 +274,9 @@ class TablaDeSimbolos:
         self.paso_instruccion_actual = 0;
         self.paso_lista_etiquetas = raiz
 
+        raiz.determinar_tipo_funcion()
         for elemento in raiz.lst:
+            print(str(elemento.tengo_retorno)+str(elemento.tengo_parametros))
             self.lista_etiquetas[elemento.nombre] = elemento
 
     def ejecutar_main(self):

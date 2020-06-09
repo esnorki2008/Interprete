@@ -35,11 +35,13 @@ print("Nueva Tabla")
 
 
 class Instruccion(ABC):
+    tupla: () = (0, 0)
 
-    tupla  :() = (0,0)
-
-    def n_t(self,tupla : ()):
+    def n_t(self, tupla: ()):
         self.tupla = tupla
+
+    def determinar_tipo_funcion(self):
+        return None
 
     def __init__(self, *args):
         pass
@@ -61,6 +63,11 @@ class ListaEtiqueta(Instruccion):
 
     def __init__(self, lst: []):
         self.lst = lst
+
+    def determinar_tipo_funcion(self):
+        for item in self.lst:
+            item.determinar_tipo_funcion(self.lst)
+        return None
 
     def ejecutar_a_paso(self):
         pass
@@ -93,6 +100,23 @@ class ListaInstruccion(Instruccion):
 
     def __init__(self, lst: []):
         self.lst = lst
+
+    def determinar_tipo_funcion(self, lst: []):
+        var_a = False
+        var_v = False
+        for item in self.lst:
+            ret = item.determinar_tipo_funcion()
+            if ret == "a":
+                var_a = True
+            elif ret == "v":
+                var_v = True
+            elif ret is not None:
+                for aux in lst:
+                    if aux.nombre == ret:
+                        aux.tengo_parametros = var_a
+                        var_a = False
+                        break;
+        return var_v
 
     def ejecutar(self):
         for elemento in self.lst:
@@ -208,10 +232,8 @@ class ExpresionSimpleOperacion(Instruccion):
         resultado = None
         vaue: Valor = None
 
-        if self.tipo_operacion != "read" and self.tipo_operacion != "array" :
-            vaue  = self.hijo.ejecutar()
-
-
+        if self.tipo_operacion != "read" and self.tipo_operacion != "array":
+            vaue = self.hijo.ejecutar()
 
         if self.tipo_operacion == "+":
             resultado = vaue

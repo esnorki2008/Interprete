@@ -1,6 +1,11 @@
 main:
-$s0["hola"]="@0";
- $s0[5]=10;
-
- $s1=(int)$s0;
- print($s1);
+ $t1 = 0;
+ $t2 = 0;
+while:
+print($t1);
+ if ($t1>=4) goto end;
+ $t2 = $t2 + $t1;
+ $t1 = $t1 + 1;
+ goto while;
+end:
+ print($t2);
