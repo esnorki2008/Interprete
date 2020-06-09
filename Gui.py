@@ -1,4 +1,8 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5.QtCore import QRect, QSize
+
+from PyQt5.QtWidgets import QPlainTextEdit, QWidget
+
 from Contenido.LstInstruccion.ABCInstruccion import Ts
 from Contenido.LstInstruccion.ABCInstruccion import ListaInstruccion
 from Contenido.Analizadores.Sintactico import analizar_ascendente
@@ -61,7 +65,7 @@ class Ui_MainWindow(object):
         self.scrollAreaWidgetContents_2.setObjectName("scrollAreaWidgetContents_2")
         self.horizontalLayout = QtWidgets.QHBoxLayout(self.scrollAreaWidgetContents_2)
         self.horizontalLayout.setObjectName("horizontalLayout")
-        self.treeView = QtWidgets.QTreeView(self.scrollAreaWidgetContents_2)        
+        self.treeView = QtWidgets.QTreeView(self.scrollAreaWidgetContents_2)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Minimum)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -127,63 +131,70 @@ class Ui_MainWindow(object):
         self.tabWidget_2.setCurrentIndex(0)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
-
-        self.btn_abrir.clicked.connect(self.color)
+        self.btn_abrir.clicked.connect(self.cargar)
         self.btn_ejecutar.clicked.connect(self.parser)
 
-
-
+        self.btn_debug.clicked.connect(self.parser_paso_iniciar)
+        self.btn_siguiente_paso.clicked.connect(self.parser_paso_ejecutar)
     def graficar_arbol(self):
 
         import pydot
-        global  Ts
+        global Ts
         dot_string = Ts.generar_dot()
         graphs = pydot.graph_from_dot_data(dot_string)
 
         from PyQt5.QtWidgets import QApplication
-        #app = QApplication(sys.argv)
-        #win = QWidget()
-        #l1 = QLabel()
+        # app = QApplication(sys.argv)
+        # win = QWidget()
+        # l1 = QLabel()
         from PyQt5.QtGui import QPixmap
         qp = QPixmap()
         qp.loadFromData(graphs[0].create_png())
         self.lbl_graphviz.resize(qp.size())
-        #m_imageLabel->resize(m_scaleFactor * m_imageLabel->size());
+        # m_imageLabel->resize(m_scaleFactor * m_imageLabel->size());
         self.lbl_graphviz.setPixmap(qp)
 
-        #vbox = QVBoxLayout()
-        #vbox.addWidget(l1)
-        #win.setLayout(vbox)
-        #win.setWindowTitle("QPixmap Demo")
-        #win.show()
-        #sys.exit(app.exec_())
+        # vbox = QVBoxLayout()
+        # vbox.addWidget(l1)
+        # win.setLayout(vbox)
+        # win.setWindowTitle("QPixmap Demo")
+        # win.show()
+        # sys.exit(app.exec_())
 
     def hola(self):
         print(self.txt_entrada.toPlainText())
 
-    def pintar_comentarios(self,entrada):
+    def pintar_comentarios(self, entrada):
         ini_span = "<span style=" + chr(34) + "color: #015002" + chr(34) + ">"
         return re.sub(r'(#(.*)(\n)?)', ini_span + (r"\1") + "</span>", entrada)
 
-    def pintar_valores(self,entrada):
+    def pintar_valores(self, entrada):
         ini_span = "<span style=" + chr(34) + "color: #011E94 " + chr(34) + ">"
         return re.sub(r'(("([^"]*)")|( [0-9]+ )|([0-9]\.[0-9]+))', ini_span + (r"\1") + "</span>", entrada)
 
-    def pintar_simbolos(self,entrada):
+    def pintar_simbolos(self, entrada):
         ini_span = "<span style=" + chr(34) + "color: #738786 " + chr(34) + ">"
-        return re.sub(r'((\+)|(-)|( / )|(\*)|( > )|( < )|( = )|(%)|(!=)|(==)|(\()|(\)))', ini_span + (r"\1") + "</span>", entrada)
+        return re.sub(r'((\+)|(-)|( / )|(\*)|( > )|( < )|( = )|(%)|(!=)|(==)|(\()|(\)))',
+                      ini_span + (r"\1") + "</span>", entrada)
 
-    def pintar_variables(self,entrada):
+    def pintar_variables(self, entrada):
         ini_span = "<span style=" + chr(34) + "color: #058695" + chr(34) + ">"
         return re.sub(r"(\$[a-z]([a-z]|[0-9])*)", ini_span + (r"\1") + "</span>", entrada)
 
-    def pintar_reservadas_grises(self,entrada):
+    def pintar_reservadas_grises(self, entrada):
         ini_span = "<span style=" + chr(34) + "color: #738786" + chr(34) + ">"
         return re.sub(r"((main)|(print)|(exit))", ini_span + (r"\1") + "</span>", entrada)
 
-    def pintar_reservadas_moradas(self,entrada):
+    def pintar_reservadas_moradas(self, entrada):
         ini_span = "<span style=" + chr(34) + "color: #830495  " + chr(34) + ">"
         return re.sub(r"((if)|(goto)|(array))", ini_span + (r"\1") + "</span>", entrada)
+
+    def cargar(self):
+        self.txt_entrada.clear()
+        f = open("C:/Users/norki/Desktop/interprete/entrada.txt", "r")
+        # f = open("C:/Users/Esnorki/Desktop/interprete/entrada.txt", "r")
+        input: str = f.read()
+        self.txt_entrada.append(input)
 
     def color(self):
 
@@ -194,25 +205,64 @@ class Ui_MainWindow(object):
 
         input = self.pintar_comentarios(input)
 
-        #input = self.pintar_valores(input)
+        # input = self.pintar_valores(input)
 
         input = self.pintar_reservadas_grises(input)
         input = self.pintar_reservadas_moradas(input)
         input = self.pintar_variables(input)
 
         input = self.pintar_simbolos(input)
-        input = re.sub(r"(;)", (r"\1") , input)
-        input = re.sub(r"(\n)","<br>", input)
+        input = re.sub(r"(;)", (r"\1"), input)
+        input = re.sub(r"(\n)", "<br>", input)
         #
         #
-        input= "<div contenteditable>\n"+ input
+        input = "<div contenteditable>\n" + input
 
-        input +="\n</div>"
+        input += "\n</div>"
 
-        #print(input)
+        # print(input)
         self.txt_entrada.append(input)
 
-        #print(self.txt_entrada.toPlainText())
+        # print(self.txt_entrada.toPlainText())
+
+    def parser_paso_iniciar(self):
+        self.txt_consola.clear()
+        self.txt_entrada.clear()
+        f = open("C:/Users/norki/Desktop/interprete/entrada.txt", "r")
+        #f = open("C:/Users/Esnorki/Desktop/interprete/entrada.txt", "r")
+        input: str = f.read()
+        self.txt_entrada.append(input)
+        global Ts
+        Ts.guardar_consola(self.txt_consola)
+        Ts.nueva_ejecucion()
+        raiz_produccion: ListaInstruccion = analizar_ascendente(input)
+        self.raiz_global = raiz_produccion
+        if raiz_produccion is not None:
+            Ts.cargar_etiquetas(raiz_produccion)
+        self.color()
+        self.graficar_arbol()
+
+    raiz_global = None
+
+    def parser_paso_ejecutar(self):
+
+        try:
+
+            if self.raiz_global is not None:
+
+
+                ex=Ts.paso_a_paso_ejecutar()
+                if ex == "exit" :
+                    print("EJECUCION COMPLETA")
+                treeView = self.treeView
+                treeView.setHeaderHidden(True)
+                Ts.guardar_arbol(treeView)
+                Ts.actualizar_arbol()
+
+
+        except:
+            import sys
+            print("Oops!", sys.exc_info()[0], "occurred.")
 
     def parser(self):
         try:
@@ -224,9 +274,6 @@ class Ui_MainWindow(object):
             self.txt_entrada.append(input)
             global Ts
             Ts.guardar_consola(self.txt_consola)
-
-
-
 
             Ts.nueva_ejecucion()
             raiz_produccion: ListaInstruccion = analizar_ascendente(input)
@@ -253,11 +300,11 @@ class Ui_MainWindow(object):
         self.btn_abrir.setText(_translate("MainWindow", "Abrir"))
         self.btn_guardar.setText(_translate("MainWindow", "Guardar"))
         self.btn_guardar_como.setText(_translate("MainWindow", "Guardar\n"
-"Como"))
+                                                               "Como"))
         self.btn_ejecutar.setText(_translate("MainWindow", "Ejecutar"))
         self.btn_debug.setText(_translate("MainWindow", "Debug"))
         self.btn_siguiente_paso.setText(_translate("MainWindow", "Siguiente\n"
-"Paso"))
+                                                                 "Paso"))
         self.tabWidget_4.setTabText(self.tabWidget_4.indexOf(self.tab_7), _translate("MainWindow", "Archivo"))
         self.tabWidget_2.setTabText(self.tabWidget_2.indexOf(self.tab_5), _translate("MainWindow", "Tabla De Simbolos"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab), _translate("MainWindow", "Archivo Entrada"))

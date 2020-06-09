@@ -14,15 +14,18 @@ class Referencia(Instruccion):
     def __init__(self, ref: str, lst: []):
         temp = VariableValor.VariableValor(ref)
         temp.indices(lst)
-        self.ref = Valor(temp, 5)
+        if len(lst) >0 :
+            self.ref = Valor(0,0)
+        else:
+            self.ref = Valor(temp, 5)
 
     def ejecutar(self):
         return self.ref
 
     def str_arbol(self):
-        rst = str(id(self)) + "[shape=rect,sides=4,skew=.4,label=\"" + "If  )\"]\n"
-        rst += self.booleano.str_arbol()
-        rst += str(id(self)) + " -> " + str(id(self.booleano)) + "\n"
-        rst += self.cuerpo.str_arbol()
-        rst += str(id(self)) + " -> " + str(id(self.cuerpo)) + "\n"
+        rst = str(id(self)) + "[shape=rect,sides=4,skew=.4,label=\"" + "REF:"+ str(self.ref) +"\"]\n"
+        #rst += self.booleano.str_arbol()
+        #rst += str(id(self)) + " -> " + str(id(self.booleano)) + "\n"
+        #rst += self.cuerpo.str_arbol()
+        #rst += str(id(self)) + " -> " + str(id(self.cuerpo)) + "\n"
         return rst

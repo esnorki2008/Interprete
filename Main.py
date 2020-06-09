@@ -32,6 +32,7 @@ def cargar_sin_consola():
     global Ts
     Ts.guardar_consola(None)
     Ts.nueva_ejecucion()
+    Ts.texto_analisis = input
     raiz_produccion: ListaInstruccion = analizar_ascendente(input)
     if raiz_produccion is not None:
         Ts.cargar_etiquetas(raiz_produccion)
@@ -63,8 +64,8 @@ def graficar_sin_consola():
 
 
 #graficar_sin_consola()
-cargar_sin_consola()
-#ventana:Ui_MainWindow =cargar_ventana()
+#cargar_sin_consola()
+ventana:Ui_MainWindow =cargar_ventana()
 
 #print(raiz_produccion.str_arbol_encabezado())
 #raiz_produccion.ejecutar()

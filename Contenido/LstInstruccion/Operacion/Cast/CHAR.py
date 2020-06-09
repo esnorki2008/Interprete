@@ -19,8 +19,8 @@ def cast_char(param: Valor):
         if param.dar_valor() != "":
             caracter = param.dar_valor()[0]
             rst = caracter
-    elif param.tipo == 3:
-        print("CAST char ARREGLO NO IMPLEMENTADO")
+    elif param.tipo == 4:
+        return cast_char(param.primer_elemento())
     else:
         print(" TIPO NO RECONOCIDO CASTEO")
 
