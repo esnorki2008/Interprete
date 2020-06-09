@@ -256,7 +256,8 @@ def find_column(input, token):
 def p_error(t):
     global Ts
     Ts.exit_exec = 0
-
+    tup=find_column(Ts.texto_analisis, t)
+    Ts.cargar_error("El token con lexema \""+str(t.value)+"\" de tipo \""+str(t.type)+" \" ocasiono un  error sintactico",20,tup)
     print("Error sintáctico en '%s'" % t)
 
 

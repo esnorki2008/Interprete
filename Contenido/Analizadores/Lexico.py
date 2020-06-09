@@ -135,6 +135,17 @@ def t_comentario(t):
     t.lexer.lineno += t.value.count("\n")
 
 
+def find_column(input, token):
+    line_start = input.rfind('\n', 0, token.lexpos) + 1
+    return ((token.lexpos - line_start) + 1, token.lineno)
+
+
 def t_error(t):
+    from Contenido.LstInstruccion.ABCInstruccion import Ts
+    global Ts
+    tup = find_column(Ts.texto_analisis, t)
+    Ts.cargar_error(
+        "El token con lexema \"" + str(t.value[0]) + "\" ocasiono un  error lexico", 30, tup)
+
     print("Illegal character '%s'" % t.value[0])
     t.lexer.skip(1)

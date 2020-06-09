@@ -268,7 +268,7 @@ class TablaDeSimbolos:
         raiz.determinar_tipo_funcion()
         self.cargar_tabla_etiqueta(raiz.lst)
         for elemento in raiz.lst:
-            print(str(elemento.tengo_retorno)+str(elemento.tengo_parametros))
+            #print(str(elemento.tengo_retorno)+str(elemento.tengo_parametros))
             self.lista_etiquetas[elemento.nombre] = elemento
 
     tabla_etiqueta = None
@@ -303,7 +303,36 @@ class TablaDeSimbolos:
 
             conta += 1
 
+    tabla_error = None
 
+    def guardar_tabla_error(self, tabla):
+        self.tabla_error = tabla
+        self.cargar_errores()
+
+    def cargar_errores(self):
+        self.tabla_error.setRowCount(len(self.lista_errores) + 1)
+        self.tabla_error.setColumnCount(4)
+        from PyQt5.QtWidgets import QTableWidgetItem
+        self.tabla_error.setItem(0, 0, QTableWidgetItem("Tipo"))
+        self.tabla_error.setItem(0, 1, QTableWidgetItem("Descripcion"))
+        self.tabla_error.setItem(0, 2, QTableWidgetItem("columna"))
+        self.tabla_error.setItem(0, 3, QTableWidgetItem("fila"))
+        conta = 1
+        for elemento in self.lista_errores:
+            # print(elemento.tupla)
+            # print(str(elemento.tengo_retorno) + str(elemento.tengo_parametros))
+            f_tipo = "Error Semantico"
+            if elemento.tipo == 20:
+                f_tipo = "Error Sintactico"
+            elif elemento.tipo == 30:
+                f_tipo = "Error Lexico"
+
+            self.tabla_error.setItem(conta, 0, QTableWidgetItem(f_tipo))
+            self.tabla_error.setItem(conta, 1, QTableWidgetItem(str(elemento.descripcion)))
+            self.tabla_error.setItem(conta, 2, QTableWidgetItem(str(elemento.tupla[0])))
+            self.tabla_error.setItem(conta, 3, QTableWidgetItem(str(elemento.tupla[1])))
+
+            conta += 1
 
     def ejecutar_main(self):
         if self.exit_exec == 0:
@@ -413,9 +442,3 @@ class TablaDeSimbolos:
         return None
         # TERMINAR BORRADO
 
-    def cargar_errores(self):
-        for item in self.lista_errores :
-            #descripcion: str = None
-            #tipo: int = 110
-            #tupla: ()
-            print(item.descripcion)
