@@ -104,7 +104,7 @@ Paso</string>
      </rect>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>2</number>
     </property>
     <widget class="QWidget" name="tab">
      <attribute name="title">
@@ -294,7 +294,7 @@ Paso</string>
          <height>409</height>
         </rect>
        </property>
-       <widget class="QTableWidget" name="tableWidget">
+       <widget class="QTabWidget" name="tabWidget_3">
         <property name="geometry">
          <rect>
           <x>10</x>
@@ -303,6 +303,44 @@ Paso</string>
           <height>391</height>
          </rect>
         </property>
+        <widget class="QWidget" name="tab_4">
+         <attribute name="title">
+          <string>Etiquetas</string>
+         </attribute>
+         <widget class="QScrollArea" name="scrollArea_4">
+          <property name="geometry">
+           <rect>
+            <x>0</x>
+            <y>10</y>
+            <width>641</width>
+            <height>341</height>
+           </rect>
+          </property>
+          <property name="widgetResizable">
+           <bool>true</bool>
+          </property>
+          <widget class="QWidget" name="scrollAreaWidgetContents_4">
+           <property name="geometry">
+            <rect>
+             <x>0</x>
+             <y>0</y>
+             <width>639</width>
+             <height>339</height>
+            </rect>
+           </property>
+           <layout class="QVBoxLayout" name="verticalLayout">
+            <item>
+             <widget class="QTableWidget" name="tabla_etiqueta"/>
+            </item>
+           </layout>
+          </widget>
+         </widget>
+        </widget>
+        <widget class="QWidget" name="tab_6">
+         <attribute name="title">
+          <string>Tab 2</string>
+         </attribute>
+        </widget>
        </widget>
       </widget>
      </widget>

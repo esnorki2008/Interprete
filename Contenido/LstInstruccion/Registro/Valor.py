@@ -1,6 +1,7 @@
 class Valor:
     contenido: object = None
     tipo: int = 0
+    tupla= (0,0)
 
     def __init__(self, contenido: object, tipo: int):
         self.contenido = contenido
@@ -22,6 +23,23 @@ class Valor:
 
         self.contenido[llave_maestra] = vaue
 
+    def eliminar_arreglo(self, llaves : [],nombre, Ts):
+        llave_maestra = ""
+        for item in llaves:
+            llave_maestra += str(item) + ",";
+
+        Obtenido = self.contenido.get(llave_maestra, None)
+        if Obtenido is None:
+            Ts.cargar_error("El Arreglo " + nombre + " En La Posicion " + llave_maestra + " No Se Ha Inicializado", 0,self.tupla)
+            return Valor(0, 0)
+        else:
+            self.contenido.pop(llave_maestra,None)
+
+    def primer_elemento(self):
+        vista=self.contenido.values()
+        it=iter(vista)
+        return next(it)
+
     def sacar_arreglo(self, llaves: [], Nombre, Ts):
         llave_maestra = ""
         for item in llaves:
@@ -30,7 +48,7 @@ class Valor:
         Obtenido = self.contenido.get(llave_maestra, None)
         if Obtenido is None:
 
-            Ts.cargar_error("El Arreglo " + Nombre + " En La Posicion " + llave_maestra + " No Se Ha Inicializado", 0)
+            Ts.cargar_error("El Arreglo " + Nombre + " En La Posicion " + llave_maestra + " No Se Ha Inicializado", 0,self.tupla)
             return Valor(0, 0)
         else:
             return Obtenido

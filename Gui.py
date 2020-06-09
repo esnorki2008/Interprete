@@ -4,6 +4,8 @@ from Contenido.LstInstruccion.ABCInstruccion import ListaInstruccion
 from Contenido.Analizadores.Sintactico import analizar_ascendente
 import re
 
+from PyQt5 import QtCore, QtGui, QtWidgets
+
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -105,11 +107,30 @@ class Ui_MainWindow(object):
         self.scrollAreaWidgetContents = QtWidgets.QWidget()
         self.scrollAreaWidgetContents.setGeometry(QtCore.QRect(0, 0, 679, 409))
         self.scrollAreaWidgetContents.setObjectName("scrollAreaWidgetContents")
-        self.tableWidget = QtWidgets.QTableWidget(self.scrollAreaWidgetContents)
-        self.tableWidget.setGeometry(QtCore.QRect(10, 10, 661, 391))
-        self.tableWidget.setObjectName("tableWidget")
-        self.tableWidget.setColumnCount(0)
-        self.tableWidget.setRowCount(0)
+        self.tabWidget_3 = QtWidgets.QTabWidget(self.scrollAreaWidgetContents)
+        self.tabWidget_3.setGeometry(QtCore.QRect(10, 10, 661, 391))
+        self.tabWidget_3.setObjectName("tabWidget_3")
+        self.tab_4 = QtWidgets.QWidget()
+        self.tab_4.setObjectName("tab_4")
+        self.scrollArea_4 = QtWidgets.QScrollArea(self.tab_4)
+        self.scrollArea_4.setGeometry(QtCore.QRect(0, 10, 641, 341))
+        self.scrollArea_4.setWidgetResizable(True)
+        self.scrollArea_4.setObjectName("scrollArea_4")
+        self.scrollAreaWidgetContents_4 = QtWidgets.QWidget()
+        self.scrollAreaWidgetContents_4.setGeometry(QtCore.QRect(0, 0, 639, 339))
+        self.scrollAreaWidgetContents_4.setObjectName("scrollAreaWidgetContents_4")
+        self.verticalLayout = QtWidgets.QVBoxLayout(self.scrollAreaWidgetContents_4)
+        self.verticalLayout.setObjectName("verticalLayout")
+        self.tabla_etiqueta = QtWidgets.QTableWidget(self.scrollAreaWidgetContents_4)
+        self.tabla_etiqueta.setObjectName("tabla_etiqueta")
+        self.tabla_etiqueta.setColumnCount(0)
+        self.tabla_etiqueta.setRowCount(0)
+        self.verticalLayout.addWidget(self.tabla_etiqueta)
+        self.scrollArea_4.setWidget(self.scrollAreaWidgetContents_4)
+        self.tabWidget_3.addTab(self.tab_4, "")
+        self.tab_6 = QtWidgets.QWidget()
+        self.tab_6.setObjectName("tab_6")
+        self.tabWidget_3.addTab(self.tab_6, "")
         self.scrollArea.setWidget(self.scrollAreaWidgetContents)
         self.tabWidget.addTab(self.tab_3, "")
         MainWindow.setCentralWidget(self.centralwidget)
@@ -122,7 +143,7 @@ class Ui_MainWindow(object):
         MainWindow.setStatusBar(self.statusbar)
 
         self.retranslateUi(MainWindow)
-        self.tabWidget.setCurrentIndex(0)
+        self.tabWidget.setCurrentIndex(2)
         self.tabWidget_4.setCurrentIndex(0)
         self.tabWidget_2.setCurrentIndex(0)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
@@ -131,7 +152,8 @@ class Ui_MainWindow(object):
         self.btn_abrir.clicked.connect(self.color)
         self.btn_ejecutar.clicked.connect(self.parser)
 
-
+        self.btn_debug.clicked.connect(self.parser_paso_iniciar)
+        self.btn_siguiente_paso.clicked.connect(self.parser_paso_ejecutar)
 
     def graficar_arbol(self):
 
@@ -189,7 +211,7 @@ class Ui_MainWindow(object):
 
         self.txt_entrada.clear()
         f = open("C:/Users/norki/Desktop/interprete/entrada.txt", "r")
-        #f = open("C:/Users/Esnorki/Desktop/interprete/entrada.txt", "r")
+        # f = open("C:/Users/Esnorki/Desktop/interprete/entrada.txt", "r")
         input: str = f.read()
 
         input = self.pintar_comentarios(input)
@@ -212,27 +234,72 @@ class Ui_MainWindow(object):
         #print(input)
         self.txt_entrada.append(input)
 
-        #print(self.txt_entrada.toPlainText())
+        # print(self.txt_entrada.toPlainText())
+
+    def parser_paso_iniciar(self):
+        self.txt_consola.clear()
+        self.txt_entrada.clear()
+        f = open("C:/Users/norki/Desktop/interprete/entrada.txt", "r")
+        # f = open("C:/Users/Esnorki/Desktop/interprete/entrada.txt", "r")
+        input: str = f.read()
+        self.txt_entrada.append(input)
+        global Ts
+        Ts.guardar_consola(self.txt_consola)
+        Ts.nueva_ejecucion(input)
+        raiz_produccion: ListaInstruccion = analizar_ascendente(input)
+        self.raiz_global = raiz_produccion
+        Ts.guardar_tabla_etiqueta(self.tabla_etiqueta)
+        if raiz_produccion is not None:
+            Ts.cargar_etiquetas(raiz_produccion)
+        self.color()
+        self.graficar_arbol()
+
+        treeView = self.treeView
+        treeView.setHeaderHidden(True)
+        Ts.guardar_arbol(treeView)
+
+        Ts.actualizar_arbol()
+
+    raiz_global = None
+
+    def parser_paso_ejecutar(self):
+
+        try:
+
+            if self.raiz_global is not None:
+
+                ex = Ts.paso_a_paso_ejecutar()
+                if ex == "exit":
+                    Ts.mensaje_info("Informacion", "Ejecucion Paso A Paso Completo")
+                    self.raiz_global = None
+                treeView = self.treeView
+                treeView.setHeaderHidden(True)
+                Ts.guardar_arbol(treeView)
+                Ts.actualizar_arbol()
+
+
+        except:
+            import sys
+            print("Oops!", sys.exc_info()[0], "occurred.")
 
     def parser(self):
-        try:
+        #try:
             self.txt_consola.clear()
             self.txt_entrada.clear()
             f = open("C:/Users/norki/Desktop/interprete/entrada.txt", "r")
-            #f = open("C:/Users/Esnorki/Desktop/interprete/entrada.txt", "r")
+            # f = open("C:/Users/Esnorki/Desktop/interprete/entrada.txt", "r")
             input: str = f.read()
             self.txt_entrada.append(input)
             global Ts
             Ts.guardar_consola(self.txt_consola)
 
-
-
-
-            Ts.nueva_ejecucion()
+            Ts.nueva_ejecucion(input)
             raiz_produccion: ListaInstruccion = analizar_ascendente(input)
+            Ts.guardar_tabla_etiqueta(self.tabla_etiqueta)
             if raiz_produccion is not None:
                 Ts.cargar_etiquetas(raiz_produccion)
                 Ts.ejecutar_main()
+
             self.color()
             self.graficar_arbol()
 
@@ -241,11 +308,11 @@ class Ui_MainWindow(object):
             Ts.guardar_arbol(treeView)
             Ts.actualizar_arbol()
 
-            from PyQt5.QtWidgets import QHeaderView
 
-        except:
-            import sys
-            print("Oops!", sys.exc_info()[0], "occurred.")
+
+        #except:
+            #import sys
+            #print("Oops!", sys.exc_info()[0], "occurred.")
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
@@ -262,4 +329,6 @@ class Ui_MainWindow(object):
         self.tabWidget_2.setTabText(self.tabWidget_2.indexOf(self.tab_5), _translate("MainWindow", "Tabla De Simbolos"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab), _translate("MainWindow", "Archivo Entrada"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_2), _translate("MainWindow", "Visualizar"))
+        self.tabWidget_3.setTabText(self.tabWidget_3.indexOf(self.tab_4), _translate("MainWindow", "Etiquetas"))
+        self.tabWidget_3.setTabText(self.tabWidget_3.indexOf(self.tab_6), _translate("MainWindow", "Tab 2"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_3), _translate("MainWindow", "Reporte"))

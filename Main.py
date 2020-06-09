@@ -63,8 +63,8 @@ def graficar_sin_consola():
 
 
 #graficar_sin_consola()
-cargar_sin_consola()
-#ventana:Ui_MainWindow =cargar_ventana()
+#cargar_sin_consola()
+ventana:Ui_MainWindow =cargar_ventana()
 
 #print(raiz_produccion.str_arbol_encabezado())
 #raiz_produccion.ejecutar()

@@ -13,6 +13,6 @@ class Unset(Instruccion):
 
     def str_arbol(self):
         rst = str(
-            id(self)) + "[shape=rect,sides=4,skew=.4,label=\"" + "Unse( " + self.vaue.dar_identificador() + " )\"]\n"
+            id(self)) + "[shape=rect,sides=4,skew=.4,label=\"" + "Unse( " + self.vaue+ " )\"]\n"
 
         return rst

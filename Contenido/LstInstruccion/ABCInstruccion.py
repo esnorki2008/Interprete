@@ -88,6 +88,25 @@ class ListaInstruccion(Instruccion):
     def __init__(self, lst: []):
         self.lst = lst
 
+    def determinar_tipo_funcion(self, lst: []):
+        var_a = False
+        var_v = False
+        for item in self.lst:
+            ret = item.determinar_tipo_funcion()
+            if ret == "a":
+                var_a = True
+            elif ret == "v":
+                var_v = True
+            elif ret is not None:
+                for aux in lst:
+                    if aux.nombre == ret:
+                        if aux.tengo_parametros :
+                            var_a=True
+                        aux.tengo_parametros = var_a
+                        var_a = False
+                        break;
+        return var_v
+
     def ejecutar(self):
         for elemento in self.lst:
             exec = elemento.ejecutar()
