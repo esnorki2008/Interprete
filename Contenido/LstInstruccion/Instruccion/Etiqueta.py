@@ -23,8 +23,10 @@ class Etiqueta(Instruccion):
             return None
         else:
             exec = self.lst.lst[ins].ejecutar()
+            #print(exec)
             if exec != None:
                 return exec
+
             return 1
 
     def ejecutar(self):

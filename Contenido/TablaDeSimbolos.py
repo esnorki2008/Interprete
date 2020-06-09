@@ -346,7 +346,7 @@ class TablaDeSimbolos:
                 else:
                     #print(exec)
                     exec = exec.paso_a_paso_ejecutar(self.paso_instruccion_actual)
-
+                    #print(self.paso_etiqueta_actual)
                     # BORRAR SI DA ERROR
                     if exec is None:
                         self.paso_instruccion_actual = 0
@@ -363,7 +363,9 @@ class TablaDeSimbolos:
                         self.paso_etiqueta_actual = "exit"
                         return "exit"
                     else:
-                        if exec == self.paso_etiqueta_actual or exec == 1 :
+                        if exec == self.paso_etiqueta_actual :
+                            self.paso_instruccion_actual=0
+                        elif exec == 1 :
                             self.paso_instruccion_actual += 1
                         else:
                             self.paso_instruccion_actual = 0

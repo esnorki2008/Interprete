@@ -199,8 +199,8 @@ class Ui_MainWindow(object):
     def color(self):
 
         self.txt_entrada.clear()
-        # f = open("C:/Users/norki/Desktop/interprete/entrada.txt", "r")
-        f = open("C:/Users/Esnorki/Desktop/interprete/entrada.txt", "r")
+        f = open("C:/Users/norki/Desktop/interprete/entrada.txt", "r")
+        #f = open("C:/Users/Esnorki/Desktop/interprete/entrada.txt", "r")
         input: str = f.read()
 
         input = self.pintar_comentarios(input)
@@ -228,8 +228,8 @@ class Ui_MainWindow(object):
     def parser_paso_iniciar(self):
         self.txt_consola.clear()
         self.txt_entrada.clear()
-        # f = open("C:/Users/norki/Desktop/interprete/entrada.txt", "r")
-        f = open("C:/Users/Esnorki/Desktop/interprete/entrada.txt", "r")
+        f = open("C:/Users/norki/Desktop/interprete/entrada.txt", "r")
+        #f = open("C:/Users/Esnorki/Desktop/interprete/entrada.txt", "r")
         input: str = f.read()
         self.txt_entrada.append(input)
         global Ts
@@ -268,8 +268,8 @@ class Ui_MainWindow(object):
         try:
             self.txt_consola.clear()
             self.txt_entrada.clear()
-            # f = open("C:/Users/norki/Desktop/interprete/entrada.txt", "r")
-            f = open("C:/Users/Esnorki/Desktop/interprete/entrada.txt", "r")
+            f = open("C:/Users/norki/Desktop/interprete/entrada.txt", "r")
+            #f = open("C:/Users/Esnorki/Desktop/interprete/entrada.txt", "r")
             input: str = f.read()
             self.txt_entrada.append(input)
             global Ts
