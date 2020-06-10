@@ -22,7 +22,7 @@ class If(Instruccion):
                 return self.cuerpo.ejecutar()
         else:
             global Ts
-            Ts.cargar_error("En La Condicional Del IF Se Necesita El Tipo ENTERO ", 3)
+            Ts.cargar_error("En La Condicional Del IF Se Necesita El Tipo ENTERO ", 0,self.tupla)
 
     def str_arbol(self):
         rst = str(id(self)) + "[shape=rect,sides=4,skew=.4,label=\"" + "If  )\"]\n"

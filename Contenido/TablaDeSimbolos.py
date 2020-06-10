@@ -21,26 +21,16 @@ class ArbolItem(QStandardItem):
 class Errores:
     descripcion: str = None
     tipo: int = 110
-    pos_x: int = 0
-    pos_y: int = 0
+    tupla :()
     exit_exec: int = 0
 
-    def __init__(self, descripcion, tipo):
+    def __init__(self, descripcion, tipo,tupla):
         self.descripcion = descripcion
         self.tipo = tipo
+        self.tupla=tupla
         # self.pos_x=pos_x
         # self.pos_y=pos_y
 
-
-class ValorTabla:
-    def __init__(self):
-        pass
-
-    def valor_obtener(self):
-        pass
-
-    def valor_cambiar(self):
-        pass
 
 
 # Tipo De Error Maximo 3
@@ -59,8 +49,8 @@ class TablaDeSimbolos:
     paso_etiqueta_actual = 0;
     paso_instruccion_actual = 0;
 
-    def nueva_ejecucion(self):
-        self.texto_analisis = ""
+    def nueva_ejecucion(self, texto):
+        self.texto_analisis = texto
         # print("Limpieza Tabla")
         self.exit_exec = 1
         self.lista_etiquetas = {}
@@ -192,7 +182,7 @@ class TablaDeSimbolos:
         if retorno is None:
             retorno = Valor(0, 0)
             print("El Registro " + nombre + " No Se Ha Inicializado")
-            self.lista_errores.append(Errores("El Registro " + nombre + " No Se Ha Inicializado", 0))
+            self.cargar_error("El Registro " + nombre + " No Se Ha Inicializado", 0,(0,0))
             return retorno
         else:
             if (retorno.tipo == 4):
@@ -203,8 +193,8 @@ class TablaDeSimbolos:
             else:
                 return retorno
 
-    def cargar_error(self, descripcion: str, tipado: int):
-        self.lista_errores.append(Errores(descripcion, tipado))
+    def cargar_error(self, descripcion: str, tipado: int, tupla):
+        self.lista_errores.append(Errores(descripcion, tipado,tupla))
 
     def variable_cambiar_valor(self, nombre: str, conte: Valor):
         if conte.tipo == 5:
@@ -234,19 +224,19 @@ class TablaDeSimbolos:
             retorno = self.lista_variables.get(nombre, None)
             retorno.guardar_arreglo(llaves, vaue)
         else:
-
-            if retorno.tipo == 4:
+            if retorno.tipo ==2 :
+                retorno.guardar_cadena_arreglo(llaves,nombre,self,vaue)
+            elif retorno.tipo == 4:
                 retorno.guardar_arreglo(llaves, vaue)
-            if retorno.tipo == 5:
+            elif retorno.tipo == 5:
                 self.arreglo_cambiar_valor(retorno.contenido.destino, llaves, vaue)
-
             else:
-                self.lista_errores.append(Errores("El Registro " + nombre + " No Se Ha Inicializado", 0))
+                self.cargar_error("El Registro 11" + nombre +str(llaves) +" No Se Ha Inicializado", 0,(0,0))
 
     def eliminar_variable(self, nombre: str, llaves: []):
         retorno = self.lista_variables.get(nombre, None)
         if retorno is None:
-            self.lista_errores.append(Errores("El Registro " + nombre + " No Se Ha Inicializado", 0))
+            self.cargar_error("El Registro " + nombre +str(llaves) + " No Se Ha Inicializado", 0,(0,0))
         else:
             if retorno.tipo == 4:
                 vaue: Valor = retorno
@@ -254,17 +244,21 @@ class TablaDeSimbolos:
             else:
                 self.lista_variables.pop(nombre, None)
 
+
+
     def arreglo_obtener_valor(self, nombre: str, llaves: []):
         retorno = self.lista_variables.get(nombre, None)
         if retorno is None:
             return Valor(0, 0)
         else:
-            if retorno.tipo == 4:
+            if retorno.tipo ==2 :
+                return retorno.cadena_arreglo(llaves,nombre,self)
+            elif retorno.tipo == 4:
                 return retorno.sacar_arreglo(llaves, nombre, self)
-            if retorno.tipo == 5:
+            elif retorno.tipo == 5:
                 return self.arreglo_obtener_valor(retorno.contenido.destino, llaves)
             else:
-                self.lista_errores.append(Errores("El Registro " + nombre + " No Se Ha Inicializado", 0))
+                self.cargar_error("El Registro " + nombre + " No Se Ha Inicializado", 0,(0,0))
 
     def cargar_etiquetas(self, raiz):
         if self.exit_exec == 0:
@@ -275,18 +269,82 @@ class TablaDeSimbolos:
         self.paso_lista_etiquetas = raiz
 
         raiz.determinar_tipo_funcion()
+        self.cargar_tabla_etiqueta(raiz.lst)
         for elemento in raiz.lst:
-            print(str(elemento.tengo_retorno)+str(elemento.tengo_parametros))
+            #print(str(elemento.tengo_retorno)+str(elemento.tengo_parametros))
             self.lista_etiquetas[elemento.nombre] = elemento
+
+    tabla_etiqueta = None
+
+    def guardar_tabla_etiqueta(self, tabla):
+        tabla.clear()
+        self.tabla_etiqueta = tabla
+
+    def cargar_tabla_etiqueta(self, lst: []):
+        self.tabla_etiqueta.setRowCount(len(lst)+1)
+        self.tabla_etiqueta.setColumnCount(4)
+        from PyQt5.QtWidgets import QTableWidgetItem
+        self.tabla_etiqueta.setItem(0, 0, QTableWidgetItem("Nombre"))
+        self.tabla_etiqueta.setItem(0, 1, QTableWidgetItem("Tipo"))
+        self.tabla_etiqueta.setItem(0, 2, QTableWidgetItem("columna"))
+        self.tabla_etiqueta.setItem(0, 3, QTableWidgetItem("fila"))
+        conta=1
+        for elemento in lst:
+            #print(elemento.tupla)
+            #print(str(elemento.tengo_retorno) + str(elemento.tengo_parametros))
+            f_tipo="Estructura De Control"
+            if elemento.tengo_retorno == True:
+                f_tipo="Función"
+            else:
+                if elemento.tengo_parametros == True:
+                    f_tipo="Procedimiento"
+
+            self.tabla_etiqueta.setItem(conta, 0, QTableWidgetItem(elemento.nombre))
+            self.tabla_etiqueta.setItem(conta, 1, QTableWidgetItem(f_tipo))
+            self.tabla_etiqueta.setItem(conta, 2, QTableWidgetItem(str(elemento.tupla[0])))
+            self.tabla_etiqueta.setItem(conta, 3, QTableWidgetItem(str(elemento.tupla[1])))
+
+            conta += 1
+
+    tabla_error = None
+
+    def guardar_tabla_error(self, tabla):
+        self.tabla_error = tabla
+        self.cargar_errores()
+
+    def cargar_errores(self):
+        self.tabla_error.setRowCount(len(self.lista_errores) + 1)
+        self.tabla_error.setColumnCount(4)
+        from PyQt5.QtWidgets import QTableWidgetItem
+        self.tabla_error.setItem(0, 0, QTableWidgetItem("Tipo"))
+        self.tabla_error.setItem(0, 1, QTableWidgetItem("Descripcion"))
+        self.tabla_error.setItem(0, 2, QTableWidgetItem("columna"))
+        self.tabla_error.setItem(0, 3, QTableWidgetItem("fila"))
+        conta = 1
+        for elemento in self.lista_errores:
+            # print(elemento.tupla)
+            # print(str(elemento.tengo_retorno) + str(elemento.tengo_parametros))
+            f_tipo = "Error Semantico"
+            if elemento.tipo == 20:
+                f_tipo = "Error Sintactico"
+            elif elemento.tipo == 30:
+                f_tipo = "Error Lexico"
+
+            self.tabla_error.setItem(conta, 0, QTableWidgetItem(f_tipo))
+            self.tabla_error.setItem(conta, 1, QTableWidgetItem(str(elemento.descripcion)))
+            self.tabla_error.setItem(conta, 2, QTableWidgetItem(str(elemento.tupla[0])))
+            self.tabla_error.setItem(conta, 3, QTableWidgetItem(str(elemento.tupla[1])))
+
+            conta += 1
 
     def ejecutar_main(self):
         if self.exit_exec == 0:
-            print("No Se Puede Ejecutar Si Hay Error Sintactico")
+            self.mensaje_info("Erro","No Se Puede Ejecutar Si Hay Error Sintactico")
             return
         maincito = self.lista_etiquetas.get("main", None)
         if maincito is None:
-            print("No Se Puede Ejecutar Si No Hay Main")
-            self.lista_errores.append(Errores("No Se Puede Ejecutar Si No Hay Main", 0))
+            self.mensaje_info("Erro","No Se Puede Ejecutar Si No Se Define MAIN")
+            self.cargar_error("No Se Puede Ejecutar Si No Hay Main", 0,(0,0))
         else:
             # exec = maincito.ejecutar()
             exec = "main"
@@ -298,7 +356,7 @@ class TablaDeSimbolos:
                     exec = self.lista_etiquetas.get(exec, None)
                     if exec is None:
                         print("No Se Puede Ejecutar La Etiqueta " + str(temp))
-                        self.lista_errores.append(Errores("No Se Puede Ejecutar La Etiqueta " + temp, 0))
+                        self.cargar_error("No Se Puede Ejecutar La Etiqueta " + temp, 0,(0,0))
                     else:
                         exec = exec.ejecutar()
                         # BORRAR SI DA ERROR
@@ -318,18 +376,29 @@ class TablaDeSimbolos:
                         # TERMINAR BORRADO
                 else:
                     break
+        self.cargar_errores()
+        self.mensaje_info("Informacion", "Ejecucion Completada")
+
+    def mensaje_info(self,Titulo,Texto):
+        #return
+        from PyQt5.QtWidgets import QMessageBox
+        msg = QMessageBox()
+        msg.setIcon(QMessageBox.Information)
+        msg.setWindowTitle(Titulo)
+        msg.setText(Texto)
+        msg.exec_()
+
 
     def paso_a_paso_ejecutar(self):
         if self.exit_exec == 0:
-            print("No Se Puede Ejecutar Si Hay Error Sintactico")
+            self.cargar_errores()
+            self.mensaje_info("Erro","No Se Puede Ejecutar Si Hay Error Sintactico")
             return None
-
-
 
         maincito = self.lista_etiquetas.get("main", None)
         if maincito is None:
             print("No Se Puede Ejecutar Si No Hay Main")
-            self.lista_errores.append(Errores("No Se Puede Ejecutar Si No Hay Main", 0))
+            self.cargar_error("No Se Puede Ejecutar Si No Hay Main", 0,(0,0))
         else:
             # exec = maincito.ejecutar()
 
@@ -342,11 +411,11 @@ class TablaDeSimbolos:
 
                 if exec is None:
                     print("No Se Puede Ejecutar La Etiqueta " + str(temp))
-                    self.lista_errores.append(Errores("No Se Puede Ejecutar La Etiqueta " + temp, 0))
+                    self.cargar_error("No Se Puede Ejecutar La Etiqueta " + temp, 0,(0,0))
                 else:
-                    #print(exec)
+                    # print(exec)
                     exec = exec.paso_a_paso_ejecutar(self.paso_instruccion_actual)
-                    #print(self.paso_etiqueta_actual)
+                    # print(self.paso_etiqueta_actual)
                     # BORRAR SI DA ERROR
                     if exec is None:
                         self.paso_instruccion_actual = 0
@@ -355,7 +424,7 @@ class TablaDeSimbolos:
                         for llave in self.lista_etiquetas.keys():
                             if aceptar:
                                 self.paso_etiqueta_actual = llave
-                                return  None# Terminar Paso
+                                return None  # Terminar Paso
 
                             if llave == temp:
                                 aceptar = True
@@ -363,14 +432,16 @@ class TablaDeSimbolos:
                         self.paso_etiqueta_actual = "exit"
                         return "exit"
                     else:
-                        if exec == self.paso_etiqueta_actual :
-                            self.paso_instruccion_actual=0
-                        elif exec == 1 :
+                        if exec == self.paso_etiqueta_actual:
+                            self.paso_instruccion_actual = 0
+                        elif exec == 1:
                             self.paso_instruccion_actual += 1
                         else:
                             self.paso_instruccion_actual = 0
                             self.paso_etiqueta_actual = exec
-                            if exec == "exit" :
-                                return  "exit"
+                            if exec == "exit":
+                                return "exit"
+        self.cargar_errores()
         return None
-                    # TERMINAR BORRADO
+        # TERMINAR BORRADO
+

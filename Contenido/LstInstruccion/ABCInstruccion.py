@@ -113,6 +113,8 @@ class ListaInstruccion(Instruccion):
             elif ret is not None:
                 for aux in lst:
                     if aux.nombre == ret:
+                        if aux.tengo_parametros :
+                            var_a=True
                         aux.tengo_parametros = var_a
                         var_a = False
                         break;

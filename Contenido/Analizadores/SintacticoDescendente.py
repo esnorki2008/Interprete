@@ -27,14 +27,17 @@ def p_inicio(t):
 
 
 def p_etiquetas_lista(t):
-    'etiquetas : etiquetas etiqueta'
-    t[0] = t[1]
-    t[0].agregar(t[2])
+    'etiquetas : etiqueta etiquetasp'
+    t[0] = t[2]
 
+def p_etiqeutas_sin_recursividad(t):
+    'etiquetasp : etiqueta  etiquetasp'
+    t[0]=t[2]
+    t[0].lst.insert(0, t[-1])
 
-def p_etiquetas_lista_inicio(t):
-    'etiquetas : etiqueta'
-    t[0] = ABCInstruccion.ListaEtiqueta([t[1]])
+def p_etiqeutas_sin_recursividad_epsilon(t):
+    'etiquetasp : '
+    t[0] = ABCInstruccion.ListaEtiqueta([t[-1]])
 
 
 def p_etiqueta_contenido(t):
@@ -61,18 +64,23 @@ def p_etiqueta_principal(t):
 
 
 def p_instrucciones_lista(t):
-    'instrucciones :  instrucciones instruccion '
-    t[0] = t[1]
-    t[0].agregar(t[2])
+    'instrucciones :   instruccion instruccionesp '
+    t[0] = t[2]
+
+def p_instrucciones_lista_sin_recursividad(t):
+    'instruccionesp : instruccion instruccionesp'
+    t[0] = t[2]
+    t[0].lst.insert(0, t[-1])
     global Ts
-    Ts.nueva_instruaccion(t[2])
+    Ts.nueva_instruaccion(t[-1])
+
+def p_instrucciones_lista_sin_recursividad_epsilon(t):
+    'instruccionesp : '
+    t[0] = ABCInstruccion.ListaInstruccion([t[-1]])
+    global Ts
+    Ts.nueva_instruaccion(t[-1])
 
 
-def p_instrucciones_lista_inicio(t):
-    'instrucciones : instruccion '
-    t[0] = ABCInstruccion.ListaInstruccion([t[1]])
-    global Ts
-    Ts.nueva_instruaccion(t[1])
 
 
 def p_instrucciones_exit(t):
@@ -230,6 +238,7 @@ def p_expresion_decimal(t):
     global Ts
     t[0].n_t(find_column(Ts.texto_analisis, t.slice[1]))
 
+
 def p_expresion_cadena(t):
     'valor    : CADENA'
     t[0] = ABCInstruccion.Valor(t[1], 2)
@@ -256,12 +265,14 @@ def find_column(input, token):
 def p_error(t):
     global Ts
     Ts.exit_exec = 0
-    tup=find_column(Ts.texto_analisis, t)
-    Ts.cargar_error("El token con lexema \""+str(t.value)+"\" de tipo \""+str(t.type)+" \" ocasiono un  error sintactico",20,tup)
+    tup = find_column(Ts.texto_analisis, t)
+    Ts.cargar_error(
+        "El token con lexema \"" + str(t.value) + "\" de tipo \"" + str(t.type) + " \" ocasiono un  error sintactico",
+        20, tup)
     print("Error sintáctico en '%s'" % t)
 
 
-def analizar_ascendente(input: str):
+def analizar_descendente(input: str):
     # Construyendo el analizador léxico
     lexer = lex.lex()
     parser = yacc.yacc()
