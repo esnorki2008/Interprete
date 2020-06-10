@@ -53,6 +53,54 @@ class Valor:
         else:
             return Obtenido
 
+    def cadena_arreglo(self, llaves: [],nombre, Ts):
+        if len(llaves) != 1 :
+            Ts.cargar_error("La variable $" + nombre + " al ser una cadena no permite mas de un par de llaves", 0,self.tupla)
+            return Valor("", 2)
+        else :
+            ind=0
+            try :
+                ind=int(llaves[0])
+            except :
+                Ts.cargar_error("La variable $" + nombre + " al ser una cadena solo permite valores numericos en la llave", 0, self.tupla)
+                return Valor("", 2)
+            if ind >= len(self.contenido):
+                Ts.cargar_error("Fuera De Indice para la cadena $" + nombre + " ", 0,self.tupla)
+                return Valor("", 2)
+            else :
+                return Valor(self.contenido[ind],2)
+
+        return Valor("", 2)
+
+    def guardar_cadena_arreglo(self, llaves: [],nombre, Ts, vaue):
+        if len(llaves) != 1:
+            Ts.cargar_error("La variable $" + nombre + " al ser una cadena no permite mas de un par de llaves", 0,
+                            self.tupla)
+        else:
+            ind = 0
+            try:
+                ind = int(llaves[0])
+            except:
+                Ts.cargar_error(
+                    "La variable $" + nombre + " al ser una cadena solo permite valores numericos en la llave", 0,
+                    self.tupla)
+            if ind >= len(self.contenido):
+                Ts.cargar_error("Fuera De Indice para la cadena $" + nombre + " ", 0, self.tupla)
+            else:
+                if vaue.tipo==2 or vaue.tipo==0 :
+                    longi=len(self.contenido)
+                    novo=""
+                    for i in range (0,longi):
+                        if ind == i :
+                            novo+=str(vaue.contenido)[0]
+                        else:
+                            novo+=self.contenido[i]
+
+                    self.contenido=novo
+                else:
+                    Ts.cargar_error("Asignacion a la cadena $" + nombre + " el tipo "+vaue.dar_tipo_str(), 0, self.tupla)
+
+
     def dar_valor(self):
         return self.contenido
 
@@ -66,7 +114,7 @@ class Valor:
             return "decimal"
         elif self.tipo == 2:
             return "string"
-        elif self.tipo == 3:
+        elif self.tipo == 4:
             return "arreglo"
         else:
             return "indefinido"

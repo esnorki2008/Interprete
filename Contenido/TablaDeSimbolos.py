@@ -224,8 +224,9 @@ class TablaDeSimbolos:
             retorno = self.lista_variables.get(nombre, None)
             retorno.guardar_arreglo(llaves, vaue)
         else:
-
-            if retorno.tipo == 4:
+            if retorno.tipo ==2 :
+                retorno.guardar_cadena_arreglo(llaves,nombre,self,vaue)
+            elif retorno.tipo == 4:
                 retorno.guardar_arreglo(llaves, vaue)
             elif retorno.tipo == 5:
                 self.arreglo_cambiar_valor(retorno.contenido.destino, llaves, vaue)
@@ -250,7 +251,9 @@ class TablaDeSimbolos:
         if retorno is None:
             return Valor(0, 0)
         else:
-            if retorno.tipo == 4:
+            if retorno.tipo ==2 :
+                return retorno.cadena_arreglo(llaves,nombre,self)
+            elif retorno.tipo == 4:
                 return retorno.sacar_arreglo(llaves, nombre, self)
             elif retorno.tipo == 5:
                 return self.arreglo_obtener_valor(retorno.contenido.destino, llaves)

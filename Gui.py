@@ -177,6 +177,8 @@ class Ui_MainWindow(object):
         self.btn_abrir.clicked.connect(self.cargar)
         self.btn_ejecutar.clicked.connect(self.parser)
 
+        self.btn_guardar.clicked.connect(self.parser_descendente)
+
         self.btn_debug.clicked.connect(self.parser_paso_iniciar)
         self.btn_siguiente_paso.clicked.connect(self.parser_paso_ejecutar)
     def graficar_arbol(self):
@@ -310,7 +312,7 @@ class Ui_MainWindow(object):
             print("Oops!", sys.exc_info()[0], "occurred.")
 
     def parser(self):
-        #try:
+        try:
             self.txt_consola.clear()
             self.txt_entrada.clear()
             f = open("C:/Users/norki/Desktop/interprete/entrada.txt", "r")
@@ -335,12 +337,43 @@ class Ui_MainWindow(object):
             treeView.setHeaderHidden(True)
             Ts.guardar_arbol(treeView)
             Ts.actualizar_arbol()
+        except:
+            import sys
+            print("Oops!", sys.exc_info()[0], "occurred.")
 
 
+    def parser_descendente(self):
+        try:
+            self.txt_consola.clear()
+            self.txt_entrada.clear()
+            f = open("C:/Users/norki/Desktop/interprete/entrada.txt", "r")
+            # f = open("C:/Users/Esnorki/Desktop/interprete/entrada.txt", "r")
+            input: str = f.read()
+            self.txt_entrada.append(input)
+            global Ts
+            Ts.guardar_consola(self.txt_consola)
 
-        #except:
-            #import sys
-            #print("Oops!", sys.exc_info()[0], "occurred.")
+            Ts.nueva_ejecucion(input)
+            from Contenido.Analizadores.SintacticoDescendente import analizar_descendente
+            raiz_produccion: ListaInstruccion = analizar_descendente(input)
+            Ts.guardar_tabla_etiqueta(self.tabla_etiqueta)
+            Ts.guardar_tabla_error(self.tabla_error)
+            if raiz_produccion is not None:
+                Ts.cargar_etiquetas(raiz_produccion)
+                Ts.ejecutar_main()
+
+            self.color()
+            self.graficar_arbol()
+
+            treeView = self.treeView
+            treeView.setHeaderHidden(True)
+            Ts.guardar_arbol(treeView)
+            Ts.actualizar_arbol()
+        except:
+            import sys
+            print("Oops!", sys.exc_info()[0], "occurred.")
+
+
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
