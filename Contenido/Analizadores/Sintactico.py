@@ -249,6 +249,8 @@ def p_expresion_valor_unico_variable(t):
 
 
 def find_column(input, token):
+    if token is None:
+        return (0,0)
     line_start = input.rfind('\n', 0, token.lexpos) + 1
     return ((token.lexpos - line_start) + 1, token.lineno)
 

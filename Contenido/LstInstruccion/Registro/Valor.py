@@ -73,6 +73,7 @@ class Valor:
         return Valor("", 2)
 
     def guardar_cadena_arreglo(self, llaves: [],nombre, Ts, vaue):
+
         if len(llaves) != 1:
             Ts.cargar_error("La variable $" + nombre + " al ser una cadena no permite mas de un par de llaves", 0,
                             self.tupla)

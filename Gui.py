@@ -395,3 +395,5 @@ class Ui_MainWindow(object):
         self.tab_reporte.setTabText(self.tab_reporte.indexOf(self.tab_8), _translate("MainWindow", "Variables"))
         self.tab_reporte.setTabText(self.tab_reporte.indexOf(self.tab_9), _translate("MainWindow", "Gramatical"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_3), _translate("MainWindow", "Reporte"))
+if __name__ == "__main__":
+    pass

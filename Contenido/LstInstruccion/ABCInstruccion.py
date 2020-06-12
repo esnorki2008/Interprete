@@ -293,6 +293,9 @@ class Imprimir(Instruccion):
 
     def ejecutar(self):
         vaue: Valor = self.contenido.ejecutar()
-        global Ts
-        Ts.print(vaue.dar_valor())
-        print(vaue.dar_valor())
+        if vaue.dar_valor()!="\\n":
+            print(vaue.dar_valor())
+            global Ts
+            Ts.print(vaue.dar_valor())
+
+
