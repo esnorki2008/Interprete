@@ -1,7 +1,7 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtCore import QRect, QSize
 
-from PyQt5.QtWidgets import QPlainTextEdit, QWidget
+from PyQt5.QtWidgets import QPlainTextEdit, QWidget, QFileDialog
 
 from Contenido.LstInstruccion.ABCInstruccion import Ts
 from Contenido.LstInstruccion.ABCInstruccion import ListaInstruccion
@@ -174,7 +174,7 @@ class Ui_MainWindow(object):
         self.tab_reporte.setCurrentIndex(2)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
-        self.btn_abrir.clicked.connect(self.cargar)
+        self.btn_abrir.clicked.connect(self.abrir_archivo)
         self.btn_ejecutar.clicked.connect(self.parser)
 
         self.btn_guardar.clicked.connect(self.parser_descendente)
@@ -206,6 +206,12 @@ class Ui_MainWindow(object):
         # win.show()
         # sys.exit(app.exec_())
 
+    def abrir_archivo(self):
+        fname = QFileDialog.getOpenFileName()
+        f = open(fname[0], "r")
+        input: str = f.read()
+        self.color(input)
+
     def hola(self):
         print(self.txt_entrada.toPlainText())
 
@@ -234,23 +240,17 @@ class Ui_MainWindow(object):
         ini_span = "<span style=" + chr(34) + "color: #830495  " + chr(34) + ">"
         return re.sub(r"((if)|(goto)|(array))", ini_span + (r"\1") + "</span>", entrada)
 
-    def cargar(self):
-        self.txt_entrada.clear()
-        f = open("C:/Users/norki/Desktop/interprete/entrada.txt", "r")
-        # f = open("C:/Users/Esnorki/Desktop/interprete/entrada.txt", "r")
-        input: str = f.read()
-        self.txt_entrada.append(input)
 
-    def color(self):
+
+    def color(self,input):
 
         self.txt_entrada.clear()
-        f = open("C:/Users/norki/Desktop/interprete/entrada.txt", "r")
+        #f = open("C:/Users/norki/Desktop/interprete/entrada.txt", "r")
         # f = open("C:/Users/Esnorki/Desktop/interprete/entrada.txt", "r")
-        input: str = f.read()
+        #input: str = f.read()
 
         input = self.pintar_comentarios(input)
-
-        # input = self.pintar_valores(input)
+        #input = self.pintar_valores(input)
 
         input = self.pintar_reservadas_grises(input)
         input = self.pintar_reservadas_moradas(input)
@@ -272,10 +272,11 @@ class Ui_MainWindow(object):
 
     def parser_paso_iniciar(self):
         self.txt_consola.clear()
-        self.txt_entrada.clear()
-        f = open("C:/Users/norki/Desktop/interprete/entrada.txt", "r")
+        #self.txt_entrada.clear()
+        #f = open("C:/Users/norki/Desktop/interprete/entrada.txt", "r")
         # f = open("C:/Users/Esnorki/Desktop/interprete/entrada.txt", "r")
-        input: str = f.read()
+        #input: str = f.read()
+        input = self.txt_entrada.toPlainText()
         self.txt_entrada.append(input)
         global Ts
         Ts.guardar_consola(self.txt_consola)
@@ -286,7 +287,7 @@ class Ui_MainWindow(object):
         Ts.guardar_tabla_error(self.tabla_error)
         if raiz_produccion is not None:
             Ts.cargar_etiquetas(raiz_produccion)
-        self.color()
+        #self.color()
         self.graficar_arbol()
 
     raiz_global = None
@@ -314,14 +315,15 @@ class Ui_MainWindow(object):
     def parser(self):
         try:
             self.txt_consola.clear()
-            self.txt_entrada.clear()
-            f = open("C:/Users/norki/Desktop/interprete/entrada.txt", "r")
+            #self.txt_entrada.clear()
+            #f = open("C:/Users/norki/Desktop/interprete/entrada.txt", "r")
             # f = open("C:/Users/Esnorki/Desktop/interprete/entrada.txt", "r")
-            input: str = f.read()
-            self.txt_entrada.append(input)
+            #input: str = f.read()
+            #self.txt_entrada.append(input)
+
             global Ts
             Ts.guardar_consola(self.txt_consola)
-
+            input = self.txt_entrada.toPlainText()
             Ts.nueva_ejecucion(input)
             raiz_produccion: ListaInstruccion = analizar_ascendente(input)
             Ts.guardar_tabla_etiqueta(self.tabla_etiqueta)
@@ -345,14 +347,14 @@ class Ui_MainWindow(object):
     def parser_descendente(self):
         try:
             self.txt_consola.clear()
-            self.txt_entrada.clear()
-            f = open("C:/Users/norki/Desktop/interprete/entrada.txt", "r")
+            #self.txt_entrada.clear()
+            #f = open("C:/Users/norki/Desktop/interprete/entrada.txt", "r")
             # f = open("C:/Users/Esnorki/Desktop/interprete/entrada.txt", "r")
-            input: str = f.read()
-            self.txt_entrada.append(input)
+            #input: str = f.read()
+            #self.txt_entrada.append(input)
             global Ts
             Ts.guardar_consola(self.txt_consola)
-
+            input=self.txt_entrada.toPlainText()
             Ts.nueva_ejecucion(input)
             from Contenido.Analizadores.SintacticoDescendente import analizar_descendente
             raiz_produccion: ListaInstruccion = analizar_descendente(input)

@@ -137,14 +137,26 @@ class TablaDeSimbolos:
 
             for vari in self.lista_variables.items():
                 texto_nodo = "Id : $" + str(vari[0])
-
+                nuevo_nodo = None
                 if vari[1].tipo != 4:
                     if vari[1].tipo == 5:
                         texto_nodo += " Referencia : $" + str(vari[1].contenido.destino)
                         texto_nodo += "";
                     else:
                         texto_nodo += " Valor : " + str(vari[1].dar_valor())
-                nuevo_nodo = ArbolItem(texto_nodo, 8, color=QColor(7, 26, 142))
+                        nuevo_nodo = ArbolItem(texto_nodo, 8, color=QColor(7, 26, 142))
+                else:
+                    lista_nodo = []
+                    for item in vari[1].dar_valor().items() :
+                        iden =  "llave: "+str(item[0])+" "
+                        iden += "tipo: "+str(item[1].dar_tipo_str()+" ")
+                        iden += "valor: " + str(item[1].contenido)
+                        sub_nodo=ArbolItem(iden, 8, color=QColor(7, 26, 142))
+                        lista_nodo.append(sub_nodo)
+                    nuevo_nodo = ArbolItem(texto_nodo, 8, color=QColor(7, 26, 142))
+                    nuevo_nodo.appendRows(lista_nodo)
+
+
 
                 if vari[1].tipo == 0:
                     var_int.appendRow(nuevo_nodo)
@@ -222,12 +234,12 @@ class TablaDeSimbolos:
         if retorno is None:
             self.lista_variables[nombre] = Valor({}, 4)
             retorno = self.lista_variables.get(nombre, None)
-            retorno.guardar_arreglo(llaves, vaue)
+            retorno.guardar_arreglo(llaves, vaue,nombre,self)
         else:
             if retorno.tipo ==2 :
                 retorno.guardar_cadena_arreglo(llaves,nombre,self,vaue)
             elif retorno.tipo == 4:
-                retorno.guardar_arreglo(llaves, vaue)
+                retorno.guardar_arreglo(llaves, vaue ,nombre,self)
             elif retorno.tipo == 5:
                 self.arreglo_cambiar_valor(retorno.contenido.destino, llaves, vaue)
             else:
