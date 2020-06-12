@@ -2,6 +2,8 @@ from Contenido.LstInstruccion.Registro.Valor import Valor
 
 
 def xor_entero(param1: Valor, param2: Valor):
+    from Contenido.LstInstruccion.ABCInstruccion import Ts
+    global Ts
     tipo_resultante = 0
     rst = 0
     # Solo Se Pueden Valores Numericos
@@ -15,9 +17,15 @@ def xor_entero(param1: Valor, param2: Valor):
                 rst = 0
 
         else:
-            print("Error En La Operacion || Con Tipos: " + param1.dar_tipo_str() + "," + param2.dar_tipo_str())
+            Ts.cargar_error(
+                "Error En XOR Con Tipos: " + param1.dar_tipo_str() + "," + param2.dar_tipo_str(), 0,
+                ((0, 0)))
+            print("Error En La Operacion XOR Con Tipos: " + param1.dar_tipo_str() + "," + param2.dar_tipo_str())
 
     else:
-        print("Error En La Operacion || Con Tipos: " + param1.dar_tipo_str() + "," + param2.dar_tipo_str())
+        Ts.cargar_error(
+            "Error En XOR Con Tipos: " + param1.dar_tipo_str() + "," + param2.dar_tipo_str(), 0,
+            ((0, 0)))
+        print("Error En La Operacion XOR Con Tipos: " + param1.dar_tipo_str() + "," + param2.dar_tipo_str())
 
     return Valor(rst, tipo_resultante)

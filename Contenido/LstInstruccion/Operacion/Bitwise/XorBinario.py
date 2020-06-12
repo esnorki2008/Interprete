@@ -2,6 +2,8 @@ from Contenido.LstInstruccion.Registro.Valor import Valor
 
 
 def xor_binario(param1 : Valor, param2 : Valor):
+    from Contenido.LstInstruccion.ABCInstruccion import Ts
+    global Ts
     tipo_resultante = 0
     rst = 0
     #Solo Se Pueden Valores Numericos
@@ -12,9 +14,15 @@ def xor_binario(param1 : Valor, param2 : Valor):
             rst=param1.dar_valor() ^ param2.dar_valor()
 
         else:
-            print("Error En La Suma Con Tipos: "+param1.dar_tipo_str()+","+param2.dar_tipo_str())
+            print("Error En Xor Binario Con Tipos: "+param1.dar_tipo_str()+","+param2.dar_tipo_str())
+            Ts.cargar_error(
+                "Error En Xor Binario Con Tipos: " + param1.dar_tipo_str() + "," + param2.dar_tipo_str(), 0,
+                ((0, 0)))
 
     else:
-        print("Error En La Suma Con Tipos: " + param1.dar_tipo_str() + "," + param2.dar_tipo_str())
+        Ts.cargar_error(
+            "Error En Xor Binario Con Tipos: " + param1.dar_tipo_str() + "," + param2.dar_tipo_str(), 0,
+            ((0, 0)))
+        print("Error En Xor Binario Con Tipos: " + param1.dar_tipo_str() + "," + param2.dar_tipo_str())
 
     return Valor(rst, tipo_resultante)

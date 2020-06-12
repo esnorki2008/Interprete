@@ -27,13 +27,13 @@ class Ui_MainWindow(object):
         self.btn_guardar_como.setGeometry(QtCore.QRect(150, 10, 61, 41))
         self.btn_guardar_como.setObjectName("btn_guardar_como")
         self.btn_ejecutar = QtWidgets.QPushButton(self.centralwidget)
-        self.btn_ejecutar.setGeometry(QtCore.QRect(220, 10, 61, 41))
+        self.btn_ejecutar.setGeometry(QtCore.QRect(260, 10, 81, 41))
         self.btn_ejecutar.setObjectName("btn_ejecutar")
         self.btn_debug = QtWidgets.QPushButton(self.centralwidget)
-        self.btn_debug.setGeometry(QtCore.QRect(290, 10, 61, 41))
+        self.btn_debug.setGeometry(QtCore.QRect(530, 10, 61, 41))
         self.btn_debug.setObjectName("btn_debug")
         self.btn_siguiente_paso = QtWidgets.QPushButton(self.centralwidget)
-        self.btn_siguiente_paso.setGeometry(QtCore.QRect(360, 10, 61, 41))
+        self.btn_siguiente_paso.setGeometry(QtCore.QRect(600, 10, 61, 41))
         self.btn_siguiente_paso.setObjectName("btn_siguiente_paso")
         self.tabWidget = QtWidgets.QTabWidget(self.centralwidget)
         self.tabWidget.setGeometry(QtCore.QRect(10, 70, 711, 451))
@@ -150,14 +150,14 @@ class Ui_MainWindow(object):
         self.horizontalLayout_2.addWidget(self.tabla_error)
         self.scrollArea_5.setWidget(self.scrollAreaWidgetContents_5)
         self.tab_reporte.addTab(self.tab_6, "")
-        self.tab_8 = QtWidgets.QWidget()
-        self.tab_8.setObjectName("tab_8")
-        self.tab_reporte.addTab(self.tab_8, "")
         self.tab_9 = QtWidgets.QWidget()
         self.tab_9.setObjectName("tab_9")
         self.tab_reporte.addTab(self.tab_9, "")
         self.scrollArea.setWidget(self.scrollAreaWidgetContents)
         self.tabWidget.addTab(self.tab_3, "")
+        self.btn_ejecutar_desc = QtWidgets.QPushButton(self.centralwidget)
+        self.btn_ejecutar_desc.setGeometry(QtCore.QRect(380, 10, 81, 41))
+        self.btn_ejecutar_desc.setObjectName("btn_ejecutar_desc")
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
         self.menubar.setGeometry(QtCore.QRect(0, 0, 724, 21))
@@ -168,7 +168,7 @@ class Ui_MainWindow(object):
         MainWindow.setStatusBar(self.statusbar)
 
         self.retranslateUi(MainWindow)
-        self.tabWidget.setCurrentIndex(2)
+        self.tabWidget.setCurrentIndex(0)
         self.tabWidget_4.setCurrentIndex(0)
         self.tabWidget_2.setCurrentIndex(0)
         self.tab_reporte.setCurrentIndex(2)
@@ -177,8 +177,7 @@ class Ui_MainWindow(object):
         self.btn_abrir.clicked.connect(self.abrir_archivo)
         self.btn_ejecutar.clicked.connect(self.parser)
 
-        self.btn_guardar.clicked.connect(self.parser_descendente)
-
+        self.btn_ejecutar_desc.clicked.connect(self.parser_descendente)
         self.btn_debug.clicked.connect(self.parser_paso_iniciar)
         self.btn_siguiente_paso.clicked.connect(self.parser_paso_ejecutar)
     def graficar_arbol(self):
@@ -277,7 +276,7 @@ class Ui_MainWindow(object):
         # f = open("C:/Users/Esnorki/Desktop/interprete/entrada.txt", "r")
         #input: str = f.read()
         input = self.txt_entrada.toPlainText()
-        self.txt_entrada.append(input)
+        #self.txt_entrada.append(input)
         global Ts
         Ts.guardar_consola(self.txt_consola)
         Ts.nueva_ejecucion(input)
@@ -332,7 +331,7 @@ class Ui_MainWindow(object):
                 Ts.cargar_etiquetas(raiz_produccion)
                 Ts.ejecutar_main()
 
-            self.color()
+            #self.color()
             self.graficar_arbol()
 
             treeView = self.treeView
@@ -364,7 +363,7 @@ class Ui_MainWindow(object):
                 Ts.cargar_etiquetas(raiz_produccion)
                 Ts.ejecutar_main()
 
-            self.color()
+            #self.color()
             self.graficar_arbol()
 
             treeView = self.treeView
@@ -384,7 +383,8 @@ class Ui_MainWindow(object):
         self.btn_guardar.setText(_translate("MainWindow", "Guardar"))
         self.btn_guardar_como.setText(_translate("MainWindow", "Guardar\n"
                                                                "Como"))
-        self.btn_ejecutar.setText(_translate("MainWindow", "Ejecutar"))
+        self.btn_ejecutar.setText(_translate("MainWindow", "Ejecutar\n"
+"Ascendente"))
         self.btn_debug.setText(_translate("MainWindow", "Debug"))
         self.btn_siguiente_paso.setText(_translate("MainWindow", "Siguiente\n"
                                                                  "Paso"))
@@ -394,8 +394,9 @@ class Ui_MainWindow(object):
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_2), _translate("MainWindow", "Visualizar"))
         self.tab_reporte.setTabText(self.tab_reporte.indexOf(self.tab_4), _translate("MainWindow", "Etiquetas"))
         self.tab_reporte.setTabText(self.tab_reporte.indexOf(self.tab_6), _translate("MainWindow", "Errores"))
-        self.tab_reporte.setTabText(self.tab_reporte.indexOf(self.tab_8), _translate("MainWindow", "Variables"))
         self.tab_reporte.setTabText(self.tab_reporte.indexOf(self.tab_9), _translate("MainWindow", "Gramatical"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_3), _translate("MainWindow", "Reporte"))
+        self.btn_ejecutar_desc.setText(_translate("MainWindow", "Ejecutar\n"
+"Descendente"))
 if __name__ == "__main__":
     pass
