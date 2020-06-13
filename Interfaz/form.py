@@ -151,6 +151,9 @@ class Ui_MainWindow(object):
         self.tab_reporte.addTab(self.tab_6, "")
         self.tab_9 = QtWidgets.QWidget()
         self.tab_9.setObjectName("tab_9")
+        self.textEdit = QtWidgets.QTextEdit(self.tab_9)
+        self.textEdit.setGeometry(QtCore.QRect(10, 20, 631, 321))
+        self.textEdit.setObjectName("textEdit")
         self.tab_reporte.addTab(self.tab_9, "")
         self.scrollArea.setWidget(self.scrollAreaWidgetContents)
         self.tabWidget.addTab(self.tab_3, "")
@@ -167,7 +170,7 @@ class Ui_MainWindow(object):
         MainWindow.setStatusBar(self.statusbar)
 
         self.retranslateUi(MainWindow)
-        self.tabWidget.setCurrentIndex(0)
+        self.tabWidget.setCurrentIndex(2)
         self.tabWidget_4.setCurrentIndex(0)
         self.tabWidget_2.setCurrentIndex(0)
         self.tab_reporte.setCurrentIndex(2)

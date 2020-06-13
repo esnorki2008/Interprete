@@ -21,16 +21,15 @@ class ArbolItem(QStandardItem):
 class Errores:
     descripcion: str = None
     tipo: int = 110
-    tupla :()
+    tupla: ()
     exit_exec: int = 0
 
-    def __init__(self, descripcion, tipo,tupla):
+    def __init__(self, descripcion, tipo, tupla):
         self.descripcion = descripcion
         self.tipo = tipo
-        self.tupla=tupla
+        self.tupla = tupla
         # self.pos_x=pos_x
         # self.pos_y=pos_y
-
 
 
 # Tipo De Error Maximo 3
@@ -59,6 +58,8 @@ class TablaDeSimbolos:
         self.etiqueta_actual = ""
         self.lista_instrucciones = []
         self.recuperacion_etiquetas = []
+
+        self.reporte_gramatical_contenido = ""
 
         self.paso_lista_etiquetas = None
         self.paso_etiqueta_actual = "main";
@@ -147,16 +148,14 @@ class TablaDeSimbolos:
                         nuevo_nodo = ArbolItem(texto_nodo, 8, color=QColor(7, 26, 142))
                 else:
                     lista_nodo = []
-                    for item in vari[1].dar_valor().items() :
-                        iden =  "llave: "+str(item[0])+" "
-                        iden += "tipo: "+str(item[1].dar_tipo_str()+" ")
+                    for item in vari[1].dar_valor().items():
+                        iden = "llave: " + str(item[0]) + " "
+                        iden += "tipo: " + str(item[1].dar_tipo_str() + " ")
                         iden += "valor: " + str(item[1].contenido)
-                        sub_nodo=ArbolItem(iden, 8, color=QColor(7, 26, 142))
+                        sub_nodo = ArbolItem(iden, 8, color=QColor(7, 26, 142))
                         lista_nodo.append(sub_nodo)
                     nuevo_nodo = ArbolItem(texto_nodo, 8, color=QColor(7, 26, 142))
                     nuevo_nodo.appendRows(lista_nodo)
-
-
 
                 if vari[1].tipo == 0:
                     var_int.appendRow(nuevo_nodo)
@@ -194,7 +193,7 @@ class TablaDeSimbolos:
         if retorno is None:
             retorno = Valor(0, 0)
             print("El Registro " + nombre + " No Se Ha Inicializado")
-            self.cargar_error("El Registro " + nombre + " No Se Ha Inicializado", 0,(0,0))
+            self.cargar_error("El Registro " + nombre + " No Se Ha Inicializado", 0, (0, 0))
             return retorno
         else:
             if (retorno.tipo == 4):
@@ -206,7 +205,7 @@ class TablaDeSimbolos:
                 return retorno
 
     def cargar_error(self, descripcion: str, tipado: int, tupla):
-        self.lista_errores.append(Errores(descripcion, tipado,tupla))
+        self.lista_errores.append(Errores(descripcion, tipado, tupla))
 
     def variable_cambiar_valor(self, nombre: str, conte: Valor):
         if conte.tipo == 5:
@@ -234,21 +233,21 @@ class TablaDeSimbolos:
         if retorno is None:
             self.lista_variables[nombre] = Valor({}, 4)
             retorno = self.lista_variables.get(nombre, None)
-            retorno.guardar_arreglo(llaves, vaue,nombre,self)
+            retorno.guardar_arreglo(llaves, vaue, nombre, self)
         else:
-            if retorno.tipo ==2 :
-                retorno.guardar_cadena_arreglo(llaves,nombre,self,vaue)
+            if retorno.tipo == 2:
+                retorno.guardar_cadena_arreglo(llaves, nombre, self, vaue)
             elif retorno.tipo == 4:
-                retorno.guardar_arreglo(llaves, vaue ,nombre,self)
+                retorno.guardar_arreglo(llaves, vaue, nombre, self)
             elif retorno.tipo == 5:
                 self.arreglo_cambiar_valor(retorno.contenido.destino, llaves, vaue)
             else:
-                self.cargar_error("El Registro 11" + nombre +str(llaves) +" No Se Ha Inicializado", 0,(0,0))
+                self.cargar_error("El Registro 11" + nombre + str(llaves) + " No Se Ha Inicializado", 0, (0, 0))
 
     def eliminar_variable(self, nombre: str, llaves: []):
         retorno = self.lista_variables.get(nombre, None)
         if retorno is None:
-            self.cargar_error("El Registro " + nombre +str(llaves) + " No Se Ha Inicializado", 0,(0,0))
+            self.cargar_error("El Registro " + nombre + str(llaves) + " No Se Ha Inicializado", 0, (0, 0))
         else:
             if retorno.tipo == 4:
                 vaue: Valor = retorno
@@ -256,21 +255,19 @@ class TablaDeSimbolos:
             else:
                 self.lista_variables.pop(nombre, None)
 
-
-
     def arreglo_obtener_valor(self, nombre: str, llaves: []):
         retorno = self.lista_variables.get(nombre, None)
         if retorno is None:
             return Valor(0, 0)
         else:
-            if retorno.tipo ==2 :
-                return retorno.cadena_arreglo(llaves,nombre,self)
+            if retorno.tipo == 2:
+                return retorno.cadena_arreglo(llaves, nombre, self)
             elif retorno.tipo == 4:
                 return retorno.sacar_arreglo(llaves, nombre, self)
             elif retorno.tipo == 5:
                 return self.arreglo_obtener_valor(retorno.contenido.destino, llaves)
             else:
-                self.cargar_error("El Registro " + nombre + " No Se Ha Inicializado", 0,(0,0))
+                self.cargar_error("El Registro " + nombre + " No Se Ha Inicializado", 0, (0, 0))
 
     def cargar_etiquetas(self, raiz):
         if self.exit_exec == 0:
@@ -283,7 +280,7 @@ class TablaDeSimbolos:
         raiz.determinar_tipo_funcion()
         self.cargar_tabla_etiqueta(raiz.lst)
         for elemento in raiz.lst:
-            #print(str(elemento.tengo_retorno)+str(elemento.tengo_parametros))
+            # print(str(elemento.tengo_retorno)+str(elemento.tengo_parametros))
             self.lista_etiquetas[elemento.nombre] = elemento
 
     tabla_etiqueta = None
@@ -293,23 +290,23 @@ class TablaDeSimbolos:
         self.tabla_etiqueta = tabla
 
     def cargar_tabla_etiqueta(self, lst: []):
-        self.tabla_etiqueta.setRowCount(len(lst)+1)
+        self.tabla_etiqueta.setRowCount(len(lst) + 1)
         self.tabla_etiqueta.setColumnCount(4)
         from PyQt5.QtWidgets import QTableWidgetItem
         self.tabla_etiqueta.setItem(0, 0, QTableWidgetItem("Nombre"))
         self.tabla_etiqueta.setItem(0, 1, QTableWidgetItem("Tipo"))
         self.tabla_etiqueta.setItem(0, 2, QTableWidgetItem("columna"))
         self.tabla_etiqueta.setItem(0, 3, QTableWidgetItem("fila"))
-        conta=1
+        conta = 1
         for elemento in lst:
-            #print(elemento.tupla)
-            #print(str(elemento.tengo_retorno) + str(elemento.tengo_parametros))
-            f_tipo="Estructura De Control"
+            # print(elemento.tupla)
+            # print(str(elemento.tengo_retorno) + str(elemento.tengo_parametros))
+            f_tipo = "Estructura De Control"
             if elemento.tengo_retorno == True:
-                f_tipo="Función"
+                f_tipo = "Función"
             else:
                 if elemento.tengo_parametros == True:
-                    f_tipo="Procedimiento"
+                    f_tipo = "Procedimiento"
 
             self.tabla_etiqueta.setItem(conta, 0, QTableWidgetItem(elemento.nombre))
             self.tabla_etiqueta.setItem(conta, 1, QTableWidgetItem(f_tipo))
@@ -351,12 +348,12 @@ class TablaDeSimbolos:
 
     def ejecutar_main(self):
         if self.exit_exec == 0:
-            self.mensaje_info("Erro","No Se Puede Ejecutar Si Hay Error Sintactico")
+            self.mensaje_info("Erro", "No Se Puede Ejecutar Si Hay Error Sintactico")
             return
         maincito = self.lista_etiquetas.get("main", None)
         if maincito is None:
-            self.mensaje_info("Erro","No Se Puede Ejecutar Si No Se Define MAIN")
-            self.cargar_error("No Se Puede Ejecutar Si No Hay Main", 0,(0,0))
+            self.mensaje_info("Erro", "No Se Puede Ejecutar Si No Se Define MAIN")
+            self.cargar_error("No Se Puede Ejecutar Si No Hay Main", 0, (0, 0))
         else:
             # exec = maincito.ejecutar()
             exec = "main"
@@ -368,7 +365,7 @@ class TablaDeSimbolos:
                     exec = self.lista_etiquetas.get(exec, None)
                     if exec is None:
                         print("No Se Puede Ejecutar La Etiqueta " + str(temp))
-                        self.cargar_error("No Se Puede Ejecutar La Etiqueta " + temp, 0,(0,0))
+                        self.cargar_error("No Se Puede Ejecutar La Etiqueta " + temp, 0, (0, 0))
                     else:
                         exec = exec.ejecutar()
                         # BORRAR SI DA ERROR
@@ -391,8 +388,8 @@ class TablaDeSimbolos:
         self.cargar_errores()
         self.mensaje_info("Informacion", "Ejecucion Completada")
 
-    def mensaje_info(self,Titulo,Texto):
-        #return
+    def mensaje_info(self, Titulo, Texto):
+        # return
         from PyQt5.QtWidgets import QMessageBox
         msg = QMessageBox()
         msg.setIcon(QMessageBox.Information)
@@ -400,17 +397,16 @@ class TablaDeSimbolos:
         msg.setText(Texto)
         msg.exec_()
 
-
     def paso_a_paso_ejecutar(self):
         if self.exit_exec == 0:
             self.cargar_errores()
-            self.mensaje_info("Erro","No Se Puede Ejecutar Si Hay Error Sintactico")
+            self.mensaje_info("Erro", "No Se Puede Ejecutar Si Hay Error Sintactico")
             return None
 
         maincito = self.lista_etiquetas.get("main", None)
         if maincito is None:
             print("No Se Puede Ejecutar Si No Hay Main")
-            self.cargar_error("No Se Puede Ejecutar Si No Hay Main", 0,(0,0))
+            self.cargar_error("No Se Puede Ejecutar Si No Hay Main", 0, (0, 0))
         else:
             # exec = maincito.ejecutar()
 
@@ -423,7 +419,7 @@ class TablaDeSimbolos:
 
                 if exec is None:
                     print("No Se Puede Ejecutar La Etiqueta " + str(temp))
-                    self.cargar_error("No Se Puede Ejecutar La Etiqueta " + temp, 0,(0,0))
+                    self.cargar_error("No Se Puede Ejecutar La Etiqueta " + temp, 0, (0, 0))
                 else:
                     # print(exec)
                     exec = exec.paso_a_paso_ejecutar(self.paso_instruccion_actual)
@@ -457,3 +453,18 @@ class TablaDeSimbolos:
         return None
         # TERMINAR BORRADO
 
+    reporte_gramatical_contenido = ""
+
+    def rp_nuevo_nodo(self, produ,regla):
+        novo_nodo="<tr>\n <td>" +produ+"</td> \n"
+        novo_nodo+="<td>"+regla+"</td> \n </tr>\n"
+        self.reporte_gramatical_contenido = novo_nodo + self.reporte_gramatical_contenido
+
+    def rp_cabecera(self):
+        cabe =""
+        #cabe +="digraph { \n tbl [ \n shape=plaintext \n label=<"
+        cabe +="<table border='1' cellborder='1' color='blacks' cellspacing='0'>"
+        cabe += "<tr> \n <td>Producción</td> \n <td>Regla Semantica</td> \n </tr>"
+        cabe+=self.reporte_gramatical_contenido
+        cabe+="</table> "#\n >]; \n}"
+        return cabe

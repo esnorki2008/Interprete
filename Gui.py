@@ -152,6 +152,9 @@ class Ui_MainWindow(object):
         self.tab_reporte.addTab(self.tab_6, "")
         self.tab_9 = QtWidgets.QWidget()
         self.tab_9.setObjectName("tab_9")
+        self.textEdit = QtWidgets.QTextEdit(self.tab_9)
+        self.textEdit.setGeometry(QtCore.QRect(10, 20, 631, 321))
+        self.textEdit.setObjectName("textEdit")
         self.tab_reporte.addTab(self.tab_9, "")
         self.scrollArea.setWidget(self.scrollAreaWidgetContents)
         self.tabWidget.addTab(self.tab_3, "")
@@ -270,25 +273,40 @@ class Ui_MainWindow(object):
         # print(self.txt_entrada.toPlainText())
 
     def parser_paso_iniciar(self):
-        self.txt_consola.clear()
-        #self.txt_entrada.clear()
-        #f = open("C:/Users/norki/Desktop/interprete/entrada.txt", "r")
-        # f = open("C:/Users/Esnorki/Desktop/interprete/entrada.txt", "r")
-        #input: str = f.read()
-        input = self.txt_entrada.toPlainText()
-        #self.txt_entrada.append(input)
-        global Ts
-        Ts.guardar_consola(self.txt_consola)
-        Ts.nueva_ejecucion(input)
-        raiz_produccion: ListaInstruccion = analizar_ascendente(input)
-        self.raiz_global = raiz_produccion
-        Ts.guardar_tabla_etiqueta(self.tabla_etiqueta)
-        Ts.guardar_tabla_error(self.tabla_error)
-        if raiz_produccion is not None:
-            Ts.cargar_etiquetas(raiz_produccion)
-        #self.color()
-        self.graficar_arbol()
+        try:
+            self.txt_consola.clear()
+            #self.txt_entrada.clear()
+            #f = open("C:/Users/norki/Desktop/interprete/entrada.txt", "r")
+            # f = open("C:/Users/Esnorki/Desktop/interprete/entrada.txt", "r")
+            #input: str = f.read()
+            input = self.txt_entrada.toPlainText()
+            #self.txt_entrada.append(input)
+            global Ts
+            Ts.guardar_consola(self.txt_consola)
+            Ts.nueva_ejecucion(input)
+            raiz_produccion: ListaInstruccion = analizar_ascendente(input)
+            self.raiz_global = raiz_produccion
+            Ts.guardar_tabla_etiqueta(self.tabla_etiqueta)
+            Ts.guardar_tabla_error(self.tabla_error)
+            if raiz_produccion is not None:
+                Ts.cargar_etiquetas(raiz_produccion)
+            else :
+                Ts.mensaje_info("Error", "Error En El Codigo")
+            #self.color()
+            self.graficar_arbol()
 
+            treeView = self.treeView
+            treeView.setHeaderHidden(True)
+            Ts.guardar_arbol(treeView)
+            Ts.actualizar_arbol()
+
+
+            self.textEdit.clear()
+            self.textEdit.append("<div contenteditable>" + Ts.rp_cabecera() + "</div>")
+        except:
+            import sys
+            Ts.mensaje_info("Error", "Error Durante El Analisis")
+            print("Oops!", sys.exc_info()[0], "occurred.")
     raiz_global = None
 
     def parser_paso_ejecutar(self):
@@ -305,10 +323,13 @@ class Ui_MainWindow(object):
                 treeView.setHeaderHidden(True)
                 Ts.guardar_arbol(treeView)
                 Ts.actualizar_arbol()
+            else :
+                Ts.mensaje_info("Error", "Error En El Codigo")
 
 
         except:
             import sys
+            Ts.mensaje_info("Error", "Error Durante El Analisis")
             print("Oops!", sys.exc_info()[0], "occurred.")
 
     def parser(self):
@@ -330,6 +351,8 @@ class Ui_MainWindow(object):
             if raiz_produccion is not None:
                 Ts.cargar_etiquetas(raiz_produccion)
                 Ts.ejecutar_main()
+            else :
+                Ts.mensaje_info("Error", "Error En El Codigo ")
 
             #self.color()
             self.graficar_arbol()
@@ -338,8 +361,12 @@ class Ui_MainWindow(object):
             treeView.setHeaderHidden(True)
             Ts.guardar_arbol(treeView)
             Ts.actualizar_arbol()
+
+            self.textEdit.clear()
+            self.textEdit.append("<div contenteditable>"+Ts.rp_cabecera()+"</div>")
         except:
             import sys
+            Ts.mensaje_info("Error", "Error Durante El Analisis")
             print("Oops!", sys.exc_info()[0], "occurred.")
 
 
@@ -362,6 +389,9 @@ class Ui_MainWindow(object):
             if raiz_produccion is not None:
                 Ts.cargar_etiquetas(raiz_produccion)
                 Ts.ejecutar_main()
+            else :
+                Ts.mensaje_info("Error", "Error En El Codigo")
+
 
             #self.color()
             self.graficar_arbol()
@@ -370,8 +400,12 @@ class Ui_MainWindow(object):
             treeView.setHeaderHidden(True)
             Ts.guardar_arbol(treeView)
             Ts.actualizar_arbol()
+
+            self.textEdit.clear()
+            self.textEdit.append("<div contenteditable>" + Ts.rp_cabecera() + "</div>")
         except:
             import sys
+            Ts.mensaje_info("Error", "Error Durante El Analisis")
             print("Oops!", sys.exc_info()[0], "occurred.")
 
 

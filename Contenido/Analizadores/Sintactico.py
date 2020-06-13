@@ -24,17 +24,23 @@ precedence = (
 def p_inicio(t):
     'inicio    : etiquetas'
     t[0] = t[1]
-
+    global Ts
+    Ts.rp_nuevo_nodo('inicio    : etiquetas',"t[0] = t[1]")
 
 def p_etiquetas_lista(t):
     'etiquetas : etiquetas etiqueta'
     t[0] = t[1]
     t[0].agregar(t[2])
 
+    global Ts
+    Ts.rp_nuevo_nodo('etiquetas : etiquetas etiqueta', "t[0] = t[1] \n t[0].agregar(t[2]) ")
 
 def p_etiquetas_lista_inicio(t):
     'etiquetas : etiqueta'
     t[0] = ABCInstruccion.ListaEtiqueta([t[1]])
+
+    global Ts
+    Ts.rp_nuevo_nodo('etiquetas : etiqueta', "t[0] = ABCInstruccion.ListaEtiqueta([t[1]])")
 
 
 def p_etiqueta_contenido(t):
@@ -42,15 +48,15 @@ def p_etiqueta_contenido(t):
     t[0] = Etiqueta(t[3], t[1])
     global Ts
     Ts.consolidar_etiqueta()
-
     t[0].n_t(find_column(Ts.texto_analisis, t.slice[1]))
-
+    Ts.rp_nuevo_nodo('etiqueta : IDENTIFICADOR ideti  instrucciones', "t[0] = Etiqueta(t[3], t[1])")
 
 def p_etiqueta_id_error(t):
     'ideti : DOBLEPUNTO'
     global Ts
     Ts.nueva_etiqueta(t[-1])
 
+    Ts.rp_nuevo_nodo('ideti : DOBLEPUNTO', "Ts.nueva_etiqueta(t[-1]))")
 
 def p_etiqueta_principal(t):
     'etiqueta : MAIN ideti  instrucciones'
@@ -59,6 +65,7 @@ def p_etiqueta_principal(t):
     Ts.consolidar_etiqueta()
     t[0].n_t(find_column(Ts.texto_analisis, t.slice[1]))
 
+    Ts.rp_nuevo_nodo('etiqueta : MAIN ideti  instrucciones', "t[0] = Etiqueta(t[3], t[1])")
 
 def p_instrucciones_lista(t):
     'instrucciones :  instrucciones instruccion '
@@ -66,13 +73,13 @@ def p_instrucciones_lista(t):
     t[0].agregar(t[2])
     global Ts
     Ts.nueva_instruaccion(t[2])
-
+    Ts.rp_nuevo_nodo('instrucciones :  instrucciones instruccion ', "t[0] = Etiqueta(t[3], t[1])")
 
 def p_instrucciones_lista_inicio(t):
-    'instrucciones : instruccion '
-    t[0] = ABCInstruccion.ListaInstruccion([t[1]])
+    'instrucciones :  '
+    t[0] = ABCInstruccion.ListaInstruccion([])
     global Ts
-    Ts.nueva_instruaccion(t[1])
+    Ts.rp_nuevo_nodo('instrucciones :  ', "t[0] = ABCInstruccion.ListaInstruccion([])")
 
 
 def p_instrucciones_exit(t):
@@ -81,7 +88,7 @@ def p_instrucciones_exit(t):
 
     global Ts
     t[0].n_t(find_column(Ts.texto_analisis, t.slice[1]))
-
+    Ts.rp_nuevo_nodo('instruccion :  EXIT PUNTOCOMA', "t[0] = Exit()")
 
 def p_instrucciones_imprimir(t):
     'instruccion :  IMPRIMIR  PARA expresion PARC PUNTOCOMA'
@@ -89,7 +96,7 @@ def p_instrucciones_imprimir(t):
 
     global Ts
     t[0].n_t(find_column(Ts.texto_analisis, t.slice[1]))
-
+    Ts.rp_nuevo_nodo('instruccion :  IMPRIMIR  PARA expresion PARC PUNTOCOMA', "t[0] = ABCInstruccion.Imprimir(t[3])")
 
 def p_instrucciones_unset(t):
     'instruccion :  UNSET  PARA DOLAR IDENTIFICADOR arra PARC PUNTOCOMA'
@@ -98,7 +105,7 @@ def p_instrucciones_unset(t):
 
     global Ts
     t[0].n_t(find_column(Ts.texto_analisis, t.slice[1]))
-
+    Ts.rp_nuevo_nodo('instruccion :  UNSET  PARA DOLAR IDENTIFICADOR arra PARC PUNTOCOMA', "t[0] = Unset(t[4])")
 
 def p_instrucciones_asignar(t):
     'instruccion :  DOLAR  IDENTIFICADOR arra IGUAL expresion PUNTOCOMA'
@@ -107,18 +114,22 @@ def p_instrucciones_asignar(t):
 
     global Ts
     t[0].n_t(find_column(Ts.texto_analisis, t.slice[1]))
-
+    Ts.rp_nuevo_nodo('instruccion :  DOLAR  IDENTIFICADOR arra IGUAL expresion PUNTOCOMA', "t[0] = Asignar(t[2], t[5])")
 
 def p_arreglo_indice(t):
     'arra : CORA expresion CORC  arra '
     t[0] = t[4]
     t[0].append(t[2])
 
+    global Ts
+    Ts.rp_nuevo_nodo('arra : CORA expresion CORC  arra ', "t[0] = t[4] t[0].append(t[2])")
 
 def p_arreglo_indice_epsilon(t):
     'arra : '
     t[0] = []
 
+    global Ts
+    Ts.rp_nuevo_nodo('arra : ', "t[0] = []")
 
 def p_instrucciones_goto(t):
     'instruccion :  GOTO  IDENTIFICADOR  PUNTOCOMA'
@@ -126,7 +137,7 @@ def p_instrucciones_goto(t):
 
     global Ts
     t[0].n_t(find_column(Ts.texto_analisis, t.slice[1]))
-
+    Ts.rp_nuevo_nodo('instruccion :  GOTO  IDENTIFICADOR  PUNTOCOMA', "t[0] = Goto(t[2])")
 
 def p_instrucciones_if(t):
     'instruccion :  IF   expresion  instruccion  '
@@ -134,7 +145,7 @@ def p_instrucciones_if(t):
 
     global Ts
     t[0].n_t(find_column(Ts.texto_analisis, t.slice[1]))
-
+    Ts.rp_nuevo_nodo('instruccion :  IF   expresion  instruccion  ', "t[0] = If(t[2], t[3])")
 
 # HASTA AQUI HAY GRAFICA
 def p_expresion_binaria(t):
@@ -168,12 +179,14 @@ def p_expresion_binaria(t):
 
     global Ts
     t[0].n_t(find_column(Ts.texto_analisis, t.slice[2]))
-
+    Ts.rp_nuevo_nodo('expresion : valor '+str(t[2])+ ' valor', "t[0] = ABCInstruccion.ExpresionDoble(t[1], t[2], t[3])")
 
 def p_expresion_sola(t):
     'expresion :  valor'
     t[0] = t[1]
 
+    global Ts
+    Ts.rp_nuevo_nodo('expresion :  valor',"t[0] = t[1]")
 
 def p_expresion_unaria(t):
     '''expresion : MENOS valor
@@ -195,6 +208,7 @@ def p_expresion_unaria(t):
 
     global Ts
     t[0].n_t(find_column(Ts.texto_analisis, t.slice[1]))
+    Ts.rp_nuevo_nodo('expresion : '+str(t[1])+'valor', "t[0] = ABCInstruccion.ExpresionSimpleOperacion(t[3], t[1])")
 
 
 def p_expresion_agrupacion(t):
@@ -206,11 +220,14 @@ def p_expresion_agrupacion(t):
 
     global Ts
     t[0].n_t(find_column(Ts.texto_analisis, t.slice[1]))
-
+    Ts.rp_nuevo_nodo('expresion : PARA' + str(t[2]) + 'PARC valor', "t[0] = ABCInstruccion.ExpresionSimpleOperacion(t[4], t[2])")
 
 def p_expresion_parentesis(t):
     'expresion : PARA expresion PARC'
     t[0] = t[2]
+
+    global Ts
+    Ts.rp_nuevo_nodo('expresion : PARA expresion PARC',"t[0] = t[2]")
 
 
 def p_expresion_entero(t):
@@ -220,7 +237,7 @@ def p_expresion_entero(t):
 
     global Ts
     t[0].n_t(find_column(Ts.texto_analisis, t.slice[1]))
-
+    Ts.rp_nuevo_nodo('valor    : ENTERO', "t[0] = ABCInstruccion.Valor(t[1], 0)")
 
 def p_expresion_decimal(t):
     'valor    : DECIMAL'
@@ -229,6 +246,7 @@ def p_expresion_decimal(t):
 
     global Ts
     t[0].n_t(find_column(Ts.texto_analisis, t.slice[1]))
+    Ts.rp_nuevo_nodo('valor    : DECIMAL', "t[0] = ABCInstruccion.Valor(t[1], 1)")
 
 def p_expresion_cadena(t):
     'valor    : CADENA'
@@ -237,6 +255,7 @@ def p_expresion_cadena(t):
 
     global Ts
     t[0].n_t(find_column(Ts.texto_analisis, t.slice[1]))
+    Ts.rp_nuevo_nodo('valor    : CADENA', "t[0] = ABCInstruccion.Valor(t[1], 2)")
 
 
 def p_expresion_valor_unico_variable(t):
@@ -246,7 +265,7 @@ def p_expresion_valor_unico_variable(t):
 
     global Ts
     t[0].n_t(find_column(Ts.texto_analisis, t.slice[1]))
-
+    Ts.rp_nuevo_nodo('valor    : DOLAR IDENTIFICADOR arra', "t[0] = VariableValor(t[2])")
 
 def find_column(input, token):
     if token is None:

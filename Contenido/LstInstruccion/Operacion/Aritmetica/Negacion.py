@@ -9,10 +9,8 @@ def negar(param1 : Valor):
     #Solo Se Pueden Valores Numericos
     if(param1.tipo==0):
         tipo_resultante=param1.tipo
-        if param1.dar_valor() == 1 :
-            rst =0;
-        else :
-            rst=1;
+        rst=param1.dar_valor()*-1
+        
 
     else:
         Ts.cargar_error("Error En La Negacion Con Tipos: " + param1.dar_tipo_str(), 0,

@@ -105,7 +105,7 @@ Paso</string>
      </rect>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>2</number>
     </property>
     <widget class="QWidget" name="tab">
      <attribute name="title">
@@ -377,6 +377,16 @@ Paso</string>
          <attribute name="title">
           <string>Gramatical</string>
          </attribute>
+         <widget class="QTextEdit" name="textEdit">
+          <property name="geometry">
+           <rect>
+            <x>10</x>
+            <y>20</y>
+            <width>631</width>
+            <height>321</height>
+           </rect>
+          </property>
+         </widget>
         </widget>
        </widget>
       </widget>
