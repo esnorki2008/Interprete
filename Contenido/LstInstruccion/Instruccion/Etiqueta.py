@@ -33,6 +33,12 @@ class Etiqueta(Instruccion):
         exec = self.lst.ejecutar()
         return exec
 
+    def buscar_var_referencia(self,nombre):
+        if self.lst.buscar_var_referencia(nombre) is not None:
+            return  self.nombre
+        else:
+            return None
+
     def str_arbol(self):
         rst = self.lst.str_arbol()
         rst += str(id(self)) + "[shape=rect,sides=4,skew=.4,label=\"" + str(self.nombre) + "\"]\n"

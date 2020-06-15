@@ -179,6 +179,8 @@ class Ui_MainWindow(object):
 
         self.btn_abrir.clicked.connect(self.abrir_archivo)
         self.btn_ejecutar.clicked.connect(self.parser)
+        self.btn_guardar_como.clicked.connect(self.guardar_archivo_como)
+        self.btn_guardar.clicked.connect(self.guardar_archivo)
 
         self.btn_ejecutar_desc.clicked.connect(self.parser_descendente)
         self.btn_debug.clicked.connect(self.parser_paso_iniciar)
@@ -207,12 +209,35 @@ class Ui_MainWindow(object):
         # win.setWindowTitle("QPixmap Demo")
         # win.show()
         # sys.exit(app.exec_())
+    archivo_actual=None
+    def guardar_archivo(self):
+        if self.archivo_actual is None:
+            self.guardar_archivo_como()
+        else:
+            file = open(self.archivo_actual, 'w')
+            text = self.txt_entrada.toPlainText()
+            file.write(text)
+            self.color(text)
+
+    def guardar_archivo_como(self):
+        try:
+            fname = QFileDialog.getSaveFileName()
+            file = open(fname[0], 'w')
+            text = self.txt_entrada.toPlainText()
+            file.write(text)
+            self.color(text)
+        except:
+            pass
 
     def abrir_archivo(self):
-        fname = QFileDialog.getOpenFileName()
-        f = open(fname[0], "r")
-        input: str = f.read()
-        self.color(input)
+        try:
+            fname = QFileDialog.getOpenFileName()
+            f = open(fname[0], "r")
+            input: str = f.read()
+            self.color(input)
+            self.archivo_actual = fname[0]
+        except:
+            pass
 
     def hola(self):
         print(self.txt_entrada.toPlainText())
@@ -279,7 +304,10 @@ class Ui_MainWindow(object):
             #f = open("C:/Users/norki/Desktop/interprete/entrada.txt", "r")
             # f = open("C:/Users/Esnorki/Desktop/interprete/entrada.txt", "r")
             #input: str = f.read()
-            input = self.txt_entrada.toPlainText()
+            dim = self.txt_entrada.toPlainText()
+            self.txt_entrada.clear()
+            self.txt_entrada.append(self.color(dim))
+            input = dim
             #self.txt_entrada.append(input)
             global Ts
             Ts.guardar_consola(self.txt_consola)
@@ -324,7 +352,7 @@ class Ui_MainWindow(object):
                 Ts.guardar_arbol(treeView)
                 Ts.actualizar_arbol()
             else :
-                Ts.mensaje_info("Error", "Error En El Codigo")
+                Ts.mensaje_info("Ejecucion", "No hay nada que ejecutar")
 
 
         except:
@@ -343,7 +371,12 @@ class Ui_MainWindow(object):
 
             global Ts
             Ts.guardar_consola(self.txt_consola)
-            input = self.txt_entrada.toPlainText()
+
+            dim=self.txt_entrada.toPlainText()
+            self.txt_entrada.clear()
+            self.txt_entrada.append(self.color(dim))
+            input = dim
+
             Ts.nueva_ejecucion(input)
             raiz_produccion: ListaInstruccion = analizar_ascendente(input)
             Ts.guardar_tabla_etiqueta(self.tabla_etiqueta)
@@ -380,7 +413,10 @@ class Ui_MainWindow(object):
             #self.txt_entrada.append(input)
             global Ts
             Ts.guardar_consola(self.txt_consola)
-            input=self.txt_entrada.toPlainText()
+            dim = self.txt_entrada.toPlainText()
+            self.txt_entrada.clear()
+            self.txt_entrada.append(self.color(dim))
+            input = dim
             Ts.nueva_ejecucion(input)
             from Contenido.Analizadores.SintacticoDescendente import analizar_descendente
             raiz_produccion: ListaInstruccion = analizar_descendente(input)

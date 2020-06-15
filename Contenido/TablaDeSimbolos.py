@@ -145,7 +145,8 @@ class TablaDeSimbolos:
                         texto_nodo += "";
                     else:
                         texto_nodo += " Valor : " + str(vari[1].dar_valor())
-                        nuevo_nodo = ArbolItem(texto_nodo, 8, color=QColor(7, 26, 142))
+                    texto_nodo+=" Dimension : 0"
+                    nuevo_nodo = ArbolItem(texto_nodo, 8, color=QColor(7, 26, 142))
                 else:
                     lista_nodo = []
                     for item in vari[1].dar_valor().items():
@@ -154,8 +155,21 @@ class TablaDeSimbolos:
                         iden += "valor: " + str(item[1].contenido)
                         sub_nodo = ArbolItem(iden, 8, color=QColor(7, 26, 142))
                         lista_nodo.append(sub_nodo)
+                    texto_nodo+=" Dimension: "+vari[1].dimension()
                     nuevo_nodo = ArbolItem(texto_nodo, 8, color=QColor(7, 26, 142))
                     nuevo_nodo.appendRows(lista_nodo)
+
+                nodo_ref = ArbolItem("Referencias", 12, set_bold=True, color=QColor(0, 0, 0))
+
+                for cada in self.lista_etiquetas.items():
+
+                    busqueda=cada[1].buscar_var_referencia(str(vari[0]))
+                    if busqueda is not None:
+                        temp_ref_nodo=ArbolItem(str(cada[0]), 8, color=QColor(7, 26, 142))
+                        nodo_ref.appendRow(temp_ref_nodo)
+
+                nuevo_nodo.appendRow(nodo_ref)
+
 
                 if vari[1].tipo == 0:
                     var_int.appendRow(nuevo_nodo)

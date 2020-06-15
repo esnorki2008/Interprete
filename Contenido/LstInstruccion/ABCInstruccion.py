@@ -57,6 +57,8 @@ class Instruccion(ABC):
     def detener_ejecucion(self):
         return 0
 
+    def buscar_var_referencia(self,nombre):
+        return  None
 
 class ListaEtiqueta(Instruccion):
     lst = []
@@ -93,6 +95,7 @@ class ListaEtiqueta(Instruccion):
 
     def agregar(self, nuevo: Instruccion):
         self.lst.append(nuevo)
+
 
 
 class ListaInstruccion(Instruccion):
@@ -142,6 +145,12 @@ class ListaInstruccion(Instruccion):
     def agregar(self, nuevo: Instruccion):
         self.lst.append(nuevo)
 
+    def buscar_var_referencia(self,nombre):
+        for elemento in self.lst:
+            exec = elemento.buscar_var_referencia(nombre)
+            if exec != None:
+                return exec
+        return None
 
 class ExpresionDoble(Instruccion):
     hijo_izquierdo: Instruccion = None

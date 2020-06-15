@@ -276,14 +276,35 @@ def find_column(input, token):
 
 def p_error(t):
     global Ts
+    if t is None :
+        Ts.cargar_error("Se Alcanzo El Fin Del Archivo", 20, (0,0))
+        return
+
     Ts.exit_exec = 0
     tup=find_column(Ts.texto_analisis, t)
     Ts.cargar_error("El token con lexema \""+str(t.value)+"\" de tipo \""+str(t.type)+" \" ocasiono un  error sintactico",20,tup)
     print("Error sintáctico en '%s'" % t)
 
 
+
+    # Read ahead looking for a closing '}'
+    #t.lexer.skip(1)
+    global  parsito
+
+    while True:
+        tok = parsito.token()  # Get the next token
+        #print(tok)
+        if not tok or tok.type == 'PUNTOCOMA':
+            break
+
+    tok=parsito.token()
+    parsito.errok()
+
+
+parsito=None
 def analizar_ascendente(input: str):
     # Construyendo el analizador léxico
     lexer = lex.lex()
-    parser = yacc.yacc()
-    return parser.parse(input)
+    global parsito
+    parsito = yacc.yacc()
+    return parsito.parse(input)

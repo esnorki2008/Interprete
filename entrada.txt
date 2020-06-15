@@ -1,3 +1,4 @@
 main:
-	$t=50;
-	$t="hola"+50;
+$t=50;
+$t="hola"+50; 
+print("HOLA MUNDO");

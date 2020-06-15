@@ -13,6 +13,12 @@ class Asignar(Instruccion):
         self.origen = origen
         self.lst = []
 
+    def buscar_var_referencia(self, nombre):
+        if nombre == self.destino:
+            return True
+        else:
+            return None
+
     def determinar_tipo_funcion(self):
         if self.destino[0] == "v":
             return "v"
