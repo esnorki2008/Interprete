@@ -304,7 +304,12 @@ class Imprimir(Instruccion):
         vaue: Valor = self.contenido.ejecutar()
         if vaue.dar_valor()!="\\n":
             print(vaue.dar_valor())
+
             global Ts
+
+            if(vaue.tipo==4) :
+                Ts.cargar_error("No Se Puede Imprimir Arreglos",0,(0,0))
+                return
             Ts.print(vaue.dar_valor())
 
 
