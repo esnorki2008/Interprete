@@ -220,19 +220,27 @@ class Ui_MainWindow(object):
         self.tabWidget_2.setCurrentIndex(0)
         self.tab_reporte.setCurrentIndex(2)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
-
+        #Para Abrir,Guardar,Como
         self.btn_abrir.clicked.connect(self.abrir_archivo)
-        self.btn_ejecutar.clicked.connect(self.parser)
+        self.actionGuardar.triggered.connect(self.abrir_archivo)
         self.btn_guardar_como.clicked.connect(self.guardar_archivo_como)
+        self.actionGuardar_Como_2.triggered.connect(self.guardar_archivo_como)
+        self.actionGuardar_Como.triggered.connect(self.guardar_archivo)
         self.btn_guardar.clicked.connect(self.guardar_archivo)
-
+        #Ejecucion
+        self.btn_ejecutar.clicked.connect(self.parser)
+        self.actionAscendente.triggered.connect(self.parser)
         self.btn_ejecutar_desc.clicked.connect(self.parser_descendente)
+        self.actionDescendente.triggered.connect(self.parser_descendente)
         self.btn_debug.clicked.connect(self.parser_paso_iniciar)
+        self.actionReiniciar_Debug.triggered.connect(self.parser_paso_iniciar)
         self.btn_siguiente_paso.clicked.connect(self.parser_paso_ejecutar)
+        self.actionSiguiente_Paso_Debug.triggered.connect(self.parser_paso_ejecutar)
 
         self.txt_entrada.cursorPositionChanged.connect(self.h)
         self.txt_entrada.textChanged.connect(self.h)
         self.txt_entrada.selectionChanged.connect(self.h)
+
     def h(self):
         verti = self.txt_entrada.verticalScrollBar()
         ver=verti.value()
