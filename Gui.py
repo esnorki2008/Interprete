@@ -14,50 +14,65 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(724, 588)
+        MainWindow.resize(1074, 588)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.btn_abrir = QtWidgets.QPushButton(self.centralwidget)
-        self.btn_abrir.setGeometry(QtCore.QRect(10, 10, 61, 41))
+        self.btn_abrir.setGeometry(QtCore.QRect(970, 20, 61, 41))
         self.btn_abrir.setObjectName("btn_abrir")
         self.btn_guardar = QtWidgets.QPushButton(self.centralwidget)
-        self.btn_guardar.setGeometry(QtCore.QRect(80, 10, 61, 41))
+        self.btn_guardar.setGeometry(QtCore.QRect(970, 70, 61, 41))
         self.btn_guardar.setObjectName("btn_guardar")
         self.btn_guardar_como = QtWidgets.QPushButton(self.centralwidget)
-        self.btn_guardar_como.setGeometry(QtCore.QRect(150, 10, 61, 41))
+        self.btn_guardar_como.setGeometry(QtCore.QRect(970, 120, 61, 41))
         self.btn_guardar_como.setObjectName("btn_guardar_como")
         self.btn_ejecutar = QtWidgets.QPushButton(self.centralwidget)
-        self.btn_ejecutar.setGeometry(QtCore.QRect(260, 10, 81, 41))
+        self.btn_ejecutar.setGeometry(QtCore.QRect(960, 220, 81, 41))
         self.btn_ejecutar.setObjectName("btn_ejecutar")
         self.btn_debug = QtWidgets.QPushButton(self.centralwidget)
-        self.btn_debug.setGeometry(QtCore.QRect(530, 10, 61, 41))
+        self.btn_debug.setGeometry(QtCore.QRect(970, 320, 61, 41))
         self.btn_debug.setObjectName("btn_debug")
         self.btn_siguiente_paso = QtWidgets.QPushButton(self.centralwidget)
-        self.btn_siguiente_paso.setGeometry(QtCore.QRect(600, 10, 61, 41))
+        self.btn_siguiente_paso.setGeometry(QtCore.QRect(970, 370, 61, 41))
         self.btn_siguiente_paso.setObjectName("btn_siguiente_paso")
         self.tabWidget = QtWidgets.QTabWidget(self.centralwidget)
-        self.tabWidget.setGeometry(QtCore.QRect(10, 70, 711, 481))
+        self.tabWidget.setGeometry(QtCore.QRect(0, 10, 941, 551))
         self.tabWidget.setObjectName("tabWidget")
         self.tab = QtWidgets.QWidget()
         self.tab.setObjectName("tab")
         self.txt_consola = QtWidgets.QTextEdit(self.tab)
-        self.txt_consola.setGeometry(QtCore.QRect(10, 350, 391, 101))
+        self.txt_consola.setGeometry(QtCore.QRect(10, 410, 511, 101))
         self.txt_consola.setObjectName("txt_consola")
         self.tabWidget_4 = QtWidgets.QTabWidget(self.tab)
-        self.tabWidget_4.setGeometry(QtCore.QRect(0, 0, 411, 341))
+        self.tabWidget_4.setGeometry(QtCore.QRect(0, 0, 531, 391))
         self.tabWidget_4.setObjectName("tabWidget_4")
-        self.tab_7 = QtWidgets.QWidget()
-        self.tab_7.setObjectName("tab_7")
-        self.txt_entrada = QtWidgets.QTextEdit(self.tab_7)
-        self.txt_entrada.setGeometry(QtCore.QRect(50, 20, 351, 281))
+        self.tab_8 = QtWidgets.QWidget()
+        self.tab_8.setObjectName("tab_8")
+        self.tabWidget_3 = QtWidgets.QTabWidget(self.tab_8)
+        self.tabWidget_3.setGeometry(QtCore.QRect(0, 0, 521, 361))
+        self.tabWidget_3.setObjectName("tabWidget_3")
+        self.tab_10 = QtWidgets.QWidget()
+        self.tab_10.setObjectName("tab_10")
+        self.txt_entrada = QtWidgets.QPlainTextEdit(self.tab_10)
+        self.txt_entrada.setGeometry(QtCore.QRect(10, 10, 501, 321))
         self.txt_entrada.setObjectName("txt_entrada")
-        self.textEdit_2 = QtWidgets.QTextEdit(self.tab_7)
-        self.textEdit_2.setGeometry(QtCore.QRect(10, 20, 31, 291))
-        self.textEdit_2.setObjectName("textEdit_2")
-        self.tabWidget_4.addTab(self.tab_7, "")
+        self.tabWidget_3.addTab(self.tab_10, "")
+        self.tab_11 = QtWidgets.QWidget()
+        self.tab_11.setObjectName("tab_11")
+        self.txt_entrada_sin_optimizar = QtWidgets.QTextEdit(self.tab_11)
+        self.txt_entrada_sin_optimizar.setGeometry(QtCore.QRect(10, 10, 501, 311))
+        self.txt_entrada_sin_optimizar.setObjectName("txt_entrada_sin_optimizar")
+        self.tabWidget_3.addTab(self.tab_11, "")
+        self.tabWidget_4.addTab(self.tab_8, "")
         self.tabWidget_2 = QtWidgets.QTabWidget(self.tab)
-        self.tabWidget_2.setGeometry(QtCore.QRect(410, 20, 291, 431))
+        self.tabWidget_2.setGeometry(QtCore.QRect(540, 20, 391, 491))
         self.tabWidget_2.setObjectName("tabWidget_2")
+        self.tab_12 = QtWidgets.QWidget()
+        self.tab_12.setObjectName("tab_12")
+        self.txt_minor_c = QtWidgets.QTextEdit(self.tab_12)
+        self.txt_minor_c.setGeometry(QtCore.QRect(10, 20, 361, 431))
+        self.txt_minor_c.setObjectName("txt_minor_c")
+        self.tabWidget_2.addTab(self.tab_12, "")
         self.tab_5 = QtWidgets.QWidget()
         self.tab_5.setObjectName("tab_5")
         self.scrollArea_2 = QtWidgets.QScrollArea(self.tab_5)
@@ -161,11 +176,14 @@ class Ui_MainWindow(object):
         self.scrollArea.setWidget(self.scrollAreaWidgetContents)
         self.tabWidget.addTab(self.tab_3, "")
         self.btn_ejecutar_desc = QtWidgets.QPushButton(self.centralwidget)
-        self.btn_ejecutar_desc.setGeometry(QtCore.QRect(380, 10, 81, 41))
+        self.btn_ejecutar_desc.setGeometry(QtCore.QRect(960, 270, 81, 41))
         self.btn_ejecutar_desc.setObjectName("btn_ejecutar_desc")
+        self.btn_ejecutar_minor_c = QtWidgets.QPushButton(self.centralwidget)
+        self.btn_ejecutar_minor_c.setGeometry(QtCore.QRect(950, 170, 101, 41))
+        self.btn_ejecutar_minor_c.setObjectName("btn_ejecutar_minor_c")
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
-        self.menubar.setGeometry(QtCore.QRect(0, 0, 724, 21))
+        self.menubar.setGeometry(QtCore.QRect(0, 0, 1074, 21))
         self.menubar.setObjectName("menubar")
         self.menuArchivo = QtWidgets.QMenu(self.menubar)
         self.menuArchivo.setObjectName("menuArchivo")
@@ -217,6 +235,7 @@ class Ui_MainWindow(object):
         self.retranslateUi(MainWindow)
         self.tabWidget.setCurrentIndex(0)
         self.tabWidget_4.setCurrentIndex(0)
+        self.tabWidget_3.setCurrentIndex(1)
         self.tabWidget_2.setCurrentIndex(0)
         self.tab_reporte.setCurrentIndex(2)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
@@ -237,30 +256,15 @@ class Ui_MainWindow(object):
         self.btn_siguiente_paso.clicked.connect(self.parser_paso_ejecutar)
         self.actionSiguiente_Paso_Debug.triggered.connect(self.parser_paso_ejecutar)
 
-        self.txt_entrada.cursorPositionChanged.connect(self.h)
-        self.txt_entrada.textChanged.connect(self.h)
-        self.txt_entrada.selectionChanged.connect(self.h)
+        self.btn_ejecutar_minor_c.clicked.connect(self.ejecutar_main_c)
 
-    def h(self):
-        verti = self.txt_entrada.verticalScrollBar()
-        ver=verti.value()
-        if ver == 0:
-            self.textEdit_2.clear()
-            for i in  range(0,21):
-                self.textEdit_2.append(str(i+1))
-        else :
-            rango= int((ver/13))+1
-            if ver < 5:
-                rango = rango-1
-            self.textEdit_2.clear()
-            for i in range(rango, rango+21):
-                self.textEdit_2.append(str(i + 1))
-        #print(ver)
 
-        #cursor = self.txt_entrada.textCursor()
-        #y = cursor.blockNumber() + 1
-        #x = cursor.columnNumber() + 1
-        #print((x,y))
+    def ejecutar_main_c(self):
+        from AProyecto2.Main import analizar_minor_c,analizar_minor_c_optimizar_3D
+        rst = analizar_minor_c_optimizar_3D(self.txt_minor_c.toPlainText())
+        self.txt_entrada.appendPlainText(rst)
+
+    
 
     def graficar_arbol(self):
 
@@ -319,73 +323,17 @@ class Ui_MainWindow(object):
     def hola(self):
         print(self.txt_entrada.toPlainText())
 
-    def pintar_comentarios(self, entrada):
-        ini_span = "<span style=" + chr(34) + "color: #015002" + chr(34) + ">"
-        return re.sub(r'(#(.*)(\n)?)', ini_span + (r"\1") + "</span>", entrada)
-
-    def pintar_valores(self, entrada):
-        ini_span = "<span style=" + chr(34) + "color: #011E94 " + chr(34) + ">"
-        return re.sub(r'(("([^"]*)")|( [0-9]+ )|([0-9]\.[0-9]+))', ini_span + (r"\1") + "</span>", entrada)
-
-    def pintar_simbolos(self, entrada):
-        ini_span = "<span style=" + chr(34) + "color: #738786 " + chr(34) + ">"
-        return re.sub(r'((\+)|(-)|( / )|(\*)|( > )|( < )|( = )|(%)|(!=)|(==)|(\()|(\)))',
-                      ini_span + (r"\1") + "</span>", entrada)
-
-    def pintar_variables(self, entrada):
-        ini_span = "<span style=" + chr(34) + "color: #058695" + chr(34) + ">"
-        return re.sub(r"(\$[a-z]([a-z]|[0-9])*)", ini_span + (r"\1") + "</span>", entrada)
-
-    def pintar_reservadas_grises(self, entrada):
-        ini_span = "<span style=" + chr(34) + "color: #738786" + chr(34) + ">"
-        return re.sub(r"((main)|(print)|(exit))", ini_span + (r"\1") + "</span>", entrada)
-
-    def pintar_reservadas_moradas(self, entrada):
-        ini_span = "<span style=" + chr(34) + "color: #830495  " + chr(34) + ">"
-        return re.sub(r"((if)|(goto)|(array))", ini_span + (r"\1") + "</span>", entrada)
-
 
 
     def color(self,input):
-
-        self.txt_entrada.clear()
-        #f = open("C:/Users/norki/Desktop/interprete/entrada.txt", "r")
-        # f = open("C:/Users/Esnorki/Desktop/interprete/entrada.txt", "r")
-        #input: str = f.read()
-
-        input = self.pintar_comentarios(input)
-        #input = self.pintar_valores(input)
-
-        input = self.pintar_reservadas_grises(input)
-        input = self.pintar_reservadas_moradas(input)
-        input = self.pintar_variables(input)
-
-        input = self.pintar_simbolos(input)
-        input = re.sub(r"(;)", (r"\1"), input)
-        input = re.sub(r"(\n)", "<br>", input)
-        #
-        #
-        input = "<div contenteditable>\n" + input
-
-        input += "\n</div>"
-
-        # print(input)
-        self.txt_entrada.append(input)
-
-        # print(self.txt_entrada.toPlainText())
+        return
+        
 
     def parser_paso_iniciar(self):
         try:
             self.txt_consola.clear()
-            #self.txt_entrada.clear()
-            #f = open("C:/Users/norki/Desktop/interprete/entrada.txt", "r")
-            # f = open("C:/Users/Esnorki/Desktop/interprete/entrada.txt", "r")
-            #input: str = f.read()
             dim = self.txt_entrada.toPlainText()
-            self.txt_entrada.clear()
-            self.txt_entrada.append(self.color(dim))
             input = dim
-            #self.txt_entrada.append(input)
             global Ts
             Ts.guardar_consola(self.txt_consola)
             Ts.nueva_ejecucion(input)
@@ -440,18 +388,11 @@ class Ui_MainWindow(object):
     def parser(self):
         try:
             self.txt_consola.clear()
-            #self.txt_entrada.clear()
-            #f = open("C:/Users/norki/Desktop/interprete/entrada.txt", "r")
-            # f = open("C:/Users/Esnorki/Desktop/interprete/entrada.txt", "r")
-            #input: str = f.read()
-            #self.txt_entrada.append(input)
 
             global Ts
             Ts.guardar_consola(self.txt_consola)
 
             dim=self.txt_entrada.toPlainText()
-            self.txt_entrada.clear()
-            self.txt_entrada.append(self.color(dim))
             input = dim
 
             Ts.nueva_ejecucion(input)
@@ -483,16 +424,9 @@ class Ui_MainWindow(object):
     def parser_descendente(self):
         try:
             self.txt_consola.clear()
-            #self.txt_entrada.clear()
-            #f = open("C:/Users/norki/Desktop/interprete/entrada.txt", "r")
-            # f = open("C:/Users/Esnorki/Desktop/interprete/entrada.txt", "r")
-            #input: str = f.read()
-            #self.txt_entrada.append(input)
             global Ts
             Ts.guardar_consola(self.txt_consola)
             dim = self.txt_entrada.toPlainText()
-            self.txt_entrada.clear()
-            self.txt_entrada.append(self.color(dim))
             input = dim
             Ts.nueva_ejecucion(input)
             from Contenido.Analizadores.SintacticoDescendente import analizar_descendente
@@ -534,8 +468,11 @@ class Ui_MainWindow(object):
 "Ascendente"))
         self.btn_debug.setText(_translate("MainWindow", "Debug"))
         self.btn_siguiente_paso.setText(_translate("MainWindow", "Siguiente\n"
-                                                                 "Paso"))
-        self.tabWidget_4.setTabText(self.tabWidget_4.indexOf(self.tab_7), _translate("MainWindow", "Archivo"))
+"Paso"))
+        self.tabWidget_3.setTabText(self.tabWidget_3.indexOf(self.tab_10), _translate("MainWindow", "Optimizada"))
+        self.tabWidget_3.setTabText(self.tabWidget_3.indexOf(self.tab_11), _translate("MainWindow", "Sin Optimizar"))
+        self.tabWidget_4.setTabText(self.tabWidget_4.indexOf(self.tab_8), _translate("MainWindow", "Salida De MinorC"))
+        self.tabWidget_2.setTabText(self.tabWidget_2.indexOf(self.tab_12), _translate("MainWindow", "Entrada Minor C"))
         self.tabWidget_2.setTabText(self.tabWidget_2.indexOf(self.tab_5), _translate("MainWindow", "Tabla De Simbolos"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab), _translate("MainWindow", "Archivo Entrada"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_2), _translate("MainWindow", "Visualizar"))
@@ -545,6 +482,7 @@ class Ui_MainWindow(object):
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_3), _translate("MainWindow", "Reporte"))
         self.btn_ejecutar_desc.setText(_translate("MainWindow", "Ejecutar\n"
 "Descendente"))
+        self.btn_ejecutar_minor_c.setText(_translate("MainWindow", "Ejecutar Minor C"))
         self.menuArchivo.setTitle(_translate("MainWindow", "Archivo"))
         self.menuEditar.setTitle(_translate("MainWindow", "Editar"))
         self.menuAnalisis.setTitle(_translate("MainWindow", "Analisis"))
