@@ -1,0 +1,51 @@
+
+
+int main() {
+    int salida =(int)"y";
+    while(salida==(int)"y"){
+    printf("Calculadora");
+    printf("Ingrese el primer numero");
+    int m =scanf();
+    printf("Ingrese el segundo numero");
+    int n =scanf();
+    printf("Ingrese la operacion +,/,*,-");
+    int ope =(int)scanf();
+    int rst=0;
+    switch(ope){
+        case 45:
+            printf("resta es:");
+            rst=m-n;
+            printf(rst);
+            break;
+        case 43:
+            printf("suma es:");
+            rst=m+n;
+            printf(rst);
+            break;
+        case 47:
+            printf("division es:");
+            rst=m/n;
+            printf(rst);
+            break;
+        case 42:
+            printf("multiplicacion es:");
+            rst=m*n;
+            printf(rst);    
+            break;
+        default:
+            printf("Operacion Incorrecta");
+            break;
+    }
+    int continuar=1;
+    while(continuar !=0){
+        printf("desea continuar y/n");
+        continuar =(int)scanf();
+        if (continuar == 121 || continuar == 110){
+                break;
+            }else{
+                    printf("No Indica y/n");
+            }
+        }
+    if (continuar == 110) break;
+    }
+}

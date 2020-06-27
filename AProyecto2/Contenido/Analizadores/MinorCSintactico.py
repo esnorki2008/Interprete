@@ -83,6 +83,7 @@ def p_instruccion_declaracion_struct_puntual(t):
     'decla_struct : tipo mdecla  PUNTOCOMA'
     tp = find_column(entrada, t.slice[3])
     t[0]=ContenidoStruct(t[1],t[2],tp)
+
 #===============================Metodos==========
 def p_metodos_declara(t):
     'metodos : tipo IDENTIFICADOR PARA parametros PARC instruccion'
@@ -341,6 +342,7 @@ def p_instruccion_declaracion(t):
     t[0]=t[5]
     t[0].homogenizar_tipos(t[1]);
     t[0].agregar(Declaracion(t[2], t[4], t[1], tp))
+
 
 def p_instruccion_declaracion_vac(t):
     'instruccion : tipo mdecla corche  PUNTOCOMA'

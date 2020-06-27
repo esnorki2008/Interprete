@@ -1,22 +1,22 @@
 reserved = {
     'scanf': 'SCANF',
-    'printf':'PRINTF',
+    'printf': 'PRINTF',
     'int': 'INT',
     'float': 'FLOAT',
     'char': 'CHAR',
     'double': 'DOUBLE',
     'while': 'WHILE',
     'do': 'DO',
-    'struct' : 'STRUCT',
-    'if' : 'IF',
-    'else':'ELSE',
-    'switch':'SWITCH',
-    'return':'RETURN',
-    'default':'DEFAULT',
-    'case':'CASE',
-    'for':'FOR',
-    'break':'BREAK',
-    'continue':'CONTINUE',
+    'struct': 'STRUCT',
+    'if': 'IF',
+    'else': 'ELSE',
+    'switch': 'SWITCH',
+    'return': 'RETURN',
+    'default': 'DEFAULT',
+    'case': 'CASE',
+    'for': 'FOR',
+    'break': 'BREAK',
+    'continue': 'CONTINUE',
 
 }
 tokens = [
@@ -58,7 +58,6 @@ tokens = [
              'MASDOBLE',
              'MENOSDOBLE',
 
-
              'MASIGUAL',
              'MENOSIGUAL',
              'PORIGUAL',
@@ -75,7 +74,6 @@ tokens = [
              'CASTDOUBLE',
              'CASTFLOAT',
 
-
          ] + list(reserved.values())
 
 # Tokens
@@ -91,8 +89,6 @@ t_SHIFTDIGUAL = r'\>\>\='
 t_ANDIGUAL = r'\&\='
 t_XORIGUAL = r'\^\='
 t_ORIGUAL = r'\|\='
-
-
 
 t_PARA = r'\('
 t_PARC = r'\)'
@@ -115,8 +111,6 @@ t_CASTINT = r'\(int\)'
 t_CASTCHAR = r'\(char\)'
 t_CASTDOUBLE = r'\(double\)'
 t_CASTFLOAT = r'\(castfloat\)'
-
-
 
 t_MOD = r'\%'
 t_NOT = r'\!'
@@ -169,9 +163,9 @@ def t_CADENA(t):
     r'("|\')([^"\']*)("|\')'
     try:
         pass
-        #cadena: str = t.value
-        #t.value = cadena.replace("\"", "")
-        #t.value = t.value.replace("\'", "")
+        # cadena: str = t.value
+        # t.value = cadena.replace("\"", "")
+        # t.value = t.value.replace("\'", "")
     except ValueError:
         print("Error Cadena %d", t.value)
         t.value = ""
@@ -192,13 +186,21 @@ def t_comentario(t):
     t.lexer.lineno += t.value.count("\n")
 
 
+def t_comentario_Cpp(t):
+    r'\/\/(.*)(\n)?'
+    t.lexer.lineno += t.value.count("\n")
+
+
+def t_comentario_Cpp_infinit(t):
+    r'\/\*(.*)\*\/'
+    t.lexer.lineno += t.value.count("\n")
+
+
 def find_column(input, token):
     line_start = input.rfind('\n', 0, token.lexpos) + 1
     return ((token.lexpos - line_start) + 1, token.lineno)
 
 
 def t_error(t):
-
-
     print("Illegal character '%s'" % t.value[0])
     t.lexer.skip(1)

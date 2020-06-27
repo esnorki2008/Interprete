@@ -1,19 +1,20 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtCore import QRect, QSize
+from PyQt5.QtGui import QColor, QFont, QColorConstants
 
-from PyQt5.QtWidgets import QPlainTextEdit, QWidget, QFileDialog
+from PyQt5.QtWidgets import QPlainTextEdit, QWidget, QFileDialog, QVBoxLayout
 
 from Contenido.LstInstruccion.ABCInstruccion import Ts
 from Contenido.LstInstruccion.ABCInstruccion import ListaInstruccion
 from Contenido.Analizadores.Sintactico import analizar_ascendente
 import re
-
+from PyQt5.Qsci import *
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
-        MainWindow.setObjectName("MainWindow")
+        MainWindow.setObjectName("Proyecto")
         MainWindow.resize(1074, 588)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
@@ -53,15 +54,19 @@ class Ui_MainWindow(object):
         self.tabWidget_3.setObjectName("tabWidget_3")
         self.tab_10 = QtWidgets.QWidget()
         self.tab_10.setObjectName("tab_10")
-        self.txt_entrada = QtWidgets.QPlainTextEdit(self.tab_10)
-        self.txt_entrada.setGeometry(QtCore.QRect(10, 10, 501, 321))
-        self.txt_entrada.setObjectName("txt_entrada")
+        self.frame_txt_entrada = QtWidgets.QFrame(self.tab_10)
+        self.frame_txt_entrada.setGeometry(QtCore.QRect(10, 10, 501, 321))
+        self.frame_txt_entrada.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        self.frame_txt_entrada.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.frame_txt_entrada.setObjectName("frame_txt_entrada")
         self.tabWidget_3.addTab(self.tab_10, "")
         self.tab_11 = QtWidgets.QWidget()
         self.tab_11.setObjectName("tab_11")
-        self.txt_entrada_sin_optimizar = QtWidgets.QTextEdit(self.tab_11)
-        self.txt_entrada_sin_optimizar.setGeometry(QtCore.QRect(10, 10, 501, 311))
-        self.txt_entrada_sin_optimizar.setObjectName("txt_entrada_sin_optimizar")
+        self.frame_txt_entrada_sin_optimizar = QtWidgets.QFrame(self.tab_11)
+        self.frame_txt_entrada_sin_optimizar.setGeometry(QtCore.QRect(10, 10, 501, 321))
+        self.frame_txt_entrada_sin_optimizar.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        self.frame_txt_entrada_sin_optimizar.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.frame_txt_entrada_sin_optimizar.setObjectName("frame_txt_entrada_sin_optimizar")
         self.tabWidget_3.addTab(self.tab_11, "")
         self.tabWidget_4.addTab(self.tab_8, "")
         self.tabWidget_2 = QtWidgets.QTabWidget(self.tab)
@@ -69,18 +74,20 @@ class Ui_MainWindow(object):
         self.tabWidget_2.setObjectName("tabWidget_2")
         self.tab_12 = QtWidgets.QWidget()
         self.tab_12.setObjectName("tab_12")
-        self.txt_minor_c = QtWidgets.QTextEdit(self.tab_12)
-        self.txt_minor_c.setGeometry(QtCore.QRect(10, 20, 361, 431))
-        self.txt_minor_c.setObjectName("txt_minor_c")
+        self.frame_txt_minor_c = QtWidgets.QFrame(self.tab_12)
+        self.frame_txt_minor_c.setGeometry(QtCore.QRect(10, 10, 361, 441))
+        self.frame_txt_minor_c.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        self.frame_txt_minor_c.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.frame_txt_minor_c.setObjectName("frame_txt_minor_c")
         self.tabWidget_2.addTab(self.tab_12, "")
         self.tab_5 = QtWidgets.QWidget()
         self.tab_5.setObjectName("tab_5")
         self.scrollArea_2 = QtWidgets.QScrollArea(self.tab_5)
-        self.scrollArea_2.setGeometry(QtCore.QRect(10, 10, 276, 381))
+        self.scrollArea_2.setGeometry(QtCore.QRect(10, 10, 361, 441))
         self.scrollArea_2.setWidgetResizable(True)
         self.scrollArea_2.setObjectName("scrollArea_2")
         self.scrollAreaWidgetContents_2 = QtWidgets.QWidget()
-        self.scrollAreaWidgetContents_2.setGeometry(QtCore.QRect(0, 0, 518, 362))
+        self.scrollAreaWidgetContents_2.setGeometry(QtCore.QRect(0, 0, 518, 422))
         self.scrollAreaWidgetContents_2.setObjectName("scrollAreaWidgetContents_2")
         self.horizontalLayout = QtWidgets.QHBoxLayout(self.scrollAreaWidgetContents_2)
         self.horizontalLayout.setObjectName("horizontalLayout")
@@ -175,6 +182,12 @@ class Ui_MainWindow(object):
         self.tab_reporte.addTab(self.tab_9, "")
         self.scrollArea.setWidget(self.scrollAreaWidgetContents)
         self.tabWidget.addTab(self.tab_3, "")
+        self.tab_13 = QtWidgets.QWidget()
+        self.tab_13.setObjectName("tab_13")
+        self.tabWidget.addTab(self.tab_13, "")
+        self.tab_7 = QtWidgets.QWidget()
+        self.tab_7.setObjectName("tab_7")
+        self.tabWidget.addTab(self.tab_7, "")
         self.btn_ejecutar_desc = QtWidgets.QPushButton(self.centralwidget)
         self.btn_ejecutar_desc.setGeometry(QtCore.QRect(960, 270, 81, 41))
         self.btn_ejecutar_desc.setObjectName("btn_ejecutar_desc")
@@ -235,10 +248,133 @@ class Ui_MainWindow(object):
         self.retranslateUi(MainWindow)
         self.tabWidget.setCurrentIndex(0)
         self.tabWidget_4.setCurrentIndex(0)
-        self.tabWidget_3.setCurrentIndex(1)
+        self.tabWidget_3.setCurrentIndex(0)
         self.tabWidget_2.setCurrentIndex(0)
-        self.tab_reporte.setCurrentIndex(2)
+        self.tab_reporte.setCurrentIndex(0)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
+        self.__myFont = QFont()
+        self.__myFont.setPointSize(12)
+#=========================================================EDITORES===================================
+        self.txt_minor_c = QsciScintilla()
+        self.txt_minor_c.setText("")
+        self.txt_minor_c.setUtf8(True)
+        self.txt_minor_c.setFont(self.__myFont)
+
+        # AJUSTES DE TEXTO
+        self.txt_minor_c.setWrapMode(QsciScintilla.WrapWord)
+        self.txt_minor_c.setWrapVisualFlags(QsciScintilla.WrapFlagByText)
+        self.txt_minor_c.setWrapIndentMode(QsciScintilla.WrapIndentIndented)
+
+        # FIN DE LINEA
+        self.txt_minor_c.setEolMode(QsciScintilla.EolWindows)
+        self.txt_minor_c.setEolVisibility(False)
+
+        # SANGRIA
+        self.txt_minor_c.setIndentationsUseTabs(False)
+        self.txt_minor_c.setTabWidth(4)
+        self.txt_minor_c.setIndentationGuides(True)
+        self.txt_minor_c.setTabIndents(True)
+        self.txt_minor_c.setAutoIndent(True)
+
+        self.txt_minor_c.setCaretForegroundColor(QColor("#ff0000ff"))
+        self.txt_minor_c.setCaretLineVisible(True)
+        self.txt_minor_c.setCaretLineBackgroundColor(QColor("#1f0000ff"))
+        self.txt_minor_c.setCaretWidth(2)
+
+        # MARGENES
+        self.txt_minor_c.setMarginType(0, QsciScintilla.NumberMargin)
+        self.txt_minor_c.setMarginWidth(0, "0000")  # con este se puede quitar la linea
+        self.txt_minor_c.setMarginsForegroundColor(QColor("#ff888888"))
+
+        # SE COLOCAN LAS REGLAS DEL EDITOR
+        self.__lexer = QsciLexerCPP(self.txt_minor_c)
+        self.txt_minor_c.setLexer(self.__lexer)
+
+        self.__lyt = QVBoxLayout()
+        self.frame_txt_minor_c.setLayout(self.__lyt)
+        self.__lyt.addWidget(self.txt_minor_c)
+#====================================ENTRADA===========================
+        self.txt_entrada = QsciScintilla()
+        self.txt_entrada.setText("")
+        self.txt_entrada.setUtf8(True)
+        self.txt_entrada.setFont(self.__myFont)
+
+        # AJUSTES DE TEXTO
+        self.txt_entrada.setWrapMode(QsciScintilla.WrapWord)
+        self.txt_entrada.setWrapVisualFlags(QsciScintilla.WrapFlagByText)
+        self.txt_entrada.setWrapIndentMode(QsciScintilla.WrapIndentIndented)
+
+        # FIN DE LINEA
+        self.txt_entrada.setEolMode(QsciScintilla.EolWindows)
+        self.txt_entrada.setEolVisibility(False)
+
+        # SANGRIA
+        self.txt_entrada.setIndentationsUseTabs(False)
+        self.txt_entrada.setTabWidth(4)
+        self.txt_entrada.setIndentationGuides(True)
+        self.txt_entrada.setTabIndents(True)
+        self.txt_entrada.setAutoIndent(True)
+
+        self.txt_entrada.setCaretForegroundColor(QColor("#ff0000ff"))
+        self.txt_entrada.setCaretLineVisible(True)
+        self.txt_entrada.setCaretLineBackgroundColor(QColor("#1f0000ff"))
+        self.txt_entrada.setCaretWidth(2)
+
+        # MARGENES
+        self.txt_entrada.setMarginType(0, QsciScintilla.NumberMargin)
+        self.txt_entrada.setMarginWidth(0, "0000")  # con este se puede quitar la linea
+        self.txt_entrada.setMarginsForegroundColor(QColor("#ff888888"))
+
+        # SE COLOCAN LAS REGLAS DEL EDITOR
+        self.__lexer = QsciLexerRuby(self.txt_entrada)
+        self.txt_entrada.setLexer(self.__lexer)
+
+        self.__lyt = QVBoxLayout()
+        self.frame_txt_entrada.setLayout(self.__lyt)
+        self.__lyt.addWidget(self.txt_entrada)
+#========================Entrada Sin Optimizar======================
+        self.txt_entrada_sin_optimizar = QsciScintilla()
+        self.txt_entrada_sin_optimizar.setText("")
+        self.txt_entrada_sin_optimizar.setUtf8(True)
+        self.txt_entrada_sin_optimizar.setFont(self.__myFont)
+
+        # AJUSTES DE TEXTO
+        self.txt_entrada_sin_optimizar.setWrapMode(QsciScintilla.WrapWord)
+        self.txt_entrada_sin_optimizar.setWrapVisualFlags(QsciScintilla.WrapFlagByText)
+        self.txt_entrada_sin_optimizar.setWrapIndentMode(QsciScintilla.WrapIndentIndented)
+
+        # FIN DE LINEA
+        self.txt_entrada_sin_optimizar.setEolMode(QsciScintilla.EolWindows)
+        self.txt_entrada_sin_optimizar.setEolVisibility(False)
+
+        # SANGRIA
+        self.txt_entrada_sin_optimizar.setIndentationsUseTabs(False)
+        self.txt_entrada_sin_optimizar.setTabWidth(4)
+        self.txt_entrada_sin_optimizar.setIndentationGuides(True)
+        self.txt_entrada_sin_optimizar.setTabIndents(True)
+        self.txt_entrada_sin_optimizar.setAutoIndent(True)
+
+        self.txt_entrada_sin_optimizar.setCaretForegroundColor(QColor("#ff0000ff"))
+        self.txt_entrada_sin_optimizar.setCaretLineVisible(True)
+        self.txt_entrada_sin_optimizar.setCaretLineBackgroundColor(QColor("#1f0000ff"))
+        self.txt_entrada_sin_optimizar.setCaretWidth(2)
+
+        # MARGENES
+        self.txt_entrada_sin_optimizar.setMarginType(0, QsciScintilla.NumberMargin)
+        self.txt_entrada_sin_optimizar.setMarginWidth(0, "0000")  # con este se puede quitar la linea
+        self.txt_entrada_sin_optimizar.setMarginsForegroundColor(QColor("#ff888888"))
+
+        # SE COLOCAN LAS REGLAS DEL EDITOR
+        self.__lexer = QsciLexerRuby(self.txt_entrada_sin_optimizar)
+        self.txt_entrada_sin_optimizar.setLexer(self.__lexer)
+
+        self.__lyt = QVBoxLayout()
+        self.frame_txt_entrada_sin_optimizar.setLayout(self.__lyt)
+        self.__lyt.addWidget(self.txt_entrada_sin_optimizar)
+
+#======================================================================
+
+
         #Para Abrir,Guardar,Como
         self.btn_abrir.clicked.connect(self.abrir_archivo)
         self.actionGuardar.triggered.connect(self.abrir_archivo)
@@ -261,13 +397,12 @@ class Ui_MainWindow(object):
 
     def ejecutar_main_c(self):
         from AProyecto2.Main import analizar_minor_c,analizar_minor_c_optimizar_3D
-        rst = analizar_minor_c_optimizar_3D(self.txt_minor_c.toPlainText())
-        self.txt_entrada.appendPlainText(rst)
+        rst = analizar_minor_c_optimizar_3D(self.txt_minor_c.text())
+        self.txt_entrada.setText(rst)
 
     
 
     def graficar_arbol(self):
-
         import pydot
         global Ts
         dot_string = Ts.generar_dot()
@@ -296,7 +431,7 @@ class Ui_MainWindow(object):
             self.guardar_archivo_como()
         else:
             file = open(self.archivo_actual, 'w')
-            text = self.txt_entrada.toPlainText()
+            text = self.txt_entrada.text()
             file.write(text)
             self.color(text)
 
@@ -304,7 +439,7 @@ class Ui_MainWindow(object):
         try:
             fname = QFileDialog.getSaveFileName()
             file = open(fname[0], 'w')
-            text = self.txt_entrada.toPlainText()
+            text = self.txt_entrada.text()
             file.write(text)
             self.color(text)
         except:
@@ -317,11 +452,10 @@ class Ui_MainWindow(object):
             input: str = f.read()
             self.color(input)
             self.archivo_actual = fname[0]
+            self.txt_minor_c.setText(input)
         except:
             pass
 
-    def hola(self):
-        print(self.txt_entrada.toPlainText())
 
 
 
@@ -330,9 +464,12 @@ class Ui_MainWindow(object):
         
 
     def parser_paso_iniciar(self):
+        self.pasex = 1;
+        self.ejecutar_main_c()
         try:
+
             self.txt_consola.clear()
-            dim = self.txt_entrada.toPlainText()
+            dim = self.txt_entrada.text()
             input = dim
             global Ts
             Ts.guardar_consola(self.txt_consola)
@@ -361,13 +498,18 @@ class Ui_MainWindow(object):
             Ts.mensaje_info("Error", "Error Durante El Analisis")
             print("Oops!", sys.exc_info()[0], "occurred.")
     raiz_global = None
-
+    pasex = 1
     def parser_paso_ejecutar(self):
 
         try:
 
             if self.raiz_global is not None:
+                #DEFAULT_INDICATOR_ID = 1
+                #self.txt_entrada.indicatorDefine(QsciScintilla.FullBoxIndicator, self.pasex)
+                #self.txt_entrada.fillIndicatorRange(self.pasex, 0, self.pasex + 1, 0, self.pasex)
+                #self.pasex+=1
 
+                #print(self.pasex)
                 ex = Ts.paso_a_paso_ejecutar()
                 if ex == "exit":
                     Ts.mensaje_info("Informacion", "Ejecucion Paso A Paso Completo")
@@ -392,7 +534,7 @@ class Ui_MainWindow(object):
             global Ts
             Ts.guardar_consola(self.txt_consola)
 
-            dim=self.txt_entrada.toPlainText()
+            dim=self.txt_entrada.text()
             input = dim
 
             Ts.nueva_ejecucion(input)
@@ -426,7 +568,7 @@ class Ui_MainWindow(object):
             self.txt_consola.clear()
             global Ts
             Ts.guardar_consola(self.txt_consola)
-            dim = self.txt_entrada.toPlainText()
+            dim = self.txt_entrada.text()
             input = dim
             Ts.nueva_ejecucion(input)
             from Contenido.Analizadores.SintacticoDescendente import analizar_descendente
@@ -480,6 +622,8 @@ class Ui_MainWindow(object):
         self.tab_reporte.setTabText(self.tab_reporte.indexOf(self.tab_6), _translate("MainWindow", "Errores"))
         self.tab_reporte.setTabText(self.tab_reporte.indexOf(self.tab_9), _translate("MainWindow", "Gramatical"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_3), _translate("MainWindow", "Reporte"))
+        self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_13), _translate("MainWindow", "Visualizar Minor C"))
+        self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_7), _translate("MainWindow", "Reporte Minor C"))
         self.btn_ejecutar_desc.setText(_translate("MainWindow", "Ejecutar\n"
 "Descendente"))
         self.btn_ejecutar_minor_c.setText(_translate("MainWindow", "Ejecutar Minor C"))
@@ -500,3 +644,4 @@ class Ui_MainWindow(object):
 
 if __name__ == "__main__":
     pass
+
