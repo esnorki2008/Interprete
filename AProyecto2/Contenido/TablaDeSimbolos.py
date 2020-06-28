@@ -23,7 +23,7 @@ class TablaDeSimbolos:
     dic_struct = {}
     return_address = 0
     contador_retornos=0
-
+    dict_etiquetas = {}
     def __init__(self, tabla_padre):
         self.contador_retornos = 0
         self.parametros = 0
@@ -33,6 +33,7 @@ class TablaDeSimbolos:
         self.tabla_padre = tabla_padre
         self.return_address=0
         self.dic_struct = {}
+        self.dict_etiquetas = {}
         if tabla_padre is None:
             self.correlativo = 0
         else:
@@ -94,7 +95,7 @@ class TablaDeSimbolos:
 
     def push_mi_alcance(self):
         tmp = self
-        while tmp is not None:
+        while tmp.tabla_padre is not None:
             for cada in tmp.dic_temporales.items():
                 self.nuevo_codigo_3d("$sp1 = $sp1 + 1;")
                 self.nuevo_codigo_3d("$s3[$sp1] = "+cada[1].contenido+";#push alcance")
@@ -103,7 +104,7 @@ class TablaDeSimbolos:
     def pop_mi_alcance(self):
         tmp = self
         volcado = []
-        while tmp is not None:
+        while tmp.tabla_padre is not None:
             for cada in  tmp.dic_temporales.items():
                 vol_item=("$sp1 = $sp1 - 1;",cada[1].contenido+" = $s3[$sp1]"+";#pop alcance")
                 volcado.append(vol_item)
@@ -196,9 +197,34 @@ class TablaDeSimbolos:
         if self.codigo_3d[-1] != nuevo :
             self.nuevo_codigo_3d(nuevo)
 
-    def nuevo_temporal(self, llave, valor):
-        self.dic_temporales[llave] = valor
+    def nuevo_temporal(self, llave, valor,tupla =(0,0)):
+        veri = self.dic_temporales.get(llave,None)
+        if veri is not None:
+            self.nuevo_error("Redefinicion De Variables","Se intendo definir de nuevo la variable : "+str(llave),0,tupla)
+        else:
+            self.dic_temporales[llave] = valor
 
+    def nueva_etiqueta(self,etiqueta,tupla =(0,0)):
+        veri = self.dict_etiquetas.get(etiqueta, None)
+        if veri is not None:
+            self.nuevo_error("Redefinicion De Etiqueta", "Se intendo definir de nuevo la etiqueta : " + str(etiqueta), 0,
+                             tupla)
+        else:
+            self.dict_etiquetas[etiqueta] = etiqueta
+
+        return veri
+
+    def buscar_etiqueta(self,etiqueta,tupla =(0,0)):
+        temp = self
+        while temp is not None:
+            veri = temp.dict_etiquetas.get(etiqueta, None)
+            if veri is not None:
+                return veri
+            temp = temp.tabla_padre
+
+
+        self.nuevo_error("Etiqueta No Definida", "No se encuentra definida la etiqueta : " + str(etiqueta),0,tupla)
+        return  None
 
     def imprimir_temporales(self):
         for cada in self.dic_temporales.items():

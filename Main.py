@@ -65,11 +65,17 @@ def graficar_sin_consola():
 
 #graficar_sin_consola()
 #cargar_sin_consola()
+
 ventana:Ui_MainWindow =cargar_ventana()
+def cargar_proyecto2():
+    from AProyecto2.Main import analizar_minor_c_optimizar_3D
 
-#print(raiz_produccion.str_arbol_encabezado())
-#raiz_produccion.ejecutar()
-# for Prod in raiz_produccion:
-#   print(Prod.ejecutar().dar_valor())
-#  print(Prod.str_arbol())
+    cadenita = '''
+    int main(){
+        int a[4]={5,508};
+    } 
 
+'''
+    analizar_minor_c_optimizar_3D(cadenita)
+
+#cargar_proyecto2()

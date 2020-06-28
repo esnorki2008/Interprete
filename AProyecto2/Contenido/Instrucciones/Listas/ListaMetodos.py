@@ -33,9 +33,32 @@ class ListaMetodos(Instruccion):
                 if each.nombre == "main":
                     main = each
                     break
-        main.ejecutar_3D(Tabla)
+        from AProyecto2.Contenido.Instrucciones.Listas.ListaInstruccion import ListaInstruccion
+        init = "main:"
+        Tabla.nuevo_codigo_3d(init)
+        init = "$s0=array();#pila"
+        Tabla.nuevo_codigo_3d(init)
+        init = "$s1=array();#retorno"
+        Tabla.nuevo_codigo_3d(init)
+        init = "$sp=-1;#null ptr"
+        Tabla.nuevo_codigo_3d(init)
+        init = "$ra=-1;#null ptr"
+        Tabla.nuevo_codigo_3d(init)
+        init = "$v=0;#Ptr Retornos"
+        Tabla.nuevo_codigo_3d(init)
+        init = "$s2=array();"
+        Tabla.nuevo_codigo_3d(init)
+        init = "$sp1=-1;"
+        Tabla.nuevo_codigo_3d(init)
+        init = "$s3=array();"
+        Tabla.nuevo_codigo_3d(init)
         for each in self.contenido:
-            if each.nombre != "main":
+            if isinstance(each,ListaInstruccion):
+                each.ejecutar_3D(Tabla)
+        main.ejecutar_3D(Tabla)
+
+        for each in self.contenido:
+            if each.nombre != "main" and not isinstance(each,ListaInstruccion):
                 each.ejecutar_3D(Tabla)
 
         #return self.contenido

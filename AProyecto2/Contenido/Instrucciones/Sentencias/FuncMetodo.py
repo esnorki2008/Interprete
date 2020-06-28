@@ -27,24 +27,10 @@ class FuncMetodo(Instruccion):
 
         novo = TablaDeSimbolos(Tabla)
         nombre_metodo = str(self.nombre)
-        novo.nuevo_codigo_3d(nombre_metodo + ":")
-        if self.nombre == "main" :
-            init="$s0=array();#pila"
-            Tabla.nuevo_codigo_3d(init)
-            init = "$s1=array();#retorno"
-            Tabla.nuevo_codigo_3d(init)
-            init="$sp=-1;#null ptr"
-            Tabla.nuevo_codigo_3d(init)
-            init="$ra=-1;#null ptr"
-            Tabla.nuevo_codigo_3d(init)
-            init = "$v=0;#Ptr Retornos"
-            Tabla.nuevo_codigo_3d(init)
-            init = "$s2=array();"
-            Tabla.nuevo_codigo_3d(init)
-            init = "$sp1=-1;"
-            Tabla.nuevo_codigo_3d(init)
-            init = "$s3=array();"
-            Tabla.nuevo_codigo_3d(init)
+        if self.nombre != "main":
+            novo.nuevo_codigo_3d(nombre_metodo + ":")
+
+
         if len(self.param) > 0:
             self.simular_pop(novo)
 

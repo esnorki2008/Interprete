@@ -129,6 +129,9 @@ def t_newline(t):
     r'\n+'
     t.lexer.lineno += t.value.count("\n")
 
+def t_carro(t):
+    r'\r+'
+    t.lexer.lineno += t.value.count("\n")
 
 def t_comentario(t):
     r'\#(.*)(\n)?'

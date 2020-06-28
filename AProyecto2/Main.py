@@ -41,22 +41,25 @@ int main()
 }
 '''
 def analizar_minor_c_optimizar_3D(cadena_entrada):
-    rst=analizar_ascendente(cadena_entrada)
     tab = TablaDeSimbolos(None)
+    lst_repo_grama = []
+    rst=analizar_ascendente(cadena_entrada,lst_repo_grama)
     if rst is None :
         print("Error")
     else:
-        print(rst.str_arbol());
+        #print(rst.str_arbol());
         rst.ejecutar_3D(tab)
         tab.terminar_codigo_3d()
         from AProyecto2.Contenido.Optimo import Optimo
         Optm:Optimo = Optimo(tab.codigo_3d)
         lst_sal = Optm.codigo_optimizado()
+        #tab.imprimir_temporales()
         return tab.string_codigo_3d(lst_sal)
 
 def analizar_minor_c(cadena_entrada):
-    rst=analizar_ascendente(cadena_entrada)
     tab = TablaDeSimbolos(None)
+    lst_repo_grama = []
+    rst = analizar_ascendente(cadena_entrada, lst_repo_grama)
     if rst is None :
         print("Error")
     else:

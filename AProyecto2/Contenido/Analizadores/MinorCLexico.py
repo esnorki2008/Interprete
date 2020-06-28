@@ -17,6 +17,7 @@ reserved = {
     'for': 'FOR',
     'break': 'BREAK',
     'continue': 'CONTINUE',
+    'goto': 'GOTO',
 
 }
 tokens = [
@@ -180,6 +181,9 @@ def t_newline(t):
     r'\n+'
     t.lexer.lineno += t.value.count("\n")
 
+def t_carro(t):
+    r'\r+'
+    t.lexer.lineno += t.value.count("\n")
 
 def t_comentario(t):
     r'\#(.*)(\n)?'
@@ -202,5 +206,9 @@ def find_column(input, token):
 
 
 def t_error(t):
-    print("Illegal character '%s'" % t.value[0])
+    from AProyecto2.Contenido.Analizadores.MinorCSintactico import entrada
+    print("error lexico ")
+    print([ord(c) for c in str(t.value[0])])
+    print(find_column(entrada,t))
+    #print("Illegal character '%s'" % t.value[0])
     t.lexer.skip(1)

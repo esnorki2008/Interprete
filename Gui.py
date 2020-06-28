@@ -8,7 +8,7 @@ from Contenido.LstInstruccion.ABCInstruccion import Ts
 from Contenido.LstInstruccion.ABCInstruccion import ListaInstruccion
 from Contenido.Analizadores.Sintactico import analizar_ascendente
 import re
-from PyQt5.Qsci import *
+from PyQt5.Qsci import QsciLexerCPP,QsciScintilla,QsciLexerRuby
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 
@@ -397,6 +397,7 @@ class Ui_MainWindow(object):
 
     def ejecutar_main_c(self):
         from AProyecto2.Main import analizar_minor_c,analizar_minor_c_optimizar_3D
+
         rst = analizar_minor_c_optimizar_3D(self.txt_minor_c.text())
         self.txt_entrada.setText(rst)
 

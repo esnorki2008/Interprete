@@ -38,7 +38,7 @@ class DeclaracionStruct(Instruccion):
         mi_expresion = temp.temp_str() + " = " + "array();"
         Tabla.nuevo_codigo_3d(mi_expresion)
         Tabla.declarar_struct_busqueda(self.tipo,temp.temp_str(),self.tupla)
-        Tabla.nuevo_temporal(self.nombre, temp)
+        Tabla.nuevo_temporal(self.nombre, temp,self.tupla)
 
         # return self.contenido
 

@@ -3,7 +3,7 @@ from AProyecto2.Contenido.Instrucciones.InstruccionAbstracta import Instruccion
 
 class ListaInstruccion(Instruccion):
     contenido: [] = None
-
+    nombre = ""
     def __init__(self, contenido: []):
         self.contenido = contenido
 

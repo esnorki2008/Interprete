@@ -5,12 +5,14 @@ class Declaracion(Instruccion):
     valor = None
     nombre = None
     corche = None
-    def __init__(self, nombre, valor, tipo, tupla,corche = []):
+    arr_val = []
+    def __init__(self, nombre, valor, tipo, tupla,corche = [],arr_val = []):
         self.valor = valor
         self.nombre = nombre
         self.tipo = tipo
         self.tupla = tupla
         self.corche = corche
+        self.arr_val = arr_val
 
     def str_arbol(self):
         concatenar = ""
@@ -40,9 +42,19 @@ class Declaracion(Instruccion):
         temp.lista_corchetes=lista_val
         mi_expresion = temp.temp_str() + "=" +  " array();"
         Tabla.nuevo_codigo_3d(mi_expresion)
-        Tabla.nuevo_temporal(self.nombre[0], temp)
+        Tabla.nuevo_temporal(self.nombre[0], temp,self.tupla)
+        self.ejecutar_arreglo_con_valor(Tabla,temp)
+
+    def ejecutar_arreglo_con_valor(self,Tabla,tempo):
+        conta=0;
+        for cor in self.arr_val:
+            tem_exec=cor.ejecutar_3D(Tabla);
+            expresion=tempo.contenido+"["+str(conta)+"] = "+str(tem_exec.contenido)+";"
+            Tabla.nuevo_codigo_3d(expresion)
+            conta=conta+1
 
     def ejecutar_3D(self, Tabla ):
+
         if len(self.corche) != 0:
             return  self.ejecutar_arreglo(Tabla)
 
